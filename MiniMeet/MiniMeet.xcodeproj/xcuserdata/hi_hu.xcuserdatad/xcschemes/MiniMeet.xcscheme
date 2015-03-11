@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B8B0FCCE1AB001E90097E996"
+               BlueprintIdentifier = "B8B0FCFE1AB008500097E996"
                BuildableName = "MiniMeet.app"
                BlueprintName = "MiniMeet"
                ReferencedContainer = "container:MiniMeet.xcodeproj">
@@ -28,7 +28,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B8B0FCE31AB001E90097E996"
+               BlueprintIdentifier = "B8B0FD131AB008500097E996"
                BuildableName = "MiniMeetTests.xctest"
                BlueprintName = "MiniMeetTests"
                ReferencedContainer = "container:MiniMeet.xcodeproj">
@@ -46,7 +46,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B8B0FCE31AB001E90097E996"
+               BlueprintIdentifier = "B8B0FD131AB008500097E996"
                BuildableName = "MiniMeetTests.xctest"
                BlueprintName = "MiniMeetTests"
                ReferencedContainer = "container:MiniMeet.xcodeproj">
@@ -56,7 +56,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B8B0FCCE1AB001E90097E996"
+            BlueprintIdentifier = "B8B0FCFE1AB008500097E996"
             BuildableName = "MiniMeet.app"
             BlueprintName = "MiniMeet"
             ReferencedContainer = "container:MiniMeet.xcodeproj">
@@ -76,7 +76,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B8B0FCCE1AB001E90097E996"
+            BlueprintIdentifier = "B8B0FCFE1AB008500097E996"
             BuildableName = "MiniMeet.app"
             BlueprintName = "MiniMeet"
             ReferencedContainer = "container:MiniMeet.xcodeproj">
@@ -95,7 +95,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B8B0FCCE1AB001E90097E996"
+            BlueprintIdentifier = "B8B0FCFE1AB008500097E996"
             BuildableName = "MiniMeet.app"
             BlueprintName = "MiniMeet"
             ReferencedContainer = "container:MiniMeet.xcodeproj">

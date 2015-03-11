@@ -7,46 +7,52 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B8B0FCD51AB001E90097E996 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B0FCD41AB001E90097E996 /* AppDelegate.swift */; };
-		B8B0FCD71AB001E90097E996 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B0FCD61AB001E90097E996 /* ViewController.swift */; };
-		B8B0FCDA1AB001E90097E996 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8B0FCD81AB001E90097E996 /* Main.storyboard */; };
-		B8B0FCDC1AB001E90097E996 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8B0FCDB1AB001E90097E996 /* Images.xcassets */; };
-		B8B0FCDF1AB001E90097E996 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8B0FCDD1AB001E90097E996 /* LaunchScreen.xib */; };
-		B8B0FCEB1AB001E90097E996 /* MiniMeetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B0FCEA1AB001E90097E996 /* MiniMeetTests.swift */; };
+		B8B0FD051AB008500097E996 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B0FD041AB008500097E996 /* AppDelegate.swift */; };
+		B8B0FD071AB008500097E996 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B0FD061AB008500097E996 /* ViewController.swift */; };
+		B8B0FD0C1AB008500097E996 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8B0FD0B1AB008500097E996 /* Images.xcassets */; };
+		B8B0FD0F1AB008500097E996 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8B0FD0D1AB008500097E996 /* LaunchScreen.xib */; };
+		B8B0FD1B1AB008500097E996 /* MiniMeetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B0FD1A1AB008500097E996 /* MiniMeetTests.swift */; };
+		B8B0FD251AB01A4B0097E996 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B0FD241AB01A4B0097E996 /* FeedViewController.swift */; };
+		B8B0FD281AB01C400097E996 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8B0FD261AB01C400097E996 /* Main.storyboard */; };
+		B8B0FD2A1AB01D080097E996 /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B0FD291AB01D080097E996 /* EventDetailViewController.swift */; };
+		B8B0FD2C1AB01EFD0097E996 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B0FD2B1AB01EFD0097E996 /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		B8B0FCE51AB001E90097E996 /* PBXContainerItemProxy */ = {
+		B8B0FD151AB008500097E996 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = B8B0FCC71AB001E90097E996 /* Project object */;
+			containerPortal = B8B0FCF71AB008500097E996 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = B8B0FCCE1AB001E90097E996;
+			remoteGlobalIDString = B8B0FCFE1AB008500097E996;
 			remoteInfo = MiniMeet;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B8B0FCCF1AB001E90097E996 /* MiniMeet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniMeet.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8B0FCD31AB001E90097E996 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B8B0FCD41AB001E90097E996 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B8B0FCD61AB001E90097E996 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		B8B0FCD91AB001E90097E996 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		B8B0FCDB1AB001E90097E996 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		B8B0FCDE1AB001E90097E996 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		B8B0FCE41AB001E90097E996 /* MiniMeetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MiniMeetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8B0FCE91AB001E90097E996 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B8B0FCEA1AB001E90097E996 /* MiniMeetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniMeetTests.swift; sourceTree = "<group>"; };
+		B8B0FCFF1AB008500097E996 /* MiniMeet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniMeet.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8B0FD031AB008500097E996 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B8B0FD041AB008500097E996 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B8B0FD061AB008500097E996 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B8B0FD0B1AB008500097E996 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		B8B0FD0E1AB008500097E996 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		B8B0FD141AB008500097E996 /* MiniMeetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MiniMeetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8B0FD191AB008500097E996 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B8B0FD1A1AB008500097E996 /* MiniMeetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniMeetTests.swift; sourceTree = "<group>"; };
+		B8B0FD241AB01A4B0097E996 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		B8B0FD271AB01C400097E996 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B8B0FD291AB01D080097E996 /* EventDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
+		B8B0FD2B1AB01EFD0097E996 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		B8B0FCCC1AB001E90097E996 /* Frameworks */ = {
+		B8B0FCFC1AB008500097E996 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B8B0FCE11AB001E90097E996 /* Frameworks */ = {
+		B8B0FD111AB008500097E996 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -56,58 +62,61 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B8B0FCC61AB001E90097E996 = {
+		B8B0FCF61AB008500097E996 = {
 			isa = PBXGroup;
 			children = (
-				B8B0FCD11AB001E90097E996 /* MiniMeet */,
-				B8B0FCE71AB001E90097E996 /* MiniMeetTests */,
-				B8B0FCD01AB001E90097E996 /* Products */,
+				B8B0FD011AB008500097E996 /* MiniMeet */,
+				B8B0FD171AB008500097E996 /* MiniMeetTests */,
+				B8B0FD001AB008500097E996 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		B8B0FCD01AB001E90097E996 /* Products */ = {
+		B8B0FD001AB008500097E996 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B8B0FCCF1AB001E90097E996 /* MiniMeet.app */,
-				B8B0FCE41AB001E90097E996 /* MiniMeetTests.xctest */,
+				B8B0FCFF1AB008500097E996 /* MiniMeet.app */,
+				B8B0FD141AB008500097E996 /* MiniMeetTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B8B0FCD11AB001E90097E996 /* MiniMeet */ = {
+		B8B0FD011AB008500097E996 /* MiniMeet */ = {
 			isa = PBXGroup;
 			children = (
-				B8B0FCD41AB001E90097E996 /* AppDelegate.swift */,
-				B8B0FCD61AB001E90097E996 /* ViewController.swift */,
-				B8B0FCD81AB001E90097E996 /* Main.storyboard */,
-				B8B0FCDB1AB001E90097E996 /* Images.xcassets */,
-				B8B0FCDD1AB001E90097E996 /* LaunchScreen.xib */,
-				B8B0FCD21AB001E90097E996 /* Supporting Files */,
+				B8B0FD041AB008500097E996 /* AppDelegate.swift */,
+				B8B0FD061AB008500097E996 /* ViewController.swift */,
+				B8B0FD241AB01A4B0097E996 /* FeedViewController.swift */,
+				B8B0FD0B1AB008500097E996 /* Images.xcassets */,
+				B8B0FD0D1AB008500097E996 /* LaunchScreen.xib */,
+				B8B0FD261AB01C400097E996 /* Main.storyboard */,
+				B8B0FD2B1AB01EFD0097E996 /* ProfileViewController.swift */,
+				B8B0FD291AB01D080097E996 /* EventDetailViewController.swift */,
+				B8B0FD021AB008500097E996 /* Supporting Files */,
 			);
 			path = MiniMeet;
 			sourceTree = "<group>";
 		};
-		B8B0FCD21AB001E90097E996 /* Supporting Files */ = {
+		B8B0FD021AB008500097E996 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				B8B0FCD31AB001E90097E996 /* Info.plist */,
+				B8B0FD031AB008500097E996 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		B8B0FCE71AB001E90097E996 /* MiniMeetTests */ = {
+		B8B0FD171AB008500097E996 /* MiniMeetTests */ = {
 			isa = PBXGroup;
 			children = (
-				B8B0FCEA1AB001E90097E996 /* MiniMeetTests.swift */,
-				B8B0FCE81AB001E90097E996 /* Supporting Files */,
+				B8B0FD1A1AB008500097E996 /* MiniMeetTests.swift */,
+				B8B0FD181AB008500097E996 /* Supporting Files */,
 			);
 			path = MiniMeetTests;
 			sourceTree = "<group>";
 		};
-		B8B0FCE81AB001E90097E996 /* Supporting Files */ = {
+		B8B0FD181AB008500097E996 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				B8B0FCE91AB001E90097E996 /* Info.plist */,
+				B8B0FD191AB008500097E996 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -115,13 +124,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B8B0FCCE1AB001E90097E996 /* MiniMeet */ = {
+		B8B0FCFE1AB008500097E996 /* MiniMeet */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B8B0FCEE1AB001E90097E996 /* Build configuration list for PBXNativeTarget "MiniMeet" */;
+			buildConfigurationList = B8B0FD1E1AB008500097E996 /* Build configuration list for PBXNativeTarget "MiniMeet" */;
 			buildPhases = (
-				B8B0FCCB1AB001E90097E996 /* Sources */,
-				B8B0FCCC1AB001E90097E996 /* Frameworks */,
-				B8B0FCCD1AB001E90097E996 /* Resources */,
+				B8B0FCFB1AB008500097E996 /* Sources */,
+				B8B0FCFC1AB008500097E996 /* Frameworks */,
+				B8B0FCFD1AB008500097E996 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -129,46 +138,46 @@
 			);
 			name = MiniMeet;
 			productName = MiniMeet;
-			productReference = B8B0FCCF1AB001E90097E996 /* MiniMeet.app */;
+			productReference = B8B0FCFF1AB008500097E996 /* MiniMeet.app */;
 			productType = "com.apple.product-type.application";
 		};
-		B8B0FCE31AB001E90097E996 /* MiniMeetTests */ = {
+		B8B0FD131AB008500097E996 /* MiniMeetTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B8B0FCF11AB001E90097E996 /* Build configuration list for PBXNativeTarget "MiniMeetTests" */;
+			buildConfigurationList = B8B0FD211AB008500097E996 /* Build configuration list for PBXNativeTarget "MiniMeetTests" */;
 			buildPhases = (
-				B8B0FCE01AB001E90097E996 /* Sources */,
-				B8B0FCE11AB001E90097E996 /* Frameworks */,
-				B8B0FCE21AB001E90097E996 /* Resources */,
+				B8B0FD101AB008500097E996 /* Sources */,
+				B8B0FD111AB008500097E996 /* Frameworks */,
+				B8B0FD121AB008500097E996 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				B8B0FCE61AB001E90097E996 /* PBXTargetDependency */,
+				B8B0FD161AB008500097E996 /* PBXTargetDependency */,
 			);
 			name = MiniMeetTests;
 			productName = MiniMeetTests;
-			productReference = B8B0FCE41AB001E90097E996 /* MiniMeetTests.xctest */;
+			productReference = B8B0FD141AB008500097E996 /* MiniMeetTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		B8B0FCC71AB001E90097E996 /* Project object */ = {
+		B8B0FCF71AB008500097E996 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0620;
 				ORGANIZATIONNAME = hi_hu;
 				TargetAttributes = {
-					B8B0FCCE1AB001E90097E996 = {
+					B8B0FCFE1AB008500097E996 = {
 						CreatedOnToolsVersion = 6.2;
 					};
-					B8B0FCE31AB001E90097E996 = {
+					B8B0FD131AB008500097E996 = {
 						CreatedOnToolsVersion = 6.2;
-						TestTargetID = B8B0FCCE1AB001E90097E996;
+						TestTargetID = B8B0FCFE1AB008500097E996;
 					};
 				};
 			};
-			buildConfigurationList = B8B0FCCA1AB001E90097E996 /* Build configuration list for PBXProject "MiniMeet" */;
+			buildConfigurationList = B8B0FCFA1AB008500097E996 /* Build configuration list for PBXProject "MiniMeet" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -176,29 +185,29 @@
 				en,
 				Base,
 			);
-			mainGroup = B8B0FCC61AB001E90097E996;
-			productRefGroup = B8B0FCD01AB001E90097E996 /* Products */;
+			mainGroup = B8B0FCF61AB008500097E996;
+			productRefGroup = B8B0FD001AB008500097E996 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B8B0FCCE1AB001E90097E996 /* MiniMeet */,
-				B8B0FCE31AB001E90097E996 /* MiniMeetTests */,
+				B8B0FCFE1AB008500097E996 /* MiniMeet */,
+				B8B0FD131AB008500097E996 /* MiniMeetTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		B8B0FCCD1AB001E90097E996 /* Resources */ = {
+		B8B0FCFD1AB008500097E996 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8B0FCDA1AB001E90097E996 /* Main.storyboard in Resources */,
-				B8B0FCDF1AB001E90097E996 /* LaunchScreen.xib in Resources */,
-				B8B0FCDC1AB001E90097E996 /* Images.xcassets in Resources */,
+				B8B0FD281AB01C400097E996 /* Main.storyboard in Resources */,
+				B8B0FD0F1AB008500097E996 /* LaunchScreen.xib in Resources */,
+				B8B0FD0C1AB008500097E996 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B8B0FCE21AB001E90097E996 /* Resources */ = {
+		B8B0FD121AB008500097E996 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -208,54 +217,57 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		B8B0FCCB1AB001E90097E996 /* Sources */ = {
+		B8B0FCFB1AB008500097E996 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8B0FCD71AB001E90097E996 /* ViewController.swift in Sources */,
-				B8B0FCD51AB001E90097E996 /* AppDelegate.swift in Sources */,
+				B8B0FD071AB008500097E996 /* ViewController.swift in Sources */,
+				B8B0FD251AB01A4B0097E996 /* FeedViewController.swift in Sources */,
+				B8B0FD2C1AB01EFD0097E996 /* ProfileViewController.swift in Sources */,
+				B8B0FD2A1AB01D080097E996 /* EventDetailViewController.swift in Sources */,
+				B8B0FD051AB008500097E996 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B8B0FCE01AB001E90097E996 /* Sources */ = {
+		B8B0FD101AB008500097E996 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8B0FCEB1AB001E90097E996 /* MiniMeetTests.swift in Sources */,
+				B8B0FD1B1AB008500097E996 /* MiniMeetTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		B8B0FCE61AB001E90097E996 /* PBXTargetDependency */ = {
+		B8B0FD161AB008500097E996 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B8B0FCCE1AB001E90097E996 /* MiniMeet */;
-			targetProxy = B8B0FCE51AB001E90097E996 /* PBXContainerItemProxy */;
+			target = B8B0FCFE1AB008500097E996 /* MiniMeet */;
+			targetProxy = B8B0FD151AB008500097E996 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		B8B0FCD81AB001E90097E996 /* Main.storyboard */ = {
+		B8B0FD0D1AB008500097E996 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				B8B0FCD91AB001E90097E996 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		B8B0FCDD1AB001E90097E996 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B8B0FCDE1AB001E90097E996 /* Base */,
+				B8B0FD0E1AB008500097E996 /* Base */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		B8B0FD261AB01C400097E996 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B8B0FD271AB01C400097E996 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		B8B0FCEC1AB001E90097E996 /* Debug */ = {
+		B8B0FD1C1AB008500097E996 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -297,7 +309,7 @@
 			};
 			name = Debug;
 		};
-		B8B0FCED1AB001E90097E996 /* Release */ = {
+		B8B0FD1D1AB008500097E996 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -332,7 +344,7 @@
 			};
 			name = Release;
 		};
-		B8B0FCEF1AB001E90097E996 /* Debug */ = {
+		B8B0FD1F1AB008500097E996 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -342,7 +354,7 @@
 			};
 			name = Debug;
 		};
-		B8B0FCF01AB001E90097E996 /* Release */ = {
+		B8B0FD201AB008500097E996 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -352,7 +364,7 @@
 			};
 			name = Release;
 		};
-		B8B0FCF21AB001E90097E996 /* Debug */ = {
+		B8B0FD221AB008500097E996 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -371,7 +383,7 @@
 			};
 			name = Debug;
 		};
-		B8B0FCF31AB001E90097E996 /* Release */ = {
+		B8B0FD231AB008500097E996 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -389,32 +401,32 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B8B0FCCA1AB001E90097E996 /* Build configuration list for PBXProject "MiniMeet" */ = {
+		B8B0FCFA1AB008500097E996 /* Build configuration list for PBXProject "MiniMeet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B8B0FCEC1AB001E90097E996 /* Debug */,
-				B8B0FCED1AB001E90097E996 /* Release */,
+				B8B0FD1C1AB008500097E996 /* Debug */,
+				B8B0FD1D1AB008500097E996 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B8B0FCEE1AB001E90097E996 /* Build configuration list for PBXNativeTarget "MiniMeet" */ = {
+		B8B0FD1E1AB008500097E996 /* Build configuration list for PBXNativeTarget "MiniMeet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B8B0FCEF1AB001E90097E996 /* Debug */,
-				B8B0FCF01AB001E90097E996 /* Release */,
+				B8B0FD1F1AB008500097E996 /* Debug */,
+				B8B0FD201AB008500097E996 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
-		B8B0FCF11AB001E90097E996 /* Build configuration list for PBXNativeTarget "MiniMeetTests" */ = {
+		B8B0FD211AB008500097E996 /* Build configuration list for PBXNativeTarget "MiniMeetTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B8B0FCF21AB001E90097E996 /* Debug */,
-				B8B0FCF31AB001E90097E996 /* Release */,
+				B8B0FD221AB008500097E996 /* Debug */,
+				B8B0FD231AB008500097E996 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = B8B0FCC71AB001E90097E996 /* Project object */;
+	rootObject = B8B0FCF71AB008500097E996 /* Project object */;
 }
