@@ -1,31 +1,20 @@
 //
-//  ProfileViewController.swift
+//  OnboardingViewController.swift
 //  MiniMeet
 //
-//  Created by Hi_Hu on 3/10/15.
+//  Created by Michelle Venetucci Harvey on 3/15/15.
 //  Copyright (c) 2015 hi_hu. All rights reserved.
 //
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class OnboardingViewController: UIViewController {
 
-    @IBOutlet weak var profileScrollView: UIScrollView!
-    @IBOutlet weak var profileFeed: UIImageView!
-    
-    @IBOutlet weak var profileImageView: UIImageView!
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.title = "Profile"
-        
-
-        self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width / 2;
-        self.profileImageView.clipsToBounds = true;
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,6 +22,9 @@ class ProfileViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func startButton(sender: AnyObject) {
+        self.performSegueWithIdentifier("feedSegue", sender: self)
+    }
 
     /*
     // MARK: - Navigation
