@@ -8,6 +8,9 @@
 
 import UIKit
 
+    var scale: CGFloat! = 1 // D3
+
+
 struct Event {
     let title: String
     let location: String
@@ -32,7 +35,7 @@ struct Event {
     }
 }
 
-class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
     
     @IBOutlet weak var eventTableView: UITableView!
 
@@ -86,16 +89,41 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
         var cell = tableView.dequeueReusableCellWithIdentifier("eventCellId") as EventCell
         let event = events[indexPath.row]
         
         cell.eventTitle.text = event.title
         cell.eventSubtitle.text = event.subtitle
-        cell.eventImage.image = event.image;
+        cell.eventImage.image = event.image
+        
+//        cellAnimation(cell) // Insert cell animation in the table view - D3
         
         return cell
+        
+
     }
-   
+    
+    // Let's try something like this:
+    // Algorithm from previous project
+    // -translation.x / 60
+    //
+    
+    // Animate the cell - D3
+//    func cellAnimation(cell: UITableViewCell) {
+//        let view = cell.contentView
+//        view.transform = CGAffineTransformMakeScale(0.8, 0.8)
+//        view.layer.opacity = 0.1
+//        UIView.animateWithDuration(0.7) {
+//            view.transform = CGAffineTransformMakeScale(1, 1)
+//            view.layer.opacity = 1
+//        }
+//    }
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        println(scrollView.contentOffset)
+    }
+
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         let cell = sender as EventCell
