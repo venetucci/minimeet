@@ -10,6 +10,9 @@ import UIKit
 
     var scale: CGFloat! = 1 // D3
 
+    var translationY: CGFloat!
+
+    var cellTest: UITableViewCell!
 
 struct Event {
     let title: String
@@ -104,6 +107,18 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     }
     
+    
+    // this function will trigger when a cell is ready to get pushed into view
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+//        println( cell.frame.origin.y )
+        
+        cellTest = cell
+
+//        var x = translationY + CGFloat(indexPath.item * 187)
+        
+//        println( "hello \(x)" )
+    }
+    
     // Let's try something like this:
     // Algorithm from previous project
     // -translation.x / 60
@@ -120,8 +135,25 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
 //        }
 //    }
     
+    
+    // this function will continuall fire when scrolling event happens
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        println(scrollView.contentOffset)
+        
+        translationY = scrollView.contentOffset.y + 64
+        
+//        println(translationY)
+        
+        if translationY > 100 {
+
+            cellTest.alpha = 0
+            
+            println(cellTest.frame.origin.y)
+            
+            
+            if translationY > 200 {
+                cellTest.alpha = 1
+            }
+        }
     }
 
     
