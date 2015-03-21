@@ -9,13 +9,15 @@
 import UIKit
 
 class EventCell: UITableViewCell {
+    
     @IBOutlet weak var eventTitle: UILabel!
     @IBOutlet weak var eventSubtitle: UILabel!
     @IBOutlet weak var eventImage: UIImageView!
     
+    
+    // 
+    
         // Initialization code
-
-
     
     
     func snapshot() -> UIView {

@@ -8,11 +8,8 @@
 
 import UIKit
 
-    var scale: CGFloat! = 1 // D3
 
-    var translationY: CGFloat!
-
-    var cellTest: UITableViewCell!
+// Event Custom Struct
 
 struct Event {
     let title: String
@@ -37,60 +34,67 @@ struct Event {
         }
     }
 }
+// End Event Custom Struct
 
+
+// Classes
 class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
     
+    
+    // Global Variables & Outlets
     @IBOutlet weak var eventTableView: UITableView!
-
     
     var events: [Event] = []
     var imageTransition: ImageTransition!
+    var translationY: CGFloat!
+    var translationPoint: CGPoint!
+//    var scale: CGFloat!: 1
     
     
-    
+    // Load the View
     override func viewDidLoad() {
         super.viewDidLoad()
         
         eventTableView.delegate = self
         eventTableView.dataSource = self
-        eventTableView.rowHeight = 187
+//        eventTableView.rowHeight = 190
         
-       
-        
-        
-        
-        
+    
+        // Event Listings
         let technofeminism = Event(title: "Technofeminism", location: "Sightglass Coffee", dateString: "March 20, 1 pm")
         let gameOfThrones = Event(title: "Game of Thrones", location: "Blue Bottle Coffee", dateString: "April 22, 2 pm")
         let bikingInTheBay = Event(title: "Biking in the Bay", location: "Starbucks", dateString: "April 4, 3 pm")
+        let iosForDesigners = Event(title: "iOS for Designers", location: "ThoughtBot", dateString: "April 10, 6 pm")
         
-        events = [technofeminism, gameOfThrones, bikingInTheBay]
+        // Events Array
+        events = [technofeminism, gameOfThrones, bikingInTheBay, iosForDesigners]
         
         self.title = "Events"
         
-      
         
-     //   self.attendeeDot.layer.cornerRadius = self.attendeeDot.frame.size.width / 2;
-     //   self.attendeeDot.clipsToBounds = true;
-
-
+        // Attendee Dots as Circles
+        //   self.attendeeDot.layer.cornerRadius = self.attendeeDot.frame.size.width / 2;
+        //   self.attendeeDot.clipsToBounds = true;
+        
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    
+    // Table View Method #1
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 3
     }
     
-    
+    // Table View Method #2
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return events.count
-        }
-        
+        return events.count
+    }
+    
+    // Table View Method #3
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         var cell = tableView.dequeueReusableCellWithIdentifier("eventCellId") as EventCell
@@ -100,63 +104,44 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.eventSubtitle.text = event.subtitle
         cell.eventImage.image = event.image
         
-//        cellAnimation(cell) // Insert cell animation in the table view - D3
-        
+        cellTransition(cell) // Insert cell animation in the table view
         return cell
         
-
     }
     
+    // Animate the cell
+            func cellTransition(cell: UITableViewCell) {
+                let view = cell.contentView
+                view.transform = CGAffineTransformMakeScale(0.83, 0.83)
+                view.layer.opacity = 0.9
+                UIView.animateWithDuration(0.5) {
+                    view.transform = CGAffineTransformMakeScale(1, 1)
+                    view.layer.opacity = 1
+                }
+            }
     
-    // this function will trigger when a cell is ready to get pushed into view
-    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-//        println( cell.frame.origin.y )
-        
-        cellTest = cell
-
+    // Trigger cell when ready to get pushed into view
+//    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+//        
+//        cellTest = cell
 //        var x = translationY + CGFloat(indexPath.item * 187)
-        
-//        println( "hello \(x)" )
-    }
-    
-    // Let's try something like this:
-    // Algorithm from previous project
-    // -translation.x / 60
-    //
-    
-    // Animate the cell - D3
-//    func cellAnimation(cell: UITableViewCell) {
-//        let view = cell.contentView
-//        view.transform = CGAffineTransformMakeScale(0.8, 0.8)
-//        view.layer.opacity = 0.1
-//        UIView.animateWithDuration(0.7) {
-//            view.transform = CGAffineTransformMakeScale(1, 1)
-//            view.layer.opacity = 1
-//        }
+//        println( cell.frame.origin.y )
 //    }
     
     
-    // this function will continuall fire when scrolling event happens
+    // Scroll to get the cell frame origin value
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        
+        let niceCell = eventTableView.frame.origin.y
         translationY = scrollView.contentOffset.y + 64
         
-//        println(translationY)
-        
-        if translationY > 100 {
 
-            cellTest.alpha = 0
-            
-            println(cellTest.frame.origin.y)
-            
-            
-            if translationY > 200 {
-                cellTest.alpha = 1
-            }
-        }
+        println("translation: \(translationY)")
+        println("table view: \(eventTableView)")
     }
-
     
+    
+    
+    // Segue to Event Detail Vc
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         let cell = sender as EventCell
         let indexPath = eventTableView.indexPathForCell(cell)
