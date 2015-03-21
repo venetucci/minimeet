@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="4dY-K3-Dnd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="4dY-K3-Dnd">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
@@ -276,50 +276,69 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" id="okx-Rw-7UV">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="187"/>
+                                    <view contentMode="scaleToFill" id="mop-Nx-xRG" userLabel="contentView">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="650"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="GSq-1P-rB8">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="182"/>
+                                            <view contentMode="scaleToFill" id="okx-Rw-7UV">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="187"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            </imageView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vignette2" id="uzb-dh-X3d">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="182"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="GSq-1P-rB8">
+                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="182"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    </imageView>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vignette2" id="uzb-dh-X3d">
+                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="182"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vVM-3s-12T" userLabel="Location">
+                                                        <rect key="frame" x="20" y="150" width="248" height="21"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fhU-ch-CzK" userLabel="Title">
+                                                        <rect key="frame" x="20" y="128" width="256" height="21"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <gestureRecognizers/>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event description will go here, event description will go here, event description will go here. " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ffy-zz-no5" userLabel="Event description will go here, event description will go here, event description will go here.">
+                                                <rect key="frame" x="39" y="254" width="242" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vVM-3s-12T" userLabel="Location">
-                                                <rect key="frame" x="20" y="150" width="248" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fhU-ch-CzK" userLabel="Title">
-                                                <rect key="frame" x="20" y="128" width="256" height="21"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="jgv-5O-bYB">
+                                                <rect key="frame" x="0.0" y="350" width="320" height="128"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <gestureRecognizers/>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                                <color key="backgroundColor" red="0.89411764709999997" green="0.50196078430000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="YdZ-Oq-rSK">
+                                                <rect key="frame" x="85" y="521" width="151" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.27450980390000002" green="0.6705882353" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
+                                                <state key="normal" title="I want to attend!">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="submitButtonDidPress:" destination="gjM-Dj-JbY" eventType="touchUpInside" id="P3f-Xi-pXQ"/>
+                                                    <segue destination="4dY-K3-Dnd" kind="modal" identifier="attendEventSegue" modalTransitionStyle="crossDissolve" id="sjM-Hd-Yjo"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="YdZ-Oq-rSK">
-                                        <rect key="frame" x="85" y="507" width="151" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.27450980390000002" green="0.6705882353" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
-                                        <state key="normal" title="I want to attend!">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="submitButtonDidPress:" destination="gjM-Dj-JbY" eventType="touchUpInside" id="P3f-Xi-pXQ"/>
-                                            <segue destination="4dY-K3-Dnd" kind="modal" identifier="attendEventSegue" modalTransitionStyle="crossDissolve" id="sjM-Hd-Yjo"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                             </scrollView>
                             <view contentMode="scaleToFill" id="joE-ys-xyk" userLabel="Nav bar">
@@ -343,9 +362,12 @@
                     <connections>
                         <outlet property="cancelButton" destination="YJQ-ks-nup" id="uPK-x7-8bC"/>
                         <outlet property="containerView" destination="okx-Rw-7UV" id="peC-UL-owM"/>
+                        <outlet property="contentView" destination="mop-Nx-xRG" id="4Ce-hz-0Qa"/>
+                        <outlet property="descriptionText" destination="Ffy-zz-no5" id="107-nz-h5R"/>
                         <outlet property="eventSubtitle" destination="vVM-3s-12T" id="qgw-fH-bDd"/>
                         <outlet property="eventTitle" destination="fhU-ch-CzK" id="bZL-vQ-oJh"/>
                         <outlet property="imageView" destination="GSq-1P-rB8" id="z0p-Lz-UIy"/>
+                        <outlet property="mapView" destination="jgv-5O-bYB" id="4KI-3D-bDs"/>
                         <outlet property="scrollView" destination="Q2w-eI-pR4" id="oXE-0r-yXC"/>
                         <outlet property="submitButton" destination="YdZ-Oq-rSK" id="5Zv-th-EfZ"/>
                     </connections>

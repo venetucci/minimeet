@@ -11,6 +11,9 @@ import UIKit
 class DetailsViewController: UIViewController, UIScrollViewDelegate {
 
 
+    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var mapView: UIImageView!
+    @IBOutlet weak var descriptionText: UILabel!
     @IBOutlet weak var eventTitle: UILabel!
     @IBOutlet weak var eventSubtitle: UILabel!
     @IBOutlet weak var containerView: UIView!
@@ -19,23 +22,36 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     var event: Event?
+    var pageIndex: Int!
+    var endFrame: CGRect!
+    
+    var scrolledEventFrame: CGRect!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        scrollView.contentSize = imageView.frame.size
+        scrollView.contentSize = contentView.frame.size
         scrollView.delegate = self
 
         imageView.image = event?.image
         imageView.hidden = true
         
+        descriptionText.alpha = 0
+        mapView.alpha = 0
+        
         eventTitle.text = event?.title
         eventSubtitle.text = event?.subtitle
+        
+        
+     //   scrollView.contentOffset.x = CGFloat(pageIndex * 320)
+       // scrolledEventFrame = endFrame
+
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         imageView.hidden = false
+        animateDetailsDown()
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,6 +64,7 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView!) {
+        
         var newImagePoint = imageView.frame.origin
         var offsetFade = 1 - (scrollView.contentOffset.y / -60)
         
@@ -58,6 +75,14 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
     
     func scrollViewDidEndDragging(scrollView: UIScrollView!,
         willDecelerate decelerate: Bool) {
+            
+//            var offsetY = scrollView.contentOffset.y
+//           // var alpha = CGFloat(1 - abs(scrollView.contentOffset.y) / 240)
+//            
+//            if (abs(offsetY) > 100) {
+//                scrolledEventFrame.origin.y = scrolledEventFrame.origin.y - offsetY
+//                dismissViewControllerAnimated(true, completion: nil)
+//            }
             
             if scrollView.contentOffset.y < -60 {
                 dismissViewControllerAnimated(true, completion: nil)
@@ -74,11 +99,33 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
         alertView.show()
         
         delay(2, { () -> () in
-//           alertView.dismissWithClickedButtonIndex(0, animated: true)
-
-            self.performSegueWithIdentifier("attendEventSegue", sender: self)
-            
+        // alertView.dismissWithClickedButtonIndex(0, animated: true)
+       self.performSegueWithIdentifier("attendEventSegue", sender: self)
         })
-
     }
+
+
+    // animate event details description and map on page load
+
+    func animateDetailsDown () {
+        var descriptionPosition = self.descriptionText.center.y
+        var mapPosition = self.mapView.center.y
+        let duration: NSTimeInterval = 0.8
+        
+        UIView.animateWithDuration(duration, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 40, options: nil, animations: { () -> Void in
+            self.descriptionText.center.y = descriptionPosition + 30
+            self.descriptionText.alpha = 1
+            
+        }) { (bool) -> Void in
+            //
+        }
+        
+        UIView.animateWithDuration(duration, delay: 0.1, usingSpringWithDamping: 0.5, initialSpringVelocity: 40, options: nil, animations: { () -> Void in
+            self.mapView.center.y = mapPosition + 30
+            self.mapView.alpha = 1
+        }) { (bool) -> Void in
+            //
+        }
+    }
+   
 }
