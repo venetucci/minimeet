@@ -10,7 +10,6 @@ import UIKit
 
 class DetailsViewController: UIViewController, UIScrollViewDelegate {
 
-
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var mapView: UIImageView!
     @IBOutlet weak var descriptionText: UILabel!
@@ -21,11 +20,11 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
-    var event: Event?
-    var pageIndex: Int!
-    var endFrame: CGRect!
     
-    var scrolledEventFrame: CGRect!
+    var event: Event?
+
+    // the final position upon end drag
+    var endFrame: CGRect!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,10 +40,6 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
         
         eventTitle.text = event?.title
         eventSubtitle.text = event?.subtitle
-        
-        
-     //   scrollView.contentOffset.x = CGFloat(pageIndex * 320)
-       // scrolledEventFrame = endFrame
 
     }
     
@@ -76,19 +71,19 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
     func scrollViewDidEndDragging(scrollView: UIScrollView!,
         willDecelerate decelerate: Bool) {
             
-//            var offsetY = scrollView.contentOffset.y
-//           // var alpha = CGFloat(1 - abs(scrollView.contentOffset.y) / 240)
-//            
-//            if (abs(offsetY) > 100) {
-//                scrolledEventFrame.origin.y = scrolledEventFrame.origin.y - offsetY
-//                dismissViewControllerAnimated(true, completion: nil)
-//            }
+            var offsetY = scrollView.contentOffset.y
             
             if scrollView.contentOffset.y < -60 {
                 dismissViewControllerAnimated(true, completion: nil)
                 imageView.alpha = 0
+                scrollView.alpha = 0
                 cancelButton.hidden = true
                 
+                // set endFrame properties
+                endFrame = imageView.frame
+                
+                // shift the position by offset
+                endFrame.origin.y = -offsetY
             }
     }
 

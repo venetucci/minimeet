@@ -49,6 +49,7 @@ class ImageTransition: BaseTransition {
         
         var detailsViewController = fromViewController as DetailsViewController
 
+        convertedEndFrame = detailsViewController.endFrame
         snapshot?.frame = convertedEndFrame
         containerView.addSubview(snapshot!)
         
