@@ -36,5 +36,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>DINNextLTPro-Regular.otf</string>
+		<string>DINNextLTPro-Light.otf</string>
+		<string>DINNextLTPro-Bold.otf</string>
+	</array>
 </dict>
 </plist>

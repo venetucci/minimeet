@@ -19,6 +19,9 @@
 		10D4A6A11AB655B5002E614D /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D4A6A01AB655B5002E614D /* SignInViewController.swift */; };
 		10D4A6A31AB682EB002E614D /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D4A6A21AB682EB002E614D /* Common.swift */; };
 		10D4A6A51AB687F6002E614D /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D4A6A41AB687F6002E614D /* OnboardingViewController.swift */; };
+		10FCFE2A1ABE8060008CB295 /* DINNextLTPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 10FCFE291ABE7F8D008CB295 /* DINNextLTPro-Regular.otf */; };
+		10FCFE2B1ABE8060008CB295 /* DINNextLTPro-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 10FCFE281ABE7F6B008CB295 /* DINNextLTPro-Light.otf */; };
+		10FCFE2C1ABE8060008CB295 /* DINNextLTPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 10FCFE271ABE7F5F008CB295 /* DINNextLTPro-Bold.otf */; };
 		B8B0FD051AB008500097E996 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B0FD041AB008500097E996 /* AppDelegate.swift */; };
 		B8B0FD071AB008500097E996 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B0FD061AB008500097E996 /* ViewController.swift */; };
 		B8B0FD0C1AB008500097E996 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8B0FD0B1AB008500097E996 /* Images.xcassets */; };
@@ -52,6 +55,9 @@
 		10D4A6A01AB655B5002E614D /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		10D4A6A21AB682EB002E614D /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		10D4A6A41AB687F6002E614D /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		10FCFE271ABE7F5F008CB295 /* DINNextLTPro-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINNextLTPro-Bold.otf"; sourceTree = "<group>"; };
+		10FCFE281ABE7F6B008CB295 /* DINNextLTPro-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINNextLTPro-Light.otf"; sourceTree = "<group>"; };
+		10FCFE291ABE7F8D008CB295 /* DINNextLTPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINNextLTPro-Regular.otf"; sourceTree = "<group>"; };
 		B8B0FCFF1AB008500097E996 /* MiniMeet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniMeet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8B0FD031AB008500097E996 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B8B0FD041AB008500097E996 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -84,9 +90,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		10FCFE251ABE7F1B008CB295 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				10FCFE261ABE7F20008CB295 /* Fonts */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		10FCFE261ABE7F20008CB295 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				10FCFE291ABE7F8D008CB295 /* DINNextLTPro-Regular.otf */,
+				10FCFE281ABE7F6B008CB295 /* DINNextLTPro-Light.otf */,
+				10FCFE271ABE7F5F008CB295 /* DINNextLTPro-Bold.otf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
 		B8B0FCF61AB008500097E996 = {
 			isa = PBXGroup;
 			children = (
+				10FCFE251ABE7F1B008CB295 /* Resources */,
 				B8B0FD011AB008500097E996 /* MiniMeet */,
 				B8B0FD171AB008500097E996 /* MiniMeetTests */,
 				B8B0FD001AB008500097E996 /* Products */,
@@ -235,8 +260,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8B0FD281AB01C400097E996 /* Main.storyboard in Resources */,
+				10FCFE2A1ABE8060008CB295 /* DINNextLTPro-Regular.otf in Resources */,
 				B8B0FD0F1AB008500097E996 /* LaunchScreen.xib in Resources */,
+				10FCFE2C1ABE8060008CB295 /* DINNextLTPro-Bold.otf in Resources */,
 				B8B0FD0C1AB008500097E996 /* Images.xcassets in Resources */,
+				10FCFE2B1ABE8060008CB295 /* DINNextLTPro-Light.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
