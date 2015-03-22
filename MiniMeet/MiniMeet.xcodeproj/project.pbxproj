@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		10791E251AB4DF8600A6DF27 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10791E241AB4DF8600A6DF27 /* TabViewController.swift */; };
 		10791E271AB4DFE500A6DF27 /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10791E261AB4DFE500A6DF27 /* CreateViewController.swift */; };
 		10791E291AB54A6B00A6DF27 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10791E281AB54A6B00A6DF27 /* DetailsViewController.swift */; };
 		10791E2D1AB54C8400A6DF27 /* ImageTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10791E2C1AB54C8400A6DF27 /* ImageTransition.swift */; };
@@ -22,6 +21,7 @@
 		10FCFE2A1ABE8060008CB295 /* DINNextLTPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 10FCFE291ABE7F8D008CB295 /* DINNextLTPro-Regular.otf */; };
 		10FCFE2B1ABE8060008CB295 /* DINNextLTPro-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 10FCFE281ABE7F6B008CB295 /* DINNextLTPro-Light.otf */; };
 		10FCFE2C1ABE8060008CB295 /* DINNextLTPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 10FCFE271ABE7F5F008CB295 /* DINNextLTPro-Bold.otf */; };
+		10FCFE2E1ABEA123008CB295 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FCFE2D1ABEA123008CB295 /* TabViewController.swift */; };
 		B8B0FD051AB008500097E996 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B0FD041AB008500097E996 /* AppDelegate.swift */; };
 		B8B0FD071AB008500097E996 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B0FD061AB008500097E996 /* ViewController.swift */; };
 		B8B0FD0C1AB008500097E996 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8B0FD0B1AB008500097E996 /* Images.xcassets */; };
@@ -43,7 +43,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		10791E241AB4DF8600A6DF27 /* TabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		10791E261AB4DFE500A6DF27 /* CreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
 		10791E281AB54A6B00A6DF27 /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		10791E2C1AB54C8400A6DF27 /* ImageTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageTransition.swift; sourceTree = "<group>"; };
@@ -58,6 +57,8 @@
 		10FCFE271ABE7F5F008CB295 /* DINNextLTPro-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINNextLTPro-Bold.otf"; sourceTree = "<group>"; };
 		10FCFE281ABE7F6B008CB295 /* DINNextLTPro-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINNextLTPro-Light.otf"; sourceTree = "<group>"; };
 		10FCFE291ABE7F8D008CB295 /* DINNextLTPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINNextLTPro-Regular.otf"; sourceTree = "<group>"; };
+		10FCFE2D1ABEA123008CB295 /* TabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
+		10FCFE2F1ABF2BC2008CB295 /* Temp Delete Me!.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Temp Delete Me!.playground"; sourceTree = "<group>"; };
 		B8B0FCFF1AB008500097E996 /* MiniMeet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniMeet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8B0FD031AB008500097E996 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B8B0FD041AB008500097E996 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -140,15 +141,16 @@
 				B8B0FD0B1AB008500097E996 /* Images.xcassets */,
 				B8B0FD0D1AB008500097E996 /* LaunchScreen.xib */,
 				B8B0FD261AB01C400097E996 /* Main.storyboard */,
+				10FCFE2F1ABF2BC2008CB295 /* Temp Delete Me!.playground */,
 				10D4A6A41AB687F6002E614D /* OnboardingViewController.swift */,
 				10D4A6A01AB655B5002E614D /* SignInViewController.swift */,
 				10791E381AB574DF00A6DF27 /* ProfileEditViewController.swift */,
 				10791E361AB56BAB00A6DF27 /* SettingsViewController.swift */,
 				10791E281AB54A6B00A6DF27 /* DetailsViewController.swift */,
 				10791E261AB4DFE500A6DF27 /* CreateViewController.swift */,
-				10791E241AB4DF8600A6DF27 /* TabViewController.swift */,
 				10D0155A1AB4C8BC00CF3AB3 /* EventCell.swift */,
 				B8B0FD2B1AB01EFD0097E996 /* ProfileViewController.swift */,
+				10FCFE2D1ABEA123008CB295 /* TabViewController.swift */,
 				B8B0FD021AB008500097E996 /* Supporting Files */,
 			);
 			path = MiniMeet;
@@ -290,9 +292,9 @@
 				B8B0FD251AB01A4B0097E996 /* FeedViewController.swift in Sources */,
 				B8B0FD2C1AB01EFD0097E996 /* ProfileViewController.swift in Sources */,
 				10791E341AB5562400A6DF27 /* FadeTransition.swift in Sources */,
+				10FCFE2E1ABEA123008CB295 /* TabViewController.swift in Sources */,
 				10791E2D1AB54C8400A6DF27 /* ImageTransition.swift in Sources */,
 				10D0155B1AB4C8BC00CF3AB3 /* EventCell.swift in Sources */,
-				10791E251AB4DF8600A6DF27 /* TabViewController.swift in Sources */,
 				10D4A6A51AB687F6002E614D /* OnboardingViewController.swift in Sources */,
 				B8B0FD051AB008500097E996 /* AppDelegate.swift in Sources */,
 				10791E391AB574DF00A6DF27 /* ProfileEditViewController.swift in Sources */,

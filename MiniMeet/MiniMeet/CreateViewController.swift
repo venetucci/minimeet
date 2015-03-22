@@ -52,7 +52,7 @@ class CreateViewController: UIViewController, UIActionSheetDelegate {
    
 
     @IBAction func cancelDidPress(sender: AnyObject) {
-        dismissViewControllerAnimated(true, completion: nil)
+        navigationController?.popViewControllerAnimated(true)
     }
     
     // Calculate hex values for color: 

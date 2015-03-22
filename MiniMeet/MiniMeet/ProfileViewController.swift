@@ -13,7 +13,6 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var profileScrollView: UIScrollView!
     @IBOutlet weak var profileFeed: UIImageView!
     
-    @IBOutlet weak var profileImageView: UIImageView!
     
     
     override func viewDidLoad() {
@@ -23,8 +22,6 @@ class ProfileViewController: UIViewController {
         self.title = "Profile"
         
 
-        self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width / 2;
-        self.profileImageView.clipsToBounds = true;
         
     }
 
@@ -43,5 +40,10 @@ class ProfileViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    
+    @IBAction func goBack(sender: AnyObject) {
+        navigationController?.popViewControllerAnimated(true)
+    }
 
 }

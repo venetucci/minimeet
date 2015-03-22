@@ -11,12 +11,12 @@ import UIKit
 class TabViewController: UIViewController {
     
     var isPresenting: Bool = true
-
+    
     var feedViewController: UIViewController!
     var createViewController: UIViewController!
     var profileViewController: UIViewController!
     var selectedViewController: UIViewController?
-
+    
     @IBOutlet weak var contentView: UIView!
     
     @IBOutlet var buttons: [UIButton]!
@@ -38,10 +38,10 @@ class TabViewController: UIViewController {
         viewControllersArray = [feedViewController, profileViewController]
         
         tabBarDidPress(buttons[0])
-
-
+        
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -59,14 +59,14 @@ class TabViewController: UIViewController {
         content.view.removeFromSuperview()
         content.removeFromParentViewController()
     }
-
-
+    
+    
     @IBAction func tabBarDidPress(sender: AnyObject) {
         removeChildView(viewControllersArray[selectedIndex])
         buttons[selectedIndex].selected = false
         
         selectedIndex = sender.tag
-    //    println("selected \(selectedIndex)")
+        //    println("selected \(selectedIndex)")
         
         buttons[selectedIndex].selected = true
         addChildViewController(viewControllersArray[selectedIndex])
@@ -82,8 +82,8 @@ class TabViewController: UIViewController {
         content.view.removeFromSuperview()
         content.removeFromParentViewController()
     }
-
-   
-
-
+    
+    
+    
+    
 }

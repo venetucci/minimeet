@@ -11,8 +11,14 @@ import UIKit
 class OnboardingViewController: UIViewController {
 
 
+    @IBOutlet weak var phoneImage: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        phoneImage.alpha = 0
+        animateUp()
+        
 
         // Do any additional setup after loading the view.
     }
@@ -35,5 +41,17 @@ class OnboardingViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func animateUp() {
+        var imagePosition = self.phoneImage.center.y
+        
+        UIView.animateWithDuration(0.8, delay: 0.8, usingSpringWithDamping: 0.5, initialSpringVelocity: 40, options: UIViewAnimationOptions.CurveEaseIn, animations: { () -> Void in
+            self.phoneImage.center.y = imagePosition - 30
+            self.phoneImage.alpha = 1
+            
+        }) { (bool) -> Void in
+            //
+        }
+    }
 
 }
