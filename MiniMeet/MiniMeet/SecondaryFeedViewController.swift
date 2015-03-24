@@ -10,6 +10,7 @@ import UIKit
 
 class SecondaryFeedViewController: UIViewController {
 
+    @IBOutlet weak var loadingBackground: UIView!
     @IBOutlet weak var gotThumbnail: UIImageView!
     @IBOutlet weak var loadingImage: UIImageView!
     @IBOutlet weak var gotImage: UIImageView!
@@ -55,6 +56,7 @@ class SecondaryFeedViewController: UIViewController {
                 self.gotImage.alpha = 1
                 self.loadingImage.alpha = 0
                 self.loadingText.alpha = 0
+                self.loadingBackground.alpha = 0
                 self.gotThumbnail.alpha = 0
             }, completion: { (bool) -> Void in
                 
