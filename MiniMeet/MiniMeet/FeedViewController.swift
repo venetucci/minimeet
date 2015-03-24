@@ -89,27 +89,27 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         let photowalk = Event(
             title: "Lands End Photowalk",
             description: "Just bring something to take pictures with (any and all devices welcome all levels are encouraged, I myself am a perpetual beginner) and come on a photo walk. We'll convene at a checkpoint, then go for an hour or so photowalk. We'll end at a cafe, where we can sip a beverage, share tips, edit pictures, upload to a social networking sites.",
-            location: "Sightglass Coffee",
-            dateString: "3.20.15",
-            timeString: "1:00 pm",
+            location: "Four Barrel Coffee",
+            dateString: "3.27.15",
+            timeString: "3:30 pm",
             attendeeArray: ["Jon","Arya","Tyrion","Jamie","Robb"]
         )
         
         let midnightRide = Event(
             title: "Midnight Mystery Ride",
             description: "It’s kind of a flash mob in that dozens of total strangers converge at a location (announced the day of the ride).  We are an adhoc group of anyone dastardly enough to show up for the midnight ride.  12 months out of the year, we meet up at midnight then follow the leader to a secret mystery location.",
-            location: "Sightglass Coffee",
-            dateString: "3.20.15",
-            timeString: "1:00 pm",
+            location: "Starbucks",
+            dateString: "3.29.15",
+            timeString: "4:45 pm",
             attendeeArray: ["Jon","Arya","Tyrion"]
         )
         
         let technofeminism = Event(
             title: "Technofeminism",
             description: "Technofeminism is global 501(c)(3) non-profit inspiring women to excel in technology careers with 20,000+ members in 50 cities spanning 15 countries (and counting). Women are invited to come learn about coding.",
-            location: "Sightglass Coffee",
-            dateString: "3.20.15",
-            timeString: "1:00 pm",
+            location: "Ferry Building Benches",
+            dateString: "3.28.15",
+            timeString: "12:00 pm",
             attendeeArray: ["Jon"]
         )
         
@@ -117,8 +117,8 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             title: "iOS for Designers",
             description: "Designers talk and learn about prototyping iOS apps with Swift and Xcode. There is a focus on views, navigation, transitions, and animations. We'll also look into the Apple Watch and talk about how we can start making useful apps for it. ",
             location: "thoughtbot",
-            dateString: "3.20.15",
-            timeString: "1:00 pm",
+            dateString: "3.28.15",
+            timeString: "1:30 pm",
             attendeeArray: ["Jon","Arya","Tyrion","Jamie","Robb"]
         )
         
@@ -126,25 +126,25 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             title: "Just Moved to SF",
             description: "New to the Valley and interested in technology startups? This meetup helps you interact with like minded people. Discover new places, learn from the experiences of others, connect with similar folks and get best practices for navigating and excelling within the Silicon Valley ecosystem.",
             location: "Sightglass Coffee",
-            dateString: "3.20.15",
-            timeString: "1:00 pm",
+            dateString: "4.1.15",
+            timeString: "2:30 pm",
             attendeeArray: ["Jon","Arya","Tyrion","Jamie","Robb"]
         )
         
         let cocoaPods = Event(
             title: "CocoaPods",
             description: "CocoaPods helps developers build apps with Swift and Objective-C. It has thousands of libraries and can help you scale your projects elegantly. We started a group for CocoaPods authors and users in San Francisco, so come by to talk about how you are using CocoaPods in your project or to learn how to do it!",
-            location: "Sightglass Coffee",
-            dateString: "3.20.15",
-            timeString: "1:00 pm",
+            location: "Dandelion Chocolate",
+            dateString: "4.4.15",
+            timeString: "1:45 pm",
             attendeeArray: ["Jon","Arya","Tyrion","Jamie","Robb"]
         )
         
         let handLettering = Event(
             title: "Hand Lettering",
             description: "This month's event is themed around using lettering to raise awareness for charities here in Portland that could use some exposure and positive vibes. We will be selecting 5 charities to create lettered artwork for the night of the event, and when you arrive, you'll be able to choose a team to join.",
-            location: "Sightglass Coffee",
-            dateString: "3.20.15",
+            location: "Pica Pica",
+            dateString: "3.28.15",
             timeString: "1:00 pm",
             attendeeArray: ["Jon","Arya","Tyrion","Jamie","Robb"]
         )
@@ -152,18 +152,18 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         let hackersFounders = Event(
             title: "Hackers and Founders",
             description: "Hackers and Founders started with a small group of only five members, but the combination of beer, burgers and talk about big problems proved potent. We've grown to over 150,000 members, but wanted to run some Mini Meets to go back to our roots and start with five people sitting around a table talking about big problems.",
-            location: "Sightglass Coffee",
-            dateString: "3.20.15",
-            timeString: "1:00 pm",
+            location: "Red Door",
+            dateString: "4.2.15",
+            timeString: "3:30 pm",
             attendeeArray: ["Jon","Arya","Tyrion","Jamie","Robb"]
         )
         
         let digitalMusic = Event(
             title: "Digital Music Production",
             description: "We are a small group of music producers and musicians looking to collaborate with like minded cats. We have a large venue and a well suited recording studio. We create music in many genres and also mash many up. Rock, Hip-Hop, House, Drum and Bass, Acoustic and Orchestral compositions.",
-            location: "Sightglass Coffee",
-            dateString: "3.20.15",
-            timeString: "1:00 pm",
+            location: "Barbacco",
+            dateString: "3.30.15",
+            timeString: "5:30 pm",
             attendeeArray: ["Jon","Arya","Tyrion","Jamie","Robb"]
         )
         
@@ -171,11 +171,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         events = [nerdFun, photowalk, midnightRide, technofeminism, iosForDesigners, justMoved, cocoaPods, handLettering, hackersFounders, digitalMusic]
     
         self.title = "Events"
-        
-        
-        // Attendee Dots as Circles
-        //   self.attendeeDot.layer.cornerRadius = self.attendeeDot.frame.size.width / 2;
-        //   self.attendeeDot.clipsToBounds = true;
+
         
         
     }
