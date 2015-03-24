@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "browse_meetups@2x-1.png"
+      "filename" : "onboarding_image_noscroll@2x-1.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "browse_meetups@2x.png"
+      "filename" : "onboarding_image_noscroll@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "browse_meetups@3x.png"
+      "filename" : "onboarding_image_noscroll@3x.png"
     }
   ],
   "info" : {

@@ -12,12 +12,17 @@ class OnboardingViewController: UIViewController {
 
 
     @IBOutlet weak var phoneImage: UIImageView!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var feedView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         phoneImage.alpha = 0
+        feedView.alpha = 0
         animateUp()
+        
+        scrollView.contentSize = feedView.frame.size
         
 
         // Do any additional setup after loading the view.
@@ -44,13 +49,23 @@ class OnboardingViewController: UIViewController {
     
     func animateUp() {
         var imagePosition = self.phoneImage.center.y
+        var feedPosition = self.feedView.center.y
         
         UIView.animateWithDuration(0.8, delay: 0.8, usingSpringWithDamping: 0.5, initialSpringVelocity: 40, options: UIViewAnimationOptions.CurveEaseIn, animations: { () -> Void in
             self.phoneImage.center.y = imagePosition - 30
+            self.feedView.center.y = feedPosition - 30
             self.phoneImage.alpha = 1
+            self.feedView.alpha = 1
             
         }) { (bool) -> Void in
-            //
+            
+            UIView.animateWithDuration(2, delay: 0, options: UIViewAnimationOptions.CurveEaseIn, animations: { () -> Void in
+                self.feedView.center.y = feedPosition - 500
+
+            }, completion: { (bool) -> Void in
+                //
+            })
+            
         }
     }
 
