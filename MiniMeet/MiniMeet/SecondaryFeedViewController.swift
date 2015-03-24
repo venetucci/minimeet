@@ -10,14 +10,21 @@ import UIKit
 
 class SecondaryFeedViewController: UIViewController {
 
+    @IBOutlet weak var gotThumbnail: UIImageView!
     @IBOutlet weak var loadingImage: UIImageView!
     @IBOutlet weak var gotImage: UIImageView!
+    @IBOutlet weak var loadingText: UILabel!
     @IBOutlet weak var feedImage: UIImageView!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var feedView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
         animateLoad()
         gotImage.alpha = 0
+        
+        scrollView.contentSize = feedView.frame.size
+        
 
         // Do any additional setup after loading the view.
     }
@@ -46,6 +53,9 @@ class SecondaryFeedViewController: UIViewController {
         }) { (bool) -> Void in
             UIView.animateWithDuration(0.1, delay: 4.7, options: UIViewAnimationOptions.CurveEaseIn, animations: { () -> Void in
                 self.gotImage.alpha = 1
+                self.loadingImage.alpha = 0
+                self.loadingText.alpha = 0
+                self.gotThumbnail.alpha = 0
             }, completion: { (bool) -> Void in
                 
                 UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseIn, animations: { () -> Void in

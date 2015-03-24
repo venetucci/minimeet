@@ -21,7 +21,19 @@ struct Event {
     
     var subtitle: String {
         get {
-            return "D \(dateString)   T \(timeString)   L \(location)"
+            return "\(dateString)"
+        }
+    }
+    
+    var eventTime: String {
+        get {
+            return "\(timeString)"
+        }
+    }
+    
+    var eventLocation: String {
+        get {
+            return "\(location)"
         }
     }
     
@@ -175,7 +187,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     // Table View Method #1
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 3
+        return 1
     }
     
     // Table View Method #2
@@ -189,12 +201,16 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         var cell = tableView.dequeueReusableCellWithIdentifier("eventCellId") as EventCell
         let event = events[indexPath.row]
         
-        let titleAttributes = [NSKernAttributeName: 1.05]
+      //  let titleAttributes = [NSKernAttributeName: 0]
         
-        let attributedEventTitle = NSAttributedString(string: event.title, attributes:titleAttributes)
+      //  let attributedEventTitle = NSAttributedString(string: event.title, attributes:titleAttributes)
         
-        cell.eventTitle.attributedText = attributedEventTitle
-        cell.eventSubtitle.text = event.subtitle
+       // cell.eventTitle.attributedText = attributedEventTitle
+        
+        cell.eventTitle.text = event.title
+        cell.eventSubtitle.text = event.dateString
+        cell.eventTime.text = event.timeString
+        cell.eventLocation.text = event.location
         cell.eventImage.image = event.image
         cell.eventAttendees = event.attendeeArray
         println(event.attendeeArray.count)

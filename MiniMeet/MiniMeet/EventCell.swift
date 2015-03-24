@@ -12,6 +12,8 @@ class EventCell: UITableViewCell {
     
     @IBOutlet weak var eventTitle: UILabel!
     @IBOutlet weak var eventSubtitle: UILabel!
+    @IBOutlet weak var eventTime: UILabel!
+    @IBOutlet weak var eventLocation: UILabel!
     @IBOutlet weak var eventImage: UIImageView!
     @IBOutlet weak var eventContainer: UIView!
     @IBOutlet var dotArray: [UIImageView]!

@@ -22,6 +22,8 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var loadingImage: UIImageView!
+    @IBOutlet weak var eventTime: UILabel!
+    @IBOutlet weak var eventLocation: UILabel!
     @IBOutlet var profileButtonArray: [UIButton]!
     
     var event: Event?
@@ -46,6 +48,8 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
         // load the labels with text from the event object
         eventTitle.text = event?.title
         eventSubtitle.text = event?.subtitle
+        eventTime.text = event?.timeString
+        eventLocation.text = event?.location
         descriptionText.text = event?.description
         
         // set the background color and alpha of detailsViewController
@@ -56,6 +60,9 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
         
         // set the custom font styles
         configureView()
+        
+       
+        
     }
     
     override func viewDidAppear(animated: Bool) {
