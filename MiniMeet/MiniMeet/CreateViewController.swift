@@ -118,44 +118,46 @@ class CreateViewController: UIViewController, UIActionSheetDelegate {
         delay(2, { () -> () in
                 alertView.dismissWithClickedButtonIndex(0, animated: true)
             
-                if countElements(self.titleTextField.text) > 1 && countElements(self.descriptionTextField.text) > 1 {
-                    self.performSegueWithIdentifier("submitEventSegue", sender: self)
-                } else {
-                    UIAlertView(title: "Sign In Failed", message: "Incorrect email or password", delegate: self, cancelButtonTitle: "OK").show()
-                }
+//                if countElements(self.titleTextField.text) > 1 && countElements(self.descriptionTextField.text) > 1 {
+//                    self.performSegueWithIdentifier("submitEventSegue", sender: self)
+//                } else {
+//                    UIAlertView(title: "Sign In Failed", message: "Incorrect email or password", delegate: self, cancelButtonTitle: "OK").show()
+//                }
             })
         }
     }
 
     
     @IBAction func addImageDidPress(sender: AnyObject) {
+    
+        performSegueWithIdentifier("addImageSegue", sender: self)
         
-        let actionSheetController: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
-        
-        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel) {
-            action -> Void in
-        }
-
-        actionSheetController.addAction(cancelAction)
-
-        let takePictureAction: UIAlertAction = UIAlertAction(title: "Take Picture", style: .Default) {
-            action -> Void in
-        }
-
-        actionSheetController.addAction(takePictureAction)
-
-        let choosePictureAction: UIAlertAction = UIAlertAction(title: "Choose From Camera Roll", style: .Default) {
-            action -> Void in
-        }
-        
-        actionSheetController.addAction(choosePictureAction)
-        
-        actionSheetController.popoverPresentationController?.sourceView = sender as UIView;
-        
-        self.presentViewController(actionSheetController, animated: true, completion: nil)
+//        let actionSheetController: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+//        
+//        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel) {
+//            action -> Void in
+//        }
+//
+//        actionSheetController.addAction(cancelAction)
+//
+//        let takePictureAction: UIAlertAction = UIAlertAction(title: "Take Picture", style: .Default) {
+//            action -> Void in
+//        }
+//
+//        actionSheetController.addAction(takePictureAction)
+//
+//        let choosePictureAction: UIAlertAction = UIAlertAction(title: "Choose From Camera Roll", style: .Default) {
+//            action -> Void in
+//        }
+//        
+//        actionSheetController.addAction(choosePictureAction)
+//        
+//        actionSheetController.popoverPresentationController?.sourceView = sender as UIView;
+//        
+//        self.presentViewController(actionSheetController, animated: true, completion: nil)
         
     }
-       
+    
     @IBAction func tapGesture(sender: UITapGestureRecognizer) {
         view.endEditing(true)
     }
