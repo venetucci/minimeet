@@ -13,15 +13,18 @@ class EventCell: UITableViewCell {
     @IBOutlet weak var eventTitle: UILabel!
     @IBOutlet weak var eventSubtitle: UILabel!
     @IBOutlet weak var eventImage: UIImageView!
+    @IBOutlet weak var eventContainer: UIView!
+    @IBOutlet var dotArray: [UIImageView]!
+    var eventAttendees: [String]!
     
+    func displayAttendees() {
+        for var index = 0; index < eventAttendees.count; ++index {
+            dotArray[index].alpha = 1
+        }
+    }
     
-    // 
-    
-        // Initialization code
-    
-    
+    // Initialization code
     func snapshot() -> UIView {
         return snapshotViewAfterScreenUpdates(false)
     }
 }
-

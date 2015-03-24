@@ -11,8 +11,6 @@ import UIKit
 class DetailsViewController: UIViewController, UIScrollViewDelegate {
     
   
-
-    @IBOutlet weak var attendeeOne: UIButton!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var mapView: UIImageView!
     @IBOutlet weak var descriptionTitle: UILabel!
@@ -23,51 +21,49 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var submitView: UIView!
-    @IBOutlet weak var submitBackground: UIView!
     @IBOutlet weak var loadingImage: UIImageView!
-    @IBOutlet weak var successView: UIView!
+    @IBOutlet var profileButtonArray: [UIButton]!
     
     var event: Event?
-
-    // the final position upon end drag
-    var endFrame: CGRect!
+    var endFrame: CGRect! // the final position upon end drag
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // set the scroll view height
         scrollView.contentSize = contentView.frame.size
         scrollView.delegate = self
 
+        // set default states of assets
         imageView.image = event?.image
         imageView.hidden = true
-        
         descriptionText.alpha = 0
         descriptionTitle.alpha = 0
         submitButton.alpha = 0
         mapView.alpha = 0
-        attendeeOne.alpha = 0
-        submitView.alpha = 0
-        submitBackground.alpha = 0
-        successView.alpha = 0
         loadingImage.alpha = 0
 
-        
+        // load the labels with text from the event object
         eventTitle.text = event?.title
         eventSubtitle.text = event?.subtitle
         descriptionText.text = event?.description
         
+        // set the background color and alpha of detailsViewController
         self.view.backgroundColor = UIColor(red: 56/255, green: 77/255, blue: 103/255, alpha: 0.9)
         
-        configureView()
+        // hide all the buttons when view loads
+        hideProfileButtonArray()
         
-
-
+        // set the custom font styles
+        configureView()
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         imageView.hidden = false
+        // show only buttons that map to the number of attendees
+        showProfileButtonArray()
+//        animateInProfile() // incomplete function to swap the images
         animateDetailsDown()
     }
 
@@ -75,16 +71,33 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
+    func hideProfileButtonArray() {
+        for var index = 0; index < profileButtonArray.count; ++index {
+            profileButtonArray[index].alpha = 0
+        }
+    }
+    
+    func showProfileButtonArray() {
+        for var index = 0; index < event?.attendeeArray.count; ++index {
+            var buttonProfile = self.profileButtonArray[index]
+            buttonProfile.alpha = 1
+        }
+    }
+    
+    // shot the profile picture by swapping the button assets
+    func animateInProfileButtons() {
+        for var index = 0; index < event?.attendeeArray.count; ++index {
+            var buttonProfile = self.profileButtonArray[index]
+            // swap the image
+        }
+    }
     
     func scrollViewDidScroll(scrollView: UIScrollView!) {
         
         var newImagePoint = imageView.frame.origin
         var offsetFade = 1 - (scrollView.contentOffset.y / -60)
-        
         submitButton.alpha = offsetFade
-        
     }
     
     func scrollViewDidEndDragging(scrollView: UIScrollView!,
@@ -95,7 +108,9 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
             if scrollView.contentOffset.y < -60 {
                 dismissViewControllerAnimated(true, completion: nil)
                 imageView.alpha = 0
-                scrollView.alpha = 0
+                
+                // instead of entire scrollView break up the components and alpha out individually
+                scrollView.alpha = 0.5
                 
                 // set endFrame properties
                 endFrame = imageView.frame
@@ -105,18 +120,15 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
             }
     }
 
-
     @IBAction func submitButtonDidPress(sender: AnyObject) {
     
-        var submitViewPostion = self.submitView.center.y
+//        var submitViewPostion = self.submitView.center.y
         var images = UIImage.animatedImageNamed("loading_", duration: 3.0)
 
-        
-        
         delay(0.4, { () -> () in
             UIView.animateWithDuration(0.3, animations: { () -> Void in
 
-                self.submitBackground.alpha = 0.8
+//                self.submitBackground.alpha = 0.8
                 
 
             }, completion: { (bool) -> Void in
@@ -129,14 +141,13 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
 
                 })
             })
-        
         })
         
         delay(0.1, { () -> () in
             UIView.animateWithDuration(0.5, delay: 3.4, usingSpringWithDamping: 0.5, initialSpringVelocity: 10, options: UIViewAnimationOptions.CurveEaseIn, animations: { () -> Void in
-                self.submitView.center.y = submitViewPostion + 30
-                self.submitView.alpha = 1
-                self.successView.alpha = 1
+//                self.submitView.center.y = submitViewPostion + 30
+//                self.submitView.alpha = 1
+//                self.successView.alpha = 1
                
                 }, completion: { (bool) -> Void in
                     UIView.animateWithDuration(0.2, delay: 2.8, options: nil, animations: { () -> Void in
@@ -148,16 +159,10 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
         })
     }
 
-    
-    
-    
-
 
     // animate event details description and map on page load
-
     @IBAction func browseButtonDidPress(sender: AnyObject) {
         var offsetY = imageView.frame
-    
         
             dismissViewControllerAnimated(true, completion: nil)
             imageView.alpha = 0
@@ -168,11 +173,7 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
         
             // shift the position by offset
             // endFrame.origin.y = -offsetY
-        
-        
-    
     }
-
 
     func animateDetailsDown () {
         var descriptionPosition = self.descriptionText.center.y
@@ -189,10 +190,9 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
             self.descriptionText.alpha = 1
             self.descriptionTitle.center.y = descriptionTitlePosition + 30
             self.descriptionTitle.alpha = 1
-            self.attendeeOne.alpha = 1
+//            self.attendeeOne.alpha = 1
            // self.eventTitle.center.y = titlePosition + 10
            // self.eventSubtitle.center.y = subtitlePosition + 10
-            
             
         }) { (bool) -> Void in
             //
@@ -225,13 +225,4 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
         
         descriptionText.attributedText = attributedString
     }
-    
-    
-    
-    
-    
-    
-    
-    
-   
 }
