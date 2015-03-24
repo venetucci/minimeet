@@ -84,8 +84,7 @@ class SignInViewController: UIViewController {
         } else if countElements(passwordTextField.text) == 0 {
             UIAlertView(title: "Password Required", message: "Please enter your password", delegate: self, cancelButtonTitle: "OK").show()
         } else {
-//            var alertView = UIAlertView(title: "Signing In", message: "", delegate: nil, cancelButtonTitle: nil)
-//            alertView.show()
+
             
             
             var images = UIImage.animatedImageNamed("loading_", duration: 3.0)
