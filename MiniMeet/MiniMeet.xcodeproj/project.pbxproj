@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		107164C31AC1EEB300EB67C3 /* SecondaryFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107164C21AC1EEB300EB67C3 /* SecondaryFeedViewController.swift */; };
 		10791E271AB4DFE500A6DF27 /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10791E261AB4DFE500A6DF27 /* CreateViewController.swift */; };
 		10791E291AB54A6B00A6DF27 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10791E281AB54A6B00A6DF27 /* DetailsViewController.swift */; };
 		10791E2D1AB54C8400A6DF27 /* ImageTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10791E2C1AB54C8400A6DF27 /* ImageTransition.swift */; };
@@ -48,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		107164C21AC1EEB300EB67C3 /* SecondaryFeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondaryFeedViewController.swift; sourceTree = "<group>"; };
 		10791E261AB4DFE500A6DF27 /* CreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
 		10791E281AB54A6B00A6DF27 /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		10791E2C1AB54C8400A6DF27 /* ImageTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageTransition.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 				B8B0FD0B1AB008500097E996 /* Images.xcassets */,
 				B8B0FD0D1AB008500097E996 /* LaunchScreen.xib */,
 				B8B0FD261AB01C400097E996 /* Main.storyboard */,
+				107164C21AC1EEB300EB67C3 /* SecondaryFeedViewController.swift */,
 				49E8E10D1AC1CA9F00B8D534 /* SelectLocationViewController.swift */,
 				49E8E10B1AC1C96E00B8D534 /* SelectDateViewController.swift */,
 				49E8E1091AC1BDEA00B8D534 /* RealCreateViewController.swift */,
@@ -322,6 +325,7 @@
 				B8B0FD071AB008500097E996 /* ViewController.swift in Sources */,
 				10791E291AB54A6B00A6DF27 /* DetailsViewController.swift in Sources */,
 				B8B0FD251AB01A4B0097E996 /* FeedViewController.swift in Sources */,
+				107164C31AC1EEB300EB67C3 /* SecondaryFeedViewController.swift in Sources */,
 				B8B0FD2C1AB01EFD0097E996 /* ProfileViewController.swift in Sources */,
 				10791E341AB5562400A6DF27 /* FadeTransition.swift in Sources */,
 				10FCFE2E1ABEA123008CB295 /* TabViewController.swift in Sources */,

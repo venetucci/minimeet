@@ -51,6 +51,9 @@ class RealCreateViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func createButtonDidPress(sender: AnyObject) {
+        performSegueWithIdentifier("secondaryFeedSegue", sender: self)
+    }
 
     /*
     // MARK: - Navigation
