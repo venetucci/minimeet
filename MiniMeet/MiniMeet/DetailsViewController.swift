@@ -48,8 +48,14 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
         submitButton.alpha = 0
         mapView.alpha = 0
 
-        // load the labels with text from the event object
-        eventTitle.text = event?.title
+        // setting the type
+        var titleString = event?.title
+        var mutableString = NSMutableAttributedString(string: titleString!, attributes: [NSKernAttributeName: 8] )
+        eventTitle.numberOfLines = 2
+        eventTitle.lineBreakMode =  NSLineBreakMode.ByWordWrapping
+        eventTitle.attributedText = mutableString
+        descriptionTitle.attributedText = NSMutableAttributedString(string: "ABOUT", attributes: [NSKernAttributeName: 6] )
+        
         eventSubtitle.text = event?.subtitle
         eventTime.text = event?.timeString
         eventLocation.text = event?.location
@@ -76,7 +82,7 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
         // show only buttons that map to the number of attendees
         showProfileButtonArray()
         
-//        animateInProfile() // incomplete function to swap the images
+        // slide the descriptions down
         animateDetailsDown()
     }
 
@@ -169,9 +175,9 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
         var subtitlePosition = self.eventSubtitle.center.y
         
         UIView.animateWithDuration(duration, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 40, options: nil, animations: { () -> Void in
-            self.descriptionText.center.y = descriptionPosition + 30
+            self.descriptionText.center.y = descriptionPosition + 20
             self.descriptionText.alpha = 1
-            self.descriptionTitle.center.y = descriptionTitlePosition + 30
+            self.descriptionTitle.center.y = descriptionTitlePosition + 20
             self.descriptionTitle.alpha = 1
         }) { (bool) -> Void in
             // code

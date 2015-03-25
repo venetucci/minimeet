@@ -12,7 +12,7 @@ import UIKit
 
 struct Event {
     
-    let title: String
+    let title: NSString
     let description: String
     let location: String
     let dateString: String
@@ -57,6 +57,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         
     // Global Variables & Outlets
     @IBOutlet weak var eventTableView: UITableView!
+    @IBOutlet weak var viewLabel: UILabel!
     
     var events: [Event] = []
     var imageTransition: ImageTransition!
@@ -64,14 +65,15 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     var translationPoint: CGPoint!
     var dotFrameArray: [CGRect] = [CGRectZero, CGRectZero, CGRectZero, CGRectZero, CGRectZero] // empty dot array for the frame positions
     
-//    var scale: CGFloat!: 1
-    
     // Load the View
     override func viewDidLoad() {
         super.viewDidLoad()
         
         eventTableView.delegate = self
         eventTableView.dataSource = self
+        
+        // set the label
+        viewLabel.attributedText = NSMutableAttributedString(string: "BROWSE", attributes: [NSKernAttributeName: 4] )
         
         // Event Listings
         let nerdFun = Event(
@@ -201,11 +203,12 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         var cell = tableView.dequeueReusableCellWithIdentifier("eventCellId") as EventCell
         let event = events[indexPath.row]
         
-      //  let titleAttributes = [NSKernAttributeName: 0]
-      //  let attributedEventTitle = NSAttributedString(string: event.title, attributes:titleAttributes)
-       // cell.eventTitle.attributedText = attributedEventTitle
-        
-        cell.eventTitle.text = event.title
+        // apply kerning to the title
+        var mutableString = NSMutableAttributedString(string: event.title, attributes: [NSKernAttributeName: 8] )
+
+        cell.eventTitle.numberOfLines = 2
+        cell.eventTitle.lineBreakMode =  NSLineBreakMode.ByWordWrapping
+        cell.eventTitle.attributedText = mutableString
         cell.eventSubtitle.text = event.dateString
         cell.eventTime.text = event.timeString
         cell.eventLocation.text = event.location
@@ -231,25 +234,14 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    // Trigger cell when ready to get pushed into view
-//    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-//    var cell = cell as EventCell
-//    cell.displayAttendees()
-//        cellTest = cell
-//        var x = translationY + CGFloat(indexPath.item * 187)
-//        println( cell.frame.origin.y )
-//    }
-    
     // Scroll to get the cell frame origin value
     func scrollViewDidScroll(scrollView: UIScrollView) {
         let niceCell = eventTableView.frame.origin.y
         translationY = scrollView.contentOffset.y + 64
-//        println("translation: \(translationY)")
-//        println("table view: \(eventTableView)")
     }
     
     @IBAction func createButtonDidPress(sender: AnyObject) {
-//        self.performSegueWithIdentifier("createEventSegue", sender: self)
+        // button is directly linked no need for action
     }
     
     // Segue to Event Detail Vc
@@ -285,6 +277,5 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         } else {
             // it is not a tableCell so don't do anything (yet)
         }
-        // cell.hidden = true
     }
 }
