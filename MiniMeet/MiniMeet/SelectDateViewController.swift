@@ -10,6 +10,11 @@ import UIKit
 
 class SelectDateViewController: UIViewController, UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning {
     
+    @IBOutlet weak var datePicker: UIDatePicker!
+    
+    @IBOutlet weak var dateTimeLabel: UILabel!
+    
+    
     var isPresenting: Bool = true
     
     // Initializer: required to customize how this Vc is presented modally
@@ -64,6 +69,16 @@ class SelectDateViewController: UIViewController, UIViewControllerTransitioningD
             }
         }
     }
+    
+    // Date Picker Method: Set Date
+    
+    @IBAction func didPickDateTime(sender: AnyObject) {
+        var dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MM.dd.yyyy | h:mm a"
+        var dateString = dateFormatter.stringFromDate(datePicker.date)
+        self.dateTimeLabel.text = dateString
+    }
+    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         var destinationVC = segue.destinationViewController as UIViewController
