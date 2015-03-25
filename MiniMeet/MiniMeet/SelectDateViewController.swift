@@ -8,11 +8,21 @@
 
 import UIKit
 
+// Add protocol and delegate
+protocol MmDataEntryDelegate {
+    func mMDidInputInfo(info:NSString)
+}
+
 class SelectDateViewController: UIViewController, UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning {
     
     @IBOutlet weak var datePicker: UIDatePicker!
     
-    @IBOutlet weak var dateTimeLabel: UILabel!
+    // Initialize the label
+    @IBOutlet weak var dateTimeLabel: UILabel! = UILabel()
+    
+    // Declare Pass Data Delegate
+    var passDataDelegate: MmDataEntryDelegate? = nil
+
     
     
     var isPresenting: Bool = true
@@ -87,8 +97,13 @@ class SelectDateViewController: UIViewController, UIViewControllerTransitioningD
         
     }
     
-    
+    // Method: Pass the data, dude.
     @IBAction func saveDateDidPress(sender: AnyObject) {
+        
+        if (passDataDelegate != nil) {
+            let information: NSString = dateTimeLabel.text!
+            passDataDelegate!.mMDidInputInfo(information)
+        }
         dismissViewControllerAnimated(true, completion: nil)
     }
     

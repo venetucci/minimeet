@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RealCreateViewController: UIViewController, UIScrollViewDelegate {
+class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEntryDelegate {
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
@@ -79,6 +79,14 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate {
         println("content offeset: \(scrollView.contentOffset.y)")
     }
     
+    
+    // Method: Receive data :)
+    
+    func mMDidInputInfo(info:NSString){
+        dateTextField.text = info
+    }
+    
+    
     // Calculate hex values for color:
     
     func UIColorFromRGB(rgbValue: UInt) -> UIColor {
@@ -96,6 +104,14 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate {
             self.imageLibrary.center.y = 1000
         })
         
+    }
+    
+    // Method: Incoming segue from the Select Date modal
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "selectDateSegue" {
+            let vc2: SelectDateViewController = segue.destinationViewController as SelectDateViewController
+            vc2.passDataDelegate = self
+        }
     }
     
     
