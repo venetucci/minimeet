@@ -101,10 +101,40 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
     // Animate the Library out of screen
     @IBAction func didPressThumbnail(sender: AnyObject) {
         UIView.animateWithDuration(0.5, animations: { () -> Void in
-            self.imageLibrary.center.y = 1000
+            self.imageLibrary.center.y = 1500
         })
         
     }
+    
+    @IBAction func didPressCreateButton(sender: AnyObject) {
+//        performSegueWithIdentifier("secondaryFeedSegue", sender: self)
+        
+        if countElements(eventTitleTextField.text) == 0 {
+            UIAlertView(title: "Meetup Name Required", message: "Please create a name for your meetup!", delegate: self, cancelButtonTitle: "OK").show()
+        } else if countElements(dateTextField.text) == 0 {
+            UIAlertView(title: "Date Required", message: "Please select a day for your meetup", delegate: self, cancelButtonTitle: "OK").show()
+        } else if countElements(locationTextField.text) == 0 {
+            UIAlertView(title: "Location Required", message: "Please select a location for your meetup", delegate: self, cancelButtonTitle: "OK").show()
+        } else if countElements(descriptionTextView.text) == 0 {
+            UIAlertView(title: "Description Required", message: "Please describe your meetup", delegate: self, cancelButtonTitle: "OK").show()
+        } else {
+            var alertView = UIAlertView(title: "Thanks for creating an event!", message: nil, delegate: nil, cancelButtonTitle: nil)
+            alertView.show()
+            
+            delay(2, { () -> () in
+                alertView.dismissWithClickedButtonIndex(0, animated: true)
+                
+                if countElements(self.eventTitleTextField.text) > 1 && countElements(self.descriptionTextView.text) > 1 {
+                    self.performSegueWithIdentifier("secondaryFeedSegue", sender: self)
+                } else {
+                    UIAlertView(title: "Please complete all fields.", message: "You did not enter enough characters.", delegate: self, cancelButtonTitle: "OK").show()
+                }
+            })
+        }
+
+        
+    }
+    
     
     // Method: Incoming segue from the Select Date modal
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

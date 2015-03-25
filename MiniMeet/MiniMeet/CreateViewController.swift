@@ -27,18 +27,7 @@ class CreateViewController: UIViewController {
         
         scrollView.contentSize = contentView.frame.size
 
-//        titleTextField!.layer.borderWidth = 1
-//        titleTextField!.layer.borderColor = borderColor.CGColor
-//        titleTextField.layer.cornerRadius = 5
-//        dateTextField!.layer.borderWidth = 1
-//        dateTextField!.layer.borderColor = borderColor.CGColor
-//        dateTextField.layer.cornerRadius = 5
-//        locationTextField!.layer.borderWidth = 1
-//        locationTextField!.layer.borderColor = borderColor.CGColor
-//        locationTextField.layer.cornerRadius = 5
-//        descriptionTextField!.layer.borderWidth = 1
-//        descriptionTextField!.layer.borderColor = borderColor.CGColor
-//        descriptionTextField.layer.cornerRadius = 5
+
         
 //        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
 //        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
@@ -89,7 +78,6 @@ class CreateViewController: UIViewController {
 //
 //    }
 //    
-//    
 //    func keyboardWillHide(notification: NSNotification!) {
 //        var userInfo = notification.userInfo!
 //        
@@ -100,31 +88,7 @@ class CreateViewController: UIViewController {
 //        var animationCurve = curveValue.integerValue
 //    }
     
-//    @IBAction func submitButtonDidPress(sender: AnyObject) {
-//        
-//        if countElements(titleTextField.text) == 0 {
-//            UIAlertView(title: "Meetup Name Required", message: "Please create a name for your meetup!", delegate: self, cancelButtonTitle: "OK").show()
-//        } else if countElements(dateTextField.text) == 0 {
-//            UIAlertView(title: "Date Required", message: "Please select a day for your meetup", delegate: self, cancelButtonTitle: "OK").show()
-//        } else if countElements(locationTextField.text) == 0 {
-//            UIAlertView(title: "Location Required", message: "Please select a location for your meetup", delegate: self, cancelButtonTitle: "OK").show()
-//        } else if countElements(descriptionTextField.text) == 0 {
-//            UIAlertView(title: "Description Required", message: "Please describe your meetup", delegate: self, cancelButtonTitle: "OK").show()
-//        } else {
-//            var alertView = UIAlertView(title: "Thanks for creating an event!", message: nil, delegate: nil, cancelButtonTitle: nil)
-//            alertView.show()
-//        
-//        delay(2, { () -> () in
-//                alertView.dismissWithClickedButtonIndex(0, animated: true)
-    
-//                if countElements(self.titleTextField.text) > 1 && countElements(self.descriptionTextField.text) > 1 {
-//                    self.performSegueWithIdentifier("submitEventSegue", sender: self)
-//                } else {
-//                    UIAlertView(title: "Sign In Failed", message: "Incorrect email or password", delegate: self, cancelButtonTitle: "OK").show()
-//                }
-//            })
-//        }
-//    }
+
 
     
     @IBAction func addImageDidPress(sender: AnyObject) {
@@ -133,30 +97,7 @@ class CreateViewController: UIViewController {
         
     }
     
-//        let actionSheetController: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
-//        
-//        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel) {
-//            action -> Void in
-//        }
-//
-//        actionSheetController.addAction(cancelAction)
-//
-//        let takePictureAction: UIAlertAction = UIAlertAction(title: "Take Picture", style: .Default) {
-//            action -> Void in
-//        }
-//
-//        actionSheetController.addAction(takePictureAction)
-//
-//        let choosePictureAction: UIAlertAction = UIAlertAction(title: "Choose From Camera Roll", style: .Default) {
-//            action -> Void in
-//        }
-//        
-//        actionSheetController.addAction(choosePictureAction)
-//        
-//        actionSheetController.popoverPresentationController?.sourceView = sender as UIView;
-//        
-//        self.presentViewController(actionSheetController, animated: true, completion: nil)
-        
+    
     
     @IBAction func tapGesture(sender: UITapGestureRecognizer) {
         view.endEditing(true)
