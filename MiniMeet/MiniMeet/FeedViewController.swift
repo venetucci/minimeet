@@ -105,7 +105,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         )
         
         let technofeminism = Event(
-            title: "technofeminism",
+            title: "TECHNOFEMINISM",
             description: "Technofeminism is global 501(c)(3) non-profit inspiring women to excel in technology careers with 20,000+ members in 50 cities spanning 15 countries (and counting). Women are invited to come learn about coding.",
             location: "Ferry Building Benches",
             dateString: "3.28.15",

@@ -20,7 +20,6 @@ class ImageTransition: BaseTransition {
     var convertedEndFrame = CGRectZero
     
     override func presentTransition(containerView: UIView, fromViewController: UIViewController, toViewController: UIViewController) {
-        
         var tabViewController = fromViewController as TabViewController
         let navigationController = tabViewController.selectedViewController as UINavigationController
         var feedViewController = navigationController.topViewController as FeedViewController
@@ -38,20 +37,13 @@ class ImageTransition: BaseTransition {
         for var index = 0; index < attendeeArray.count; ++index {
             var dotImage = dotArray[index]
             var dotImageCopy = UIImageView(image: dotImage.image)
-//            var dotImageCopy = UIImageView(image: UIImage(named: attendeeArray[index] )
             
-            
-//            var buttonProfile = self.profileButtonArray[index]
-//            var attendeeImage = UIImage(named: self.event?.attendeeArray[index] as String!)
-//            buttonProfile.setImage(attendeeImage, forState: .Normal)
-//            buttonProfile.alpha = 1
-            
-            dotImageCopy.frame = dotArrayOriginFrames[index]        // position & size
-            dotImageCopy.contentMode = dotImage.contentMode         // e.g. aspect fill
-            dotImageCopy.clipsToBounds = dotImage.clipsToBounds     // bool value for clipping
-            dotImageCopy.image = UIImage(named: attendeeArray[index])
+            dotImageCopy.frame = dotArrayOriginFrames[index]            // position & size
+            dotImageCopy.contentMode = dotImage.contentMode             // e.g. aspect fill
+            dotImageCopy.clipsToBounds = dotImage.clipsToBounds         // bool value for clipping
+            dotImageCopy.image = UIImage(named: attendeeArray[index])   // swap image for profile
             containerView.addSubview(dotImageCopy)
-            dotArray[index] = dotImageCopy                          // probably not good practice to reuse itself
+            dotArray[index] = dotImageCopy                              // probably not good practice to reuse itself
         }
         
         // animate the dots
@@ -97,11 +89,9 @@ class ImageTransition: BaseTransition {
     }
     
     override func dismissTransition(containerView: UIView, fromViewController: UIViewController, toViewController: UIViewController) {
-        
         var tabViewController = toViewController as TabViewController
         let navigationController = tabViewController.selectedViewController as UINavigationController
         var feedViewController = navigationController.topViewController as FeedViewController
-        
         var detailsViewController = fromViewController as DetailsViewController
 
         convertedEndFrame = detailsViewController.endFrame
