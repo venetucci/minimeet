@@ -18,6 +18,12 @@ class EventCell: UITableViewCell {
     @IBOutlet weak var eventContainer: UIView!
     @IBOutlet var dotArray: [UIImageView]!
     var eventAttendees: [String]!
+
+    func resetAttendees() {
+        for var index = 0; index < dotArray.count; ++index {
+            dotArray[index].alpha = 0
+        }
+    }
     
     func displayAttendees() {
         for var index = 0; index < eventAttendees.count; ++index {

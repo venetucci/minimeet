@@ -9,7 +9,6 @@
 import UIKit
 
 // Event Custom Struct
-
 struct Event {
     
     let title: NSString
@@ -69,6 +68,9 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // set the status bar style to light
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
+        
         eventTableView.delegate = self
         eventTableView.dataSource = self
         
@@ -122,7 +124,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             location: "thoughtbot",
             dateString: "3.28.15",
             timeString: "1:30 pm",
-            attendeeArray: ["mich","danny","mike","joe","hanna"],
+            attendeeArray: ["mich","danny","hanna"],
             eventImageName: "ios-for-designers"
         )
         
@@ -132,7 +134,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             location: "Sightglass Coffee",
             dateString: "4.1.15",
             timeString: "2:30 pm",
-            attendeeArray: ["jon","mike","hanna","joe","danny"],
+            attendeeArray: ["mike","hanna","joe","danny"],
             eventImageName: "just-moved-to-sf"
         )
         
@@ -152,7 +154,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             location: "Pica Pica",
             dateString: "3.28.15",
             timeString: "1:00 pm",
-            attendeeArray: ["mich","mike","danny","hanna","joe"],
+            attendeeArray: ["mich","mike","hanna","joe"],
             eventImageName: "hand-lettering"
         )
         
@@ -162,7 +164,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             location: "Red Door",
             dateString: "4.2.15",
             timeString: "3:30 pm",
-            attendeeArray: ["joe","hanna","danny","mich","mike"],
+            attendeeArray: ["joe","hanna","mike"],
             eventImageName: "hackers-and-founders"
         )
         
@@ -172,7 +174,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             location: "Barbacco",
             dateString: "3.30.15",
             timeString: "5:30 pm",
-            attendeeArray: ["danny","hanna","jon","joe","mike"],
+            attendeeArray: ["danny","hanna","jon","joe"],
             eventImageName: "digital-music-production"
         )
         
@@ -214,11 +216,12 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.eventLocation.text = event.location
         cell.eventImage.image = event.image
         cell.eventAttendees = event.attendeeArray
+        cell.resetAttendees()
         cell.displayAttendees()
         cellTransition(cell) // Insert cell animation in the table view
         return cell
     }
-    
+
     @IBAction func didPressProfileButton(sender: AnyObject) {
         performSegueWithIdentifier("profileSegue", sender: self)
     }

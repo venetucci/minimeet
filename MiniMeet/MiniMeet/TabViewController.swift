@@ -28,8 +28,11 @@ class TabViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        // set the status bar style to light
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
         var storyboard = UIStoryboard(name: "Main", bundle: nil)
+
         feedViewController = storyboard.instantiateViewControllerWithIdentifier("feedNavigation") as UIViewController
         createViewController = storyboard.instantiateViewControllerWithIdentifier("create") as CreateViewController
         profileViewController = storyboard.instantiateViewControllerWithIdentifier("profileNavigation") as UIViewController

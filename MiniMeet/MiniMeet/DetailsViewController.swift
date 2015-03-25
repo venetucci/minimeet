@@ -159,9 +159,6 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
             
             // set endFrame properties
              endFrame = imageView.frame
-        
-            // shift the position by offset
-            // endFrame.origin.y = -offsetY
     }
 
     func animateDetailsDown () {
