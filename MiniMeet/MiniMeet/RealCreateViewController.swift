@@ -48,6 +48,12 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
         descriptionTextView!.layer.borderWidth = 1
         descriptionTextView!.layer.borderColor = borderColor.CGColor
         descriptionTextView.layer.cornerRadius = 5
+        
+        
+        // Register for keyboard events
+        
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
 
 
         // Do any additional setup after loading the view.
@@ -106,8 +112,49 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
         
     }
     
+    
+    // Keyboard Methods to Show & Hide
+//    
+//        func textFieldShouldReturn(textField: UITextField) -> Bool {
+//            textField.resignFirstResponder()
+//            return true
+//        }
+//    
+//        func keyboardWillShow(notification: NSNotification!) {
+//            var userInfo = notification.userInfo!
+//    
+//    
+//            var kbSize = (userInfo[UIKeyboardFrameEndUserInfoKey] as NSValue).CGRectValue().size
+//            var durationValue = userInfo[UIKeyboardAnimationDurationUserInfoKey] as NSNumber
+//            var animationDuration = durationValue.doubleValue
+//            var curveValue = userInfo[UIKeyboardAnimationCurveUserInfoKey] as NSNumber
+//            var animationCurve = curveValue.integerValue
+//    
+//            UIView.animateWithDuration(animationDuration, delay: 0.0, options: UIViewAnimationOptions(UInt(animationCurve << 16)), animations: {
+//    
+//    
+//                }, completion: nil)
+//    
+//    
+//        }
+//    
+//        func keyboardWillHide(notification: NSNotification!) {
+//            var userInfo = notification.userInfo!
+//    
+//            var kbSize = (userInfo[UIKeyboardFrameEndUserInfoKey] as NSValue).CGRectValue().size
+//            var durationValue = userInfo[UIKeyboardAnimationDurationUserInfoKey] as NSNumber
+//            var animationDuration = durationValue.doubleValue
+//            var curveValue = userInfo[UIKeyboardAnimationCurveUserInfoKey] as NSNumber
+//            var animationCurve = curveValue.integerValue
+//        }
+//    
+
+    
+    
+    
+    // Create Button
+    
     @IBAction func didPressCreateButton(sender: AnyObject) {
-//        performSegueWithIdentifier("secondaryFeedSegue", sender: self)
         
         if countElements(eventTitleTextField.text) == 0 {
             UIAlertView(title: "Meetup Name Required", message: "Please create a name for your meetup!", delegate: self, cancelButtonTitle: "OK").show()
