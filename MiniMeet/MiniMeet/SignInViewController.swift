@@ -85,13 +85,10 @@ class SignInViewController: UIViewController {
             UIAlertView(title: "Password Required", message: "Please enter your password", delegate: self, cancelButtonTitle: "OK").show()
         } else {
 
-            
-            
             var images = UIImage.animatedImageNamed("loading_", duration: 3.0)
             loadingImage.image = images
             loadingImage.alpha = 1
             loadingBackground.alpha = 0.7
-            
             
             delay(2, { () -> () in
                 self.performSegueWithIdentifier("welcomeSegue", sender: self)
@@ -105,8 +102,6 @@ class SignInViewController: UIViewController {
 //                    UIAlertView(title: "Sign In Failed", message: "Incorrect email or password", delegate: self, cancelButtonTitle: "OK").show()
 //                }
 //            })
-        
-
     }
    
     @IBAction func onTap(sender: UITapGestureRecognizer) {

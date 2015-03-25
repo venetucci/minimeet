@@ -15,7 +15,7 @@ class ImageTransition: BaseTransition {
     var snapshotEndFrame = CGRectZero
     var dotArray: [UIImageView]!
     var dotArrayOriginFrames: [CGRect]!
-    var attendeeNum: Int!
+    var attendeeArray: [String]!
     var convertedStartFrame = CGRectZero
     var convertedEndFrame = CGRectZero
     
@@ -24,7 +24,6 @@ class ImageTransition: BaseTransition {
         var tabViewController = fromViewController as TabViewController
         let navigationController = tabViewController.selectedViewController as UINavigationController
         var feedViewController = navigationController.topViewController as FeedViewController
-        
         var detailsViewController = toViewController as DetailsViewController
         
         convertedStartFrame = containerView.convertRect(snapshotStartFrame, fromView: feedViewController.eventTableView)
@@ -36,19 +35,27 @@ class ImageTransition: BaseTransition {
         toViewController.view.alpha = 0
         
         // copy and initialize all the dots
-        for var index = 0; index < attendeeNum; ++index {
+        for var index = 0; index < attendeeArray.count; ++index {
             var dotImage = dotArray[index]
             var dotImageCopy = UIImageView(image: dotImage.image)
+//            var dotImageCopy = UIImageView(image: UIImage(named: attendeeArray[index] )
+            
+            
+//            var buttonProfile = self.profileButtonArray[index]
+//            var attendeeImage = UIImage(named: self.event?.attendeeArray[index] as String!)
+//            buttonProfile.setImage(attendeeImage, forState: .Normal)
+//            buttonProfile.alpha = 1
             
             dotImageCopy.frame = dotArrayOriginFrames[index]        // position & size
             dotImageCopy.contentMode = dotImage.contentMode         // e.g. aspect fill
             dotImageCopy.clipsToBounds = dotImage.clipsToBounds     // bool value for clipping
+            dotImageCopy.image = UIImage(named: attendeeArray[index])
             containerView.addSubview(dotImageCopy)
             dotArray[index] = dotImageCopy                          // probably not good practice to reuse itself
         }
         
         // animate the dots
-        for var index = 0; index < attendeeNum; ++index {
+        for var index = 0; index < attendeeArray.count; ++index {
             
             var dot = self.dotArray[index]
             var num = Double(index) + 0.25
@@ -66,7 +73,7 @@ class ImageTransition: BaseTransition {
         
         // scale the dots
         UIView.animateWithDuration(0.5, animations: { () -> Void in
-            for var index = 0; index < self.attendeeNum; ++index {
+            for var index = 0; index < self.attendeeArray.count; ++index {
                 var dot = self.dotArray[index]
                 dot.transform = CGAffineTransformMakeScale(4.4, 4.4)
             }
@@ -81,7 +88,7 @@ class ImageTransition: BaseTransition {
             self.finish()
             self.snapshot?.removeFromSuperview()
             delay(1, { () -> () in
-                for var index = 0; index < self.attendeeNum; ++index {
+                for var index = 0; index < self.attendeeArray.count; ++index {
                     var dot = self.dotArray[index]
                     dot.removeFromSuperview()
                 }

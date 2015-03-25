@@ -35,7 +35,7 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // set the scroll view height
         scrollView.contentSize = contentView.frame.size
         scrollView.delegate = self
@@ -72,8 +72,10 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         imageView.hidden = false
+        
         // show only buttons that map to the number of attendees
         showProfileButtonArray()
+        
 //        animateInProfile() // incomplete function to swap the images
         animateDetailsDown()
     }
@@ -90,9 +92,15 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func showProfileButtonArray() {
-        for var index = 0; index < event?.attendeeArray.count; ++index {
-            var buttonProfile = self.profileButtonArray[index]
-            buttonProfile.alpha = 1
+        UIView.animateWithDuration(0.5, delay: 0.5, options: nil, animations: { () -> Void in
+            for var index = 0; index < self.event?.attendeeArray.count; ++index {
+                var buttonProfile = self.profileButtonArray[index]
+                var attendeeImage = UIImage(named: self.event?.attendeeArray[index] as String!)
+                buttonProfile.setImage(attendeeImage, forState: .Normal)
+                buttonProfile.alpha = 1
+            }
+        }) { (Bool) -> Void in
+            // code
         }
     }
     
@@ -189,7 +197,6 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
         paragraphStyle.lineSpacing = 4.0
         var attributes = [NSParagraphStyleAttributeName: paragraphStyle]
         var attributedString = NSAttributedString(string: descriptionText!.text!, attributes: attributes)
-        
         descriptionText.attributedText = attributedString
     }
 
