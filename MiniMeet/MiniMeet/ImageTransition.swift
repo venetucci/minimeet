@@ -55,7 +55,7 @@ class ImageTransition: BaseTransition {
             var clock = NSTimeInterval(num/4)
             var dotX = 25
             
-            UIView.animateWithDuration(clock, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 10, options: nil, animations: { () -> Void in
+            UIView.animateWithDuration(clock, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 10, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
                 dot.frame.origin.y = 188
                 dot.frame.origin.x = 28 + (64 * CGFloat(index))
                 dot.alpha = 1
@@ -72,7 +72,7 @@ class ImageTransition: BaseTransition {
             }
         })
         
-        UIView.animateWithDuration(duration, delay: 0, usingSpringWithDamping: 0.75, initialSpringVelocity: 10, options: nil, animations: { () -> Void in
+        UIView.animateWithDuration(duration, delay: 0, usingSpringWithDamping: 0.75, initialSpringVelocity: 10, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
             // code
             toViewController.view.alpha = 1
             self.snapshot?.frame = self.convertedEndFrame

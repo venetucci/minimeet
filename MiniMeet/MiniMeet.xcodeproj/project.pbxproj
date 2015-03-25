@@ -27,9 +27,9 @@
 		49E8E10A1AC1BDEA00B8D534 /* RealCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E8E1091AC1BDEA00B8D534 /* RealCreateViewController.swift */; };
 		49E8E10C1AC1C96E00B8D534 /* SelectDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E8E10B1AC1C96E00B8D534 /* SelectDateViewController.swift */; };
 		49E8E10E1AC1CA9F00B8D534 /* SelectLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E8E10D1AC1CA9F00B8D534 /* SelectLocationViewController.swift */; };
+		B81FDF6E1AC2EE8B005DB753 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B81FDF6D1AC2EE8B005DB753 /* Images.xcassets */; };
 		B8B0FD051AB008500097E996 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B0FD041AB008500097E996 /* AppDelegate.swift */; };
 		B8B0FD071AB008500097E996 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B0FD061AB008500097E996 /* ViewController.swift */; };
-		B8B0FD0C1AB008500097E996 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8B0FD0B1AB008500097E996 /* Images.xcassets */; };
 		B8B0FD0F1AB008500097E996 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8B0FD0D1AB008500097E996 /* LaunchScreen.xib */; };
 		B8B0FD1B1AB008500097E996 /* MiniMeetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B0FD1A1AB008500097E996 /* MiniMeetTests.swift */; };
 		B8B0FD251AB01A4B0097E996 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B0FD241AB01A4B0097E996 /* FeedViewController.swift */; };
@@ -70,11 +70,11 @@
 		49E8E1091AC1BDEA00B8D534 /* RealCreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealCreateViewController.swift; sourceTree = "<group>"; };
 		49E8E10B1AC1C96E00B8D534 /* SelectDateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectDateViewController.swift; sourceTree = "<group>"; };
 		49E8E10D1AC1CA9F00B8D534 /* SelectLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectLocationViewController.swift; sourceTree = "<group>"; };
+		B81FDF6D1AC2EE8B005DB753 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Images.xcassets; sourceTree = "<group>"; };
 		B8B0FCFF1AB008500097E996 /* MiniMeet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniMeet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8B0FD031AB008500097E996 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B8B0FD041AB008500097E996 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B8B0FD061AB008500097E996 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		B8B0FD0B1AB008500097E996 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B8B0FD0E1AB008500097E996 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		B8B0FD141AB008500097E996 /* MiniMeetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MiniMeetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8B0FD191AB008500097E996 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -148,8 +148,8 @@
 				B8B0FD041AB008500097E996 /* AppDelegate.swift */,
 				B8B0FD061AB008500097E996 /* ViewController.swift */,
 				B8BEA7841AC068BA00FAF6BB /* View Controllers */,
-				B8B0FD0B1AB008500097E996 /* Images.xcassets */,
 				B8B0FD0D1AB008500097E996 /* LaunchScreen.xib */,
+				B81FDF6D1AC2EE8B005DB753 /* Images.xcassets */,
 				B8B0FD261AB01C400097E996 /* Main.storyboard */,
 				107164C21AC1EEB300EB67C3 /* SecondaryFeedViewController.swift */,
 				49E8E10D1AC1CA9F00B8D534 /* SelectLocationViewController.swift */,
@@ -298,8 +298,8 @@
 				B8B0FD281AB01C400097E996 /* Main.storyboard in Resources */,
 				10FCFE2A1ABE8060008CB295 /* DINNextLTPro-Regular.otf in Resources */,
 				B8B0FD0F1AB008500097E996 /* LaunchScreen.xib in Resources */,
+				B81FDF6E1AC2EE8B005DB753 /* Images.xcassets in Resources */,
 				10FCFE2C1ABE8060008CB295 /* DINNextLTPro-Bold.otf in Resources */,
-				B8B0FD0C1AB008500097E996 /* Images.xcassets in Resources */,
 				10FCFE2B1ABE8060008CB295 /* DINNextLTPro-Light.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

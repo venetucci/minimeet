@@ -11,6 +11,7 @@ import UIKit
 class DetailsViewController: UIViewController, UIScrollViewDelegate {
     
   
+    @IBOutlet var detailsViewContainer: UIView!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var mapView: UIImageView!
     @IBOutlet weak var descriptionTitle: UILabel!
@@ -21,13 +22,16 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var loadingImage: UIImageView!
     @IBOutlet weak var eventTime: UILabel!
     @IBOutlet weak var eventLocation: UILabel!
     @IBOutlet var profileButtonArray: [UIButton]!
     
     var event: Event?
     var endFrame: CGRect! // the final position upon end drag
+    
+    // custom transitions
+    var successVC: SuccessViewController!
+    var successTransition: FadeTransition!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +47,6 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
         descriptionTitle.alpha = 0
         submitButton.alpha = 0
         mapView.alpha = 0
-        loadingImage.alpha = 0
 
         // load the labels with text from the event object
         eventTitle.text = event?.title
@@ -51,6 +54,10 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
         eventTime.text = event?.timeString
         eventLocation.text = event?.location
         descriptionText.text = event?.description
+        
+        // custom view added to storyboard
+        var storyboard = UIStoryboard(name: "Main", bundle: nil)
+        successVC = storyboard.instantiateViewControllerWithIdentifier("successSBID") as SuccessViewController
         
         // set the background color and alpha of detailsViewController
         self.view.backgroundColor = UIColor(red: 56/255, green: 77/255, blue: 103/255, alpha: 0.9)
@@ -60,9 +67,6 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
         
         // set the custom font styles
         configureView()
-        
-       
-        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -128,44 +132,8 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
     }
 
     @IBAction func submitButtonDidPress(sender: AnyObject) {
-    
-//        var submitViewPostion = self.submitView.center.y
-        var images = UIImage.animatedImageNamed("loading_", duration: 3.0)
-
-        delay(0.4, { () -> () in
-            UIView.animateWithDuration(0.3, animations: { () -> Void in
-
-//                self.submitBackground.alpha = 0.8
-                
-
-            }, completion: { (bool) -> Void in
-                UIView.animateWithDuration(2.8, animations: { () -> Void in
-                    self.loadingImage.alpha = 1
-                    self.loadingImage.image = images
-                    
-                }, completion: { (bool) -> Void in
-                    self.loadingImage.alpha = 0
-
-                })
-            })
-        })
-        
-        delay(0.1, { () -> () in
-            UIView.animateWithDuration(0.5, delay: 3.4, usingSpringWithDamping: 0.5, initialSpringVelocity: 10, options: UIViewAnimationOptions.CurveEaseIn, animations: { () -> Void in
-//                self.submitView.center.y = submitViewPostion + 30
-//                self.submitView.alpha = 1
-//                self.successView.alpha = 1
-               
-                }, completion: { (bool) -> Void in
-                    UIView.animateWithDuration(0.2, delay: 2.8, options: nil, animations: { () -> Void in
-                        //
-                    }, completion: { (bool) -> Void in
-                        //
-                    })
-            })
-        })
+        self.performSegueWithIdentifier("successSegue", sender: self)
     }
-
 
     // animate event details description and map on page load
     @IBAction func browseButtonDidPress(sender: AnyObject) {
@@ -197,12 +165,8 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
             self.descriptionText.alpha = 1
             self.descriptionTitle.center.y = descriptionTitlePosition + 30
             self.descriptionTitle.alpha = 1
-//            self.attendeeOne.alpha = 1
-           // self.eventTitle.center.y = titlePosition + 10
-           // self.eventSubtitle.center.y = subtitlePosition + 10
-            
         }) { (bool) -> Void in
-            //
+            // code
         }
         
         UIView.animateWithDuration(duration, delay: 0.15, usingSpringWithDamping: 0.5, initialSpringVelocity: 40, options: nil, animations: { () -> Void in
@@ -212,7 +176,6 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
                 //
         }
         
-        
         UIView.animateWithDuration(duration, delay: 0.35, usingSpringWithDamping: 0.5, initialSpringVelocity: 40, options: nil, animations: { () -> Void in
             self.mapView.center.y = mapPosition + 30
             self.mapView.alpha = 1
@@ -221,15 +184,37 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
-    
     func configureView() {
         var paragraphStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as NSMutableParagraphStyle
         paragraphStyle.lineSpacing = 4.0
-        
         var attributes = [NSParagraphStyleAttributeName: paragraphStyle]
-        
         var attributedString = NSAttributedString(string: descriptionText!.text!, attributes: attributes)
         
         descriptionText.attributedText = attributedString
+    }
+
+    // add a subbview to the specified container
+    func displayContentController(container: UIView, content: UIViewController) {
+        addChildViewController(content)
+        detailsViewContainer.addSubview(content.view)
+        content.didMoveToParentViewController(self)
+    }
+    
+    // remove a subview from the specified container
+    func hideContentController(container: UIView, content: UIViewController) {
+        content.willMoveToParentViewController(nil)
+        content.view.removeFromSuperview()
+        content.removeFromParentViewController()
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        var destinationViewController = segue.destinationViewController as UIViewController
+        
+        // instantiate the transition
+        successTransition = FadeTransition()
+        successTransition.duration = 0.0
+        
+        destinationViewController.modalPresentationStyle = UIModalPresentationStyle.Custom
+        destinationViewController.transitioningDelegate = successTransition
     }
 }

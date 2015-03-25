@@ -9,32 +9,71 @@
 import UIKit
 
 class SuccessViewController: UIViewController {
-    
-    //    @IBOutlet weak var submitView: UIView!
-    //    @IBOutlet weak var submitBackground: UIView!
-    //    @IBOutlet weak var successView: UIView!
 
+    @IBOutlet weak var loadingSequence: UIImageView!
+    @IBOutlet weak var successBGView: UIView!
+    @IBOutlet weak var confirmCardView: UIView!
+    
+    let loadingImages = UIImage.animatedImageNamed("loading_", duration: 3.0)
+    var cardOffsetY: CGFloat!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        submitView.alpha = 0
-        //        submitBackground.alpha = 0
-        //        successView.alpha = 0
+        confirmCardView.alpha = 0
+        successBGView.alpha = 0
+        loadingSequence.alpha = 0
+        
+        // move card off screen by view height
+        cardOffsetY = self.view.frame.height
+        confirmCardView.center.y = confirmCardView.center.y - cardOffsetY
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // animate background alpha
+        UIView.animateWithDuration(0.3, animations: { () -> Void in
+            self.successBGView.alpha = 0.8
+            }, completion: { (bool) -> Void in
+        })
+        
+        // show loading sequence and animate the card in
+        animateCardDown(3.5)
     }
-    */
+    
+    @IBAction func browseMoreDidPress(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
 
+    // loading animation
+    func loadingAnimation(duration: NSTimeInterval) {
+        UIView.animateWithDuration(duration, animations: { () -> Void in
+            self.loadingSequence.alpha = 1
+            self.loadingSequence.image = self.loadingImages
+            
+            }, completion: { (bool) -> Void in
+            self.loadingSequence.alpha = 0
+            self.successBGView.alpha = 0.7
+        })
+    }
+    
+    func animateCardDown(delayTime: NSTimeInterval) {
+        // animate for as long as the animation is delayed
+        loadingAnimation(delayTime)
+        
+        UIView.animateWithDuration(0.5, delay: delayTime, usingSpringWithDamping: 0.6, initialSpringVelocity: 10, options: UIViewAnimationOptions.CurveEaseIn, animations: { () -> Void in
+            
+            self.confirmCardView.center.y = self.confirmCardView.center.y + self.cardOffsetY
+            self.confirmCardView.alpha = 1
+            //                self.successView.alpha = 1
+            
+            }, completion: { (bool) -> Void in
+                // code
+        })
+    }
 }
