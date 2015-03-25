@@ -49,7 +49,6 @@ class SuccessViewController: UIViewController {
     @IBAction func browseMoreDidPress(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
 //        UIStoryboardSegue.
-        
     }
 
     // loading animation

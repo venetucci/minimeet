@@ -68,9 +68,6 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // set the status bar style to light
-        UIApplication.sharedApplication().statusBarStyle = .LightContent
-        
         eventTableView.delegate = self
         eventTableView.dataSource = self
         
