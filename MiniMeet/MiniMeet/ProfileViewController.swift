@@ -14,18 +14,28 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var profileFeed: UIImageView!
     @IBOutlet weak var viewLabel: UILabel!
     @IBOutlet weak var profileName: UILabel!
+    @IBOutlet weak var descriptionText: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         viewLabel.attributedText = NSMutableAttributedString(string: "PROFILE", attributes: [NSKernAttributeName: 4] )
-        profileName.attributedText = NSMutableAttributedString(string: "JON SNOW", attributes: [NSKernAttributeName: 5] )
+        profileName.attributedText = NSMutableAttributedString(string: "JON SNOW", attributes: [NSKernAttributeName: 4] )
+        configureDescription()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
+    func configureDescription() {
+        var paragraphStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as NSMutableParagraphStyle
+        paragraphStyle.lineSpacing = 4.0
+        var attributes = [NSParagraphStyleAttributeName: paragraphStyle]
+        var attributedString = NSAttributedString(string: descriptionText!.text!, attributes: attributes)
+        descriptionText.attributedText = attributedString
+    }
+
     @IBAction func goBack(sender: AnyObject) {
         navigationController?.popViewControllerAnimated(true)
     }
