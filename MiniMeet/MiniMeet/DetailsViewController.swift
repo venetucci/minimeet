@@ -225,7 +225,12 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
         dismissViewControllerAnimated(true, completion: nil)
         endFrame = imageView.frame
     }
-    
+
+    @IBAction func unwindToDetail(segue: UIStoryboardSegue) {
+        dismissViewControllerAnimated(true, completion: nil )
+        endFrame = imageView.frame
+    }
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         var destinationViewController = segue.destinationViewController as UIViewController
         
