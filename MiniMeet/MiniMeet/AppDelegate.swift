@@ -17,10 +17,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
 
-        self.window?.tintColor = UIColor.orangeColor()
+        // set the status bar style to light
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
+        
+        // set gloabl tint color
+        self.window?.tintColor = UIColor(red:0.007, green:0.772, blue:0.815, alpha:1)
+        
+        // set the global segment style
+        
+        UISegmentedControl.appearance().setTitleTextAttributes([
+            NSFontAttributeName: UIFont(name: "DINNextLTPro-Light", size: 14.0)!,
+            NSKernAttributeName: 3,
+            NSBaselineOffsetAttributeName: -0.5
+        ], forState: .Normal)
 
         return true
-        
     }
 
     func applicationWillResignActive(application: UIApplication) {

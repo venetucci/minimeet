@@ -25,6 +25,7 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var eventTime: UILabel!
     @IBOutlet weak var eventLocation: UILabel!
     @IBOutlet var profileButtonArray: [UIButton]!
+    @IBOutlet weak var backButton: UIButton!
     
     var event: Event?
     var endFrame: CGRect! // the final position upon end drag
@@ -47,6 +48,7 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
         descriptionTitle.alpha = 0
         submitButton.alpha = 0
         mapView.alpha = 0
+        backButton.alpha = 0
 
         // setting the type
         var titleString = event?.title
@@ -183,6 +185,7 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
         UIView.animateWithDuration(duration, delay: 0.15, usingSpringWithDamping: 0.5, initialSpringVelocity: 40, options: nil, animations: { () -> Void in
             self.submitButton.center.y = submitPosition + 30
             self.submitButton.alpha = 1
+            self.backButton.alpha = 1
             }) { (bool) -> Void in
                 //
         }
@@ -215,6 +218,12 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
         content.willMoveToParentViewController(nil)
         content.view.removeFromSuperview()
         content.removeFromParentViewController()
+    }
+
+    @IBAction func backDidPress(sender: AnyObject) {
+        self.backButton.alpha = 0
+        dismissViewControllerAnimated(true, completion: nil)
+        endFrame = imageView.frame
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
