@@ -52,7 +52,7 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
 
         // setting the type
         var titleString = event?.title
-        var mutableString = NSMutableAttributedString(string: titleString!, attributes: [NSKernAttributeName: 8] )
+        var mutableString = NSMutableAttributedString(string: titleString!, attributes: [NSKernAttributeName: 4] )
         eventTitle.numberOfLines = 2
         eventTitle.lineBreakMode =  NSLineBreakMode.ByWordWrapping
         eventTitle.attributedText = mutableString
