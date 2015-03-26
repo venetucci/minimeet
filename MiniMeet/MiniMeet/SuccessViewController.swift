@@ -13,6 +13,7 @@ class SuccessViewController: UIViewController {
     @IBOutlet weak var loadingSequence: UIImageView!
     @IBOutlet weak var successBGView: UIView!
     @IBOutlet weak var confirmCardView: UIView!
+    @IBOutlet weak var headerLabel: UILabel!
     
     let loadingImages = UIImage.animatedImageNamed("loading_", duration: 3.0)
     var cardOffsetY: CGFloat!
@@ -26,6 +27,8 @@ class SuccessViewController: UIViewController {
         // move card off screen by view height
         cardOffsetY = self.view.frame.height
         confirmCardView.center.y = confirmCardView.center.y - cardOffsetY
+        
+        headerLabel.attributedText = NSMutableAttributedString(string: "MEETUP GOODNESS", attributes: [NSKernAttributeName: 4] )
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,7 +51,6 @@ class SuccessViewController: UIViewController {
     
     @IBAction func browseMoreDidPress(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
-//        UIStoryboardSegue.
     }
 
     // loading animation

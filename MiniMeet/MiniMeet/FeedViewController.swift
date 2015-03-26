@@ -203,7 +203,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         let event = events[indexPath.row]
         
         // apply kerning to the title
-        var mutableString = NSMutableAttributedString(string: event.title, attributes: [NSKernAttributeName: 8] )
+        var mutableString = NSMutableAttributedString(string: event.title, attributes: [NSKernAttributeName: 4] )
 
         cell.eventTitle.numberOfLines = 2
         cell.eventTitle.lineBreakMode =  NSLineBreakMode.ByWordWrapping
