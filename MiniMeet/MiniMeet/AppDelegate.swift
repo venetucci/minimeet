@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
 
-        // set the status bar style to light
+        // set the status bar style to lightgit
         UIApplication.sharedApplication().statusBarStyle = .LightContent
         
         // set gloabl tint color
