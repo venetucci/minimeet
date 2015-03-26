@@ -10,14 +10,19 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
-    @IBOutlet weak var profileScrollView: UIScrollView!
-    @IBOutlet weak var profileFeed: UIImageView!
     @IBOutlet weak var viewLabel: UILabel!
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var descriptionText: UILabel!
+    @IBOutlet weak var scrollView: UIScrollView!
+    
+    @IBOutlet var contents: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        println(contents.frame.size)
+        scrollView.contentSize.height = 1000
+        
         viewLabel.attributedText = NSMutableAttributedString(string: "PROFILE", attributes: [NSKernAttributeName: 4] )
         profileName.attributedText = NSMutableAttributedString(string: "JON SNOW", attributes: [NSKernAttributeName: 4] )
         configureDescription()
