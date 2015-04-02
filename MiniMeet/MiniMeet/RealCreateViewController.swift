@@ -10,10 +10,20 @@ import UIKit
 
 class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEntryDelegate {
 
+    // Scroll View
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
     
+    // Images
+    @IBOutlet weak var eventImage: UIImageView!
     @IBOutlet weak var imageLibrary: UIImageView!
+    
+    // Buttons
+    @IBOutlet weak var selectThumbButton: UIButton!
+    
+    // Containers
+    @IBOutlet weak var infoContainer: UIView!
+    @IBOutlet weak var detailsSaveContainer: UIView!
     
     // Labels
     @IBOutlet weak var eventTitleLabel: UILabel!
@@ -50,10 +60,12 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
         descriptionTextView.layer.cornerRadius = 5
         
         
-        // Register for keyboard events
+         // Register for keyboard events
         
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
+        
+        println(view.center.y)
 
 
         // Do any additional setup after loading the view.
@@ -108,46 +120,74 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
     @IBAction func didPressThumbnail(sender: AnyObject) {
         UIView.animateWithDuration(0.5, animations: { () -> Void in
             self.imageLibrary.center.y = 1500
+            self.selectThumbButton.hidden = true
         })
         
     }
     
     
-    // Keyboard Methods to Show & Hide
-//    
+     // KEYBOARD METHODS
+    
 //        func textFieldShouldReturn(textField: UITextField) -> Bool {
 //            textField.resignFirstResponder()
 //            return true
 //        }
-//    
-//        func keyboardWillShow(notification: NSNotification!) {
-//            var userInfo = notification.userInfo!
-//    
-//    
-//            var kbSize = (userInfo[UIKeyboardFrameEndUserInfoKey] as NSValue).CGRectValue().size
-//            var durationValue = userInfo[UIKeyboardAnimationDurationUserInfoKey] as NSNumber
-//            var animationDuration = durationValue.doubleValue
-//            var curveValue = userInfo[UIKeyboardAnimationCurveUserInfoKey] as NSNumber
-//            var animationCurve = curveValue.integerValue
-//    
-//            UIView.animateWithDuration(animationDuration, delay: 0.0, options: UIViewAnimationOptions(UInt(animationCurve << 16)), animations: {
-//    
-//    
-//                }, completion: nil)
-//    
-//    
-//        }
-//    
-//        func keyboardWillHide(notification: NSNotification!) {
-//            var userInfo = notification.userInfo!
-//    
-//            var kbSize = (userInfo[UIKeyboardFrameEndUserInfoKey] as NSValue).CGRectValue().size
-//            var durationValue = userInfo[UIKeyboardAnimationDurationUserInfoKey] as NSNumber
-//            var animationDuration = durationValue.doubleValue
-//            var curveValue = userInfo[UIKeyboardAnimationCurveUserInfoKey] as NSNumber
-//            var animationCurve = curveValue.integerValue
-//        }
-//    
+    
+    // Show Keyboard
+    
+    func keyboardWillShow(notification: NSNotification!) {
+        var userInfo = notification.userInfo!
+        
+        // Get the keyboard height and width from the notification
+        // Size varies depending on OS, language, orientation
+        var kbSize = (userInfo[UIKeyboardFrameEndUserInfoKey] as NSValue).CGRectValue().size
+        var durationValue = userInfo[UIKeyboardAnimationDurationUserInfoKey] as NSNumber
+        var animationDuration = durationValue.doubleValue
+        var curveValue = userInfo[UIKeyboardAnimationCurveUserInfoKey] as NSNumber
+        var animationCurve = curveValue.integerValue
+        
+        UIView.animateWithDuration(animationDuration, delay: 0.0, options: UIViewAnimationOptions(UInt(animationCurve << 16)), animations: {
+            
+            // Set view properties to match with the animation of the keyboard
+            
+            self.eventImage.center.y = self.eventImage.center.y - 180
+            self.scrollView.center.y = self.scrollView.center.y - 180
+            
+            
+//            self.infoContainer.center.y = kbSize.height - self.infoContainer.center.y / 3
+//            
+//            self.detailsSaveContainer.center.y = kbSize.height + self.detailsSaveContainer.center.y / 3
+
+            
+            }, completion: nil)
+        
+    }
+    
+    // Hide Keyboard
+    
+    func keyboardWillHide(notification: NSNotification!) {
+        var userInfo = notification.userInfo!
+        
+        // Get the keyboard height and width from the notification
+        // Size varies depending on OS, language, orientation
+        var kbSize = (userInfo[UIKeyboardFrameEndUserInfoKey] as NSValue).CGRectValue().size
+        var durationValue = userInfo[UIKeyboardAnimationDurationUserInfoKey] as NSNumber
+        var animationDuration = durationValue.doubleValue
+        var curveValue = userInfo[UIKeyboardAnimationCurveUserInfoKey] as NSNumber
+        var animationCurve = curveValue.integerValue
+        
+        UIView.animateWithDuration(animationDuration, delay: 0.0, options: UIViewAnimationOptions(UInt(animationCurve << 16)), animations: {
+            
+            // Set view properties to match with the animation of the keyboard
+            
+            self.eventImage.center.y = self.eventImage.center.y + 180
+            self.scrollView.center.y = self.scrollView.center.y + 180
+
+            
+            }, completion: nil)
+        
+    }
+    
 
     
     
