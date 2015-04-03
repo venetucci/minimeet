@@ -27,6 +27,8 @@
 		49E8E10A1AC1BDEA00B8D534 /* RealCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E8E1091AC1BDEA00B8D534 /* RealCreateViewController.swift */; };
 		49E8E10C1AC1C96E00B8D534 /* SelectDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E8E10B1AC1C96E00B8D534 /* SelectDateViewController.swift */; };
 		49E8E10E1AC1CA9F00B8D534 /* SelectLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E8E10D1AC1CA9F00B8D534 /* SelectLocationViewController.swift */; };
+		49EDC1721ACE344300B00AF1 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 49EDC1711ACE344300B00AF1 /* Podfile */; };
+		49EDC1741ACE3F0800B00AF1 /* VenueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EDC1731ACE3F0800B00AF1 /* VenueTableViewCell.swift */; };
 		B81FDF6E1AC2EE8B005DB753 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B81FDF6D1AC2EE8B005DB753 /* Images.xcassets */; };
 		B8B0FD051AB008500097E996 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B0FD041AB008500097E996 /* AppDelegate.swift */; };
 		B8B0FD071AB008500097E996 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B0FD061AB008500097E996 /* ViewController.swift */; };
@@ -36,6 +38,7 @@
 		B8B0FD281AB01C400097E996 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8B0FD261AB01C400097E996 /* Main.storyboard */; };
 		B8B0FD2C1AB01EFD0097E996 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B0FD2B1AB01EFD0097E996 /* ProfileViewController.swift */; };
 		B8BEA7861AC10CE800FAF6BB /* SuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BEA7851AC10CE800FAF6BB /* SuccessViewController.swift */; };
+		C8CF8ACFF11D7941428AF618 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B417A4CEB275A8A171AA011C /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		072DD2DB83EC78DABB04B875 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		107164C21AC1EEB300EB67C3 /* SecondaryFeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondaryFeedViewController.swift; sourceTree = "<group>"; };
 		10791E261AB4DFE500A6DF27 /* CreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
 		10791E281AB54A6B00A6DF27 /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
@@ -70,6 +74,10 @@
 		49E8E1091AC1BDEA00B8D534 /* RealCreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealCreateViewController.swift; sourceTree = "<group>"; };
 		49E8E10B1AC1C96E00B8D534 /* SelectDateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectDateViewController.swift; sourceTree = "<group>"; };
 		49E8E10D1AC1CA9F00B8D534 /* SelectLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectLocationViewController.swift; sourceTree = "<group>"; };
+		49EDC1711ACE344300B00AF1 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		49EDC1731ACE3F0800B00AF1 /* VenueTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VenueTableViewCell.swift; sourceTree = "<group>"; };
+		A787C1AC8E604A6AE06B469E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		B417A4CEB275A8A171AA011C /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B81FDF6D1AC2EE8B005DB753 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Images.xcassets; sourceTree = "<group>"; };
 		B8B0FCFF1AB008500097E996 /* MiniMeet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniMeet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8B0FD031AB008500097E996 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -90,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8CF8ACFF11D7941428AF618 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,13 +130,33 @@
 			name = Fonts;
 			sourceTree = "<group>";
 		};
+		146CCDC1A7C7DDFE5DAA6514 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A787C1AC8E604A6AE06B469E /* Pods.debug.xcconfig */,
+				072DD2DB83EC78DABB04B875 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		23B9CC7518DAE5E9426A4EEC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B417A4CEB275A8A171AA011C /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B8B0FCF61AB008500097E996 = {
 			isa = PBXGroup;
 			children = (
+				49EDC1711ACE344300B00AF1 /* Podfile */,
 				10FCFE251ABE7F1B008CB295 /* Resources */,
 				B8B0FD011AB008500097E996 /* MiniMeet */,
 				B8B0FD171AB008500097E996 /* MiniMeetTests */,
 				B8B0FD001AB008500097E996 /* Products */,
+				146CCDC1A7C7DDFE5DAA6514 /* Pods */,
+				23B9CC7518DAE5E9426A4EEC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -151,6 +180,7 @@
 				B8B0FD0D1AB008500097E996 /* LaunchScreen.xib */,
 				B81FDF6D1AC2EE8B005DB753 /* Images.xcassets */,
 				B8B0FD261AB01C400097E996 /* Main.storyboard */,
+				49EDC1731ACE3F0800B00AF1 /* VenueTableViewCell.swift */,
 				107164C21AC1EEB300EB67C3 /* SecondaryFeedViewController.swift */,
 				49E8E10D1AC1CA9F00B8D534 /* SelectLocationViewController.swift */,
 				49E8E10B1AC1C96E00B8D534 /* SelectDateViewController.swift */,
@@ -222,9 +252,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B8B0FD1E1AB008500097E996 /* Build configuration list for PBXNativeTarget "MiniMeet" */;
 			buildPhases = (
+				EE6142E676E3BAABA0D20E0C /* Check Pods Manifest.lock */,
 				B8B0FCFB1AB008500097E996 /* Sources */,
 				B8B0FCFC1AB008500097E996 /* Frameworks */,
 				B8B0FCFD1AB008500097E996 /* Resources */,
+				6C6158389EB5F3DA0DC09E47 /* Embed Pods Frameworks */,
+				A4995F2AAD6FD8C46865168D /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -300,6 +333,7 @@
 				B8B0FD0F1AB008500097E996 /* LaunchScreen.xib in Resources */,
 				B81FDF6E1AC2EE8B005DB753 /* Images.xcassets in Resources */,
 				10FCFE2C1ABE8060008CB295 /* DINNextLTPro-Bold.otf in Resources */,
+				49EDC1721ACE344300B00AF1 /* Podfile in Resources */,
 				10FCFE2B1ABE8060008CB295 /* DINNextLTPro-Light.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -312,6 +346,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6C6158389EB5F3DA0DC09E47 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A4995F2AAD6FD8C46865168D /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EE6142E676E3BAABA0D20E0C /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B8B0FCFB1AB008500097E996 /* Sources */ = {
@@ -338,6 +420,7 @@
 				10D4A6A51AB687F6002E614D /* OnboardingViewController.swift in Sources */,
 				B8B0FD051AB008500097E996 /* AppDelegate.swift in Sources */,
 				10791E391AB574DF00A6DF27 /* ProfileEditViewController.swift in Sources */,
+				49EDC1741ACE3F0800B00AF1 /* VenueTableViewCell.swift in Sources */,
 				10D4A6A31AB682EB002E614D /* Common.swift in Sources */,
 				10791E371AB56BAB00A6DF27 /* SettingsViewController.swift in Sources */,
 			);
@@ -460,6 +543,7 @@
 		};
 		B8B0FD1F1AB008500097E996 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A787C1AC8E604A6AE06B469E /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MiniMeet/Info.plist;
@@ -470,6 +554,7 @@
 		};
 		B8B0FD201AB008500097E996 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 072DD2DB83EC78DABB04B875 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MiniMeet/Info.plist;
