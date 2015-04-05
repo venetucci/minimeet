@@ -8,12 +8,20 @@
 
 import UIKit
 
+// Add protocol and delegate
+protocol VenueEntryDelegate {
+    func UserDidInputInfoVenue(info:NSString)
+}
+
 class SelectLocationViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var items: [NSDictionary]! = [] // This is your property
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel! = UILabel()
+    
+    // Declare Pass Data Delegate
+    var passVenueDataDelegate: VenueEntryDelegate? = nil
     
     
     override func viewDidLoad() {
@@ -96,6 +104,16 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
             println(text)
         }
     }
+    
+    @IBAction func saveButtonDidPress(sender: AnyObject) {
+        if (passVenueDataDelegate != nil) {
+            let information: NSString = locationLabel.text!
+            passVenueDataDelegate!.UserDidInputInfoVenue(information)
+        }
+        
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

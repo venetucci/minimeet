@@ -22,8 +22,6 @@ class SelectDateViewController: UIViewController, UIViewControllerTransitioningD
     
     // Declare Pass Data Delegate
     var passDataDelegate: MmDataEntryDelegate? = nil
-
-    
     
     var isPresenting: Bool = true
     

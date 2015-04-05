@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEntryDelegate {
+class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEntryDelegate, VenueEntryDelegate {
 
     // Scroll View
     @IBOutlet weak var scrollView: UIScrollView!
@@ -98,10 +98,16 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
     }
     
     
-    // Method: Receive data :)
+    // Method: Receive Date data :)
     
     func mMDidInputInfo(info:NSString){
         dateTextField.text = info
+    }
+    
+    // Method: Receieve Location data :)
+    
+    func UserDidInputInfoVenue(info:NSString){
+        locationTextField.text = info
     }
     
     
@@ -229,7 +235,16 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
             let vc2: SelectDateViewController = segue.destinationViewController as SelectDateViewController
             vc2.passDataDelegate = self
         }
+        
+        if segue.identifier == "selectLocationSegue" {
+            let vcLocation: SelectLocationViewController = segue.destinationViewController as SelectLocationViewController
+            vcLocation.passVenueDataDelegate = self
+        }
+        
+        
+        
     }
+    
     
     
     @IBAction func didTapOutsideTextField(sender: AnyObject) {
