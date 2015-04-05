@@ -15,26 +15,32 @@ protocol VenueEntryDelegate {
 
 class SelectLocationViewController: UIViewController, UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning, UITableViewDataSource, UITableViewDelegate {
     
-    // Custom Presenting
+    // Presenting Custom Transition
     var isPresenting: Bool = true
+
+    // Foursquare dictionary property
+    var items: [NSDictionary]! = []
     
-    var items: [NSDictionary]! = [] // This is your property
-    
+    // Outlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var locationLabel: UILabel! = UILabel()
     
-    // Declare Pass Data Delegate
+    // Pass Data Delegate
     var passVenueDataDelegate: VenueEntryDelegate? = nil
+
     
     
+    // Load it up
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         // Datasource & Delegate
         tableView.delegate = self
         tableView.dataSource = self
         
-        // FOURSQUARE NETWORK REQUEST
+        
+        // Foursquare API Request - Start
         
         var clientId = "IGUHLSKLHZZ5JXA30TT0DNXVGPGQWRZQS1RBA5RBMS1K5GLA"
         var clientSecret = "ZGLNT1RJWNU5H1TLQ5HMS2QFQGRHBR5QTU451JILSOIYTIMY"
@@ -65,15 +71,17 @@ class SelectLocationViewController: UIViewController, UIViewControllerTransition
                 }
             }
         }
-        
-        
-        // END NETWORK REQUEST
 
-        // Do any additional setup after loading the view.
-    }
+        // Foursquare API Request - End
+        
+        }
+    
+    // viewDidLoad End
     
     
-    // Methods: Custom Transition
+    
+    // Custom Transition Methods - Start
+    
     func animationControllerForPresentedController(presented: UIViewController!, presentingController presenting: UIViewController!, sourceController source: UIViewController!) -> UIViewControllerAnimatedTransitioning! {
         isPresenting = true
         return self
@@ -113,7 +121,7 @@ class SelectLocationViewController: UIViewController, UIViewControllerTransition
         }
     }
     
-    // End Custom Transition Methods
+    // Custom Transition Methods - End
 
     
     // Table View Methods
@@ -132,15 +140,13 @@ class SelectLocationViewController: UIViewController, UIViewControllerTransition
         var name = venue["name"] as String
         cell.textLabel?.text = name
         
-        // Set the selected row as the Location Label
-//        self.locationLabel.text = name
-        
         println(name)
         return cell
 
     }
     
-    // Select the Cell Row & Selected Location
+    // Table View - Select Row 
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = self.tableView.cellForRowAtIndexPath(indexPath)
         let text = cell?.textLabel?.text
@@ -153,6 +159,7 @@ class SelectLocationViewController: UIViewController, UIViewControllerTransition
         }
     }
     
+    
     // Custom Transition
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
@@ -163,6 +170,7 @@ class SelectLocationViewController: UIViewController, UIViewControllerTransition
     
     
     // Save Button
+    
     @IBAction func saveButtonDidPress(sender: AnyObject) {
         if (passVenueDataDelegate != nil) {
             let information: NSString = locationLabel.text!
@@ -181,12 +189,6 @@ class SelectLocationViewController: UIViewController, UIViewControllerTransition
     
     /*
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
     */
 
 }
