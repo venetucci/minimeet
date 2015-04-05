@@ -15,14 +15,16 @@ protocol MmDataEntryDelegate {
 
 class SelectDateViewController: UIViewController, UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning {
     
+    // Date Picker
     @IBOutlet weak var datePicker: UIDatePicker!
     
-    // Initialize the label
+    // Initialize the date & time label
     @IBOutlet weak var dateTimeLabel: UILabel! = UILabel()
     
     // Declare Pass Data Delegate
     var passDataDelegate: MmDataEntryDelegate? = nil
     
+    // Presenting Custom Transition
     var isPresenting: Bool = true
     
     // Initializer: required to customize how this Vc is presented modally
@@ -39,6 +41,8 @@ class SelectDateViewController: UIViewController, UIViewControllerTransitioningD
         // Do any additional setup after loading the view.
     }
     
+    // Custom Transition - Start Methods
+    
     func animationControllerForPresentedController(presented: UIViewController!, presentingController presenting: UIViewController!, sourceController source: UIViewController!) -> UIViewControllerAnimatedTransitioning! {
         isPresenting = true
         return self
@@ -50,7 +54,7 @@ class SelectDateViewController: UIViewController, UIViewControllerTransitioningD
     }
     
     func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
-        // The value here should be the duration of the animations scheduled in the animationTransition method
+
         return 0.4
     }
     
@@ -68,6 +72,7 @@ class SelectDateViewController: UIViewController, UIViewControllerTransitioningD
                 }) { (finished: Bool) -> Void in
                     transitionContext.completeTransition(true)
             }
+            
         } else {
             UIView.animateWithDuration(0.4, animations: { () -> Void in
                 fromViewController.view.alpha = 0
@@ -77,6 +82,9 @@ class SelectDateViewController: UIViewController, UIViewControllerTransitioningD
             }
         }
     }
+    
+    // Custom Transition - End Methods
+
     
     // Date Picker Method: Set Date
     

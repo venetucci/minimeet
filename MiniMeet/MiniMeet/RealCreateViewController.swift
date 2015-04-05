@@ -71,12 +71,14 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
         // Do any additional setup after loading the view.
     }
     
+    
+    // Segue to Date Selection
     @IBAction func selectDateDidPress(sender: AnyObject) {
         performSegueWithIdentifier("selectDateSegue", sender: self)
-        
     }
     
     
+    // Segue to Location Selection
     @IBAction func selectLocationDidPress(sender: AnyObject) {
         performSegueWithIdentifier("selectLocationSegue", sender: self)
     }
@@ -229,7 +231,8 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
     }
     
     
-    // Method: Incoming segue from the Select Date modal
+    // Method: Return Segues from Date and Location
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "selectDateSegue" {
             let vc2: SelectDateViewController = segue.destinationViewController as SelectDateViewController
@@ -240,8 +243,6 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
             let vcLocation: SelectLocationViewController = segue.destinationViewController as SelectLocationViewController
             vcLocation.passVenueDataDelegate = self
         }
-        
-        
         
     }
     

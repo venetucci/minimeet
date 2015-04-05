@@ -13,7 +13,10 @@ protocol VenueEntryDelegate {
     func UserDidInputInfoVenue(info:NSString)
 }
 
-class SelectLocationViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class SelectLocationViewController: UIViewController, UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning, UITableViewDataSource, UITableViewDelegate {
+    
+    // Custom Presenting
+    var isPresenting: Bool = true
     
     var items: [NSDictionary]! = [] // This is your property
     
@@ -69,6 +72,50 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
         // Do any additional setup after loading the view.
     }
     
+    
+    // Methods: Custom Transition
+    func animationControllerForPresentedController(presented: UIViewController!, presentingController presenting: UIViewController!, sourceController source: UIViewController!) -> UIViewControllerAnimatedTransitioning! {
+        isPresenting = true
+        return self
+    }
+    
+    func animationControllerForDismissedController(dismissed: UIViewController!) -> UIViewControllerAnimatedTransitioning! {
+        isPresenting = false
+        return self
+    }
+    
+    func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
+        
+        return 0.4
+    }
+    
+    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+        println("animating transition")
+        var containerView = transitionContext.containerView()
+        var toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
+        var fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!
+        
+        if (isPresenting) {
+            containerView.addSubview(toViewController.view)
+            toViewController.view.alpha = 0
+            UIView.animateWithDuration(0.4, animations: { () -> Void in
+                toViewController.view.alpha = 0.95
+                }) { (finished: Bool) -> Void in
+                    transitionContext.completeTransition(true)
+            }
+        } else {
+            UIView.animateWithDuration(0.4, animations: { () -> Void in
+                fromViewController.view.alpha = 0
+                }) { (finished: Bool) -> Void in
+                    transitionContext.completeTransition(true)
+                    fromViewController.view.removeFromSuperview()
+            }
+        }
+    }
+    
+    // End Custom Transition Methods
+
+    
     // Table View Methods
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -93,6 +140,7 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
 
     }
     
+    // Select the Cell Row & Selected Location
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = self.tableView.cellForRowAtIndexPath(indexPath)
         let text = cell?.textLabel?.text
@@ -105,6 +153,16 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
         }
     }
     
+    // Custom Transition
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        var destinationVC = segue.destinationViewController as UIViewController
+        destinationVC.modalPresentationStyle = UIModalPresentationStyle.Custom
+        destinationVC.transitioningDelegate = self
+    }
+    
+    
+    // Save Button
     @IBAction func saveButtonDidPress(sender: AnyObject) {
         if (passVenueDataDelegate != nil) {
             let information: NSString = locationLabel.text!
@@ -120,7 +178,7 @@ class SelectLocationViewController: UIViewController, UITableViewDataSource, UIT
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
     // MARK: - Navigation
 
