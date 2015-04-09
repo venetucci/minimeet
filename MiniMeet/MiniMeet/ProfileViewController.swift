@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class ProfileViewController: UIViewController {
 
@@ -14,14 +15,40 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var descriptionText: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var profileImage: UIImageView!
     
     @IBOutlet var contents: UIView!
+    
+    var parseImage: [PFObject]! = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         println(contents.frame.size)
         scrollView.contentSize.height = 1000
+                
+        var query = PFQuery(className: "Profile")
+        query.getObjectInBackgroundWithId("ffpDeTzNl1") {
+            (profileObject: PFObject!, error: NSError!) -> Void in
+            if error == nil && profileObject != nil {
+                println(profileObject)
+            } else {
+                println(error)
+            }
+            
+            let userImageFile = profileObject["profile_image"] as PFFile
+            userImageFile.getDataInBackgroundWithBlock {
+                (imageData: NSData!, error: NSError!) -> Void in
+                if error == nil {
+                    let image = UIImage(data:imageData)
+                    self.profileImage.image = image
+                }
+            }
+            
+            
+        }
+
+
         
         viewLabel.attributedText = NSMutableAttributedString(string: "PROFILE", attributes: [NSKernAttributeName: 4] )
         profileName.attributedText = NSMutableAttributedString(string: "JON SNOW", attributes: [NSKernAttributeName: 4] )

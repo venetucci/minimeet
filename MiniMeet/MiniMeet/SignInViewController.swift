@@ -84,17 +84,21 @@ class SignInViewController: UIViewController {
             
             if user != nil {
                 println("logged in!")
-                self.performSegueWithIdentifier("loginSegue", sender: self)
+                            var images = UIImage.animatedImageNamed("loading_", duration: 3.0)
+                            self.loadingImage.image = images
+                            self.loadingImage.alpha = 1
+                            self.loadingBackground.alpha = 0.7
+                
+                            delay(2, { () -> () in
+                                self.performSegueWithIdentifier("welcomeSegue", sender: self)
+                            })
             } else {
                 var alertView = UIAlertView(title: "oops", message: error.description, delegate: nil, cancelButtonTitle: "OK")
                 alertView.show()
             }
         }
         
-        
-        
-        
-        
+//  non parse login
 //        if countElements(emailTextField.text) == 0 {
 //            UIAlertView(title: "Email Required", message: "Please enter your email address", delegate: self, cancelButtonTitle: "OK").show()
 //        } else if countElements(passwordTextField.text) == 0 {
@@ -112,14 +116,6 @@ class SignInViewController: UIViewController {
 //            
 //        }
 
-        
-        //                alertView.dismissWithClickedButtonIndex(0, animated: true)
-//                if self.emailTextField.text == "m" && self.passwordTextField.text == "p" {
-//                    self.performSegueWithIdentifier("welcomeSegue", sender: self)
-//                } else {
-//                    UIAlertView(title: "Sign In Failed", message: "Incorrect email or password", delegate: self, cancelButtonTitle: "OK").show()
-//                }
-//            })
     }
    
     @IBAction func onTap(sender: UITapGestureRecognizer) {
