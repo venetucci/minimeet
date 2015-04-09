@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -31,6 +32,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NSBaselineOffsetAttributeName: -0.5
         ], forState: .Normal)
 
+        Parse.setApplicationId("Uzag4KYnLbMSmiwrk35QiCu4NlngyySETsEFMSd1",
+            clientKey: "EPsOEfQgc2auzZN9KT1fL8KPHyQxwoJng3BT46Nn")
+        
         return true
     }
 

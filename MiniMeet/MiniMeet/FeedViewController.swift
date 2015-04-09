@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 // Event Custom Struct
 struct Event {

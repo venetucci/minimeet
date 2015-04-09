@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class SignInViewController: UIViewController {
 
@@ -17,6 +18,7 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var logo: UIImageView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -74,27 +76,44 @@ class SignInViewController: UIViewController {
             self.logo.center.y = kbSize.height + self.logo.center.y*(-1.5)
             }, completion: nil)
     }
-    
 
     @IBAction func signIn(sender: AnyObject) {
         
-        if countElements(emailTextField.text) == 0 {
-            UIAlertView(title: "Email Required", message: "Please enter your email address", delegate: self, cancelButtonTitle: "OK").show()
-        } else if countElements(passwordTextField.text) == 0 {
-            UIAlertView(title: "Password Required", message: "Please enter your password", delegate: self, cancelButtonTitle: "OK").show()
-        } else {
-
-            var images = UIImage.animatedImageNamed("loading_", duration: 3.0)
-            loadingImage.image = images
-            loadingImage.alpha = 1
-            loadingBackground.alpha = 0.7
+        PFUser.logInWithUsernameInBackground(emailTextField.text, password: passwordTextField.text) { (user: PFUser!, error: NSError!) -> Void in
+            // code
             
-            delay(2, { () -> () in
-                self.performSegueWithIdentifier("welcomeSegue", sender: self)
-            })
-            
+            if user != nil {
+                println("logged in!")
+                self.performSegueWithIdentifier("loginSegue", sender: self)
+            } else {
+                var alertView = UIAlertView(title: "oops", message: error.description, delegate: nil, cancelButtonTitle: "OK")
+                alertView.show()
+            }
         }
-//                alertView.dismissWithClickedButtonIndex(0, animated: true)
+        
+        
+        
+        
+        
+//        if countElements(emailTextField.text) == 0 {
+//            UIAlertView(title: "Email Required", message: "Please enter your email address", delegate: self, cancelButtonTitle: "OK").show()
+//        } else if countElements(passwordTextField.text) == 0 {
+//            UIAlertView(title: "Password Required", message: "Please enter your password", delegate: self, cancelButtonTitle: "OK").show()
+//        } else {
+//
+//            var images = UIImage.animatedImageNamed("loading_", duration: 3.0)
+//            loadingImage.image = images
+//            loadingImage.alpha = 1
+//            loadingBackground.alpha = 0.7
+//            
+//            delay(2, { () -> () in
+//                self.performSegueWithIdentifier("welcomeSegue", sender: self)
+//            })
+//            
+//        }
+
+        
+        //                alertView.dismissWithClickedButtonIndex(0, animated: true)
 //                if self.emailTextField.text == "m" && self.passwordTextField.text == "p" {
 //                    self.performSegueWithIdentifier("welcomeSegue", sender: self)
 //                } else {
