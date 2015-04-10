@@ -37,19 +37,16 @@ class ProfileViewController: UIViewController {
             }
             
             let userImageFile = profileObject["profile_image"] as PFFile
+
             userImageFile.getDataInBackgroundWithBlock {
                 (imageData: NSData!, error: NSError!) -> Void in
                 if error == nil {
-                    let image = UIImage(data:imageData)
+                    let image = UIImage(data:imageData)! as UIImage
                     self.profileImage.image = image
                 }
             }
-            
-            
         }
 
-
-        
         viewLabel.attributedText = NSMutableAttributedString(string: "PROFILE", attributes: [NSKernAttributeName: 4] )
         profileName.attributedText = NSMutableAttributedString(string: "JON SNOW", attributes: [NSKernAttributeName: 4] )
         configureDescription()

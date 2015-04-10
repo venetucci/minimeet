@@ -42,7 +42,7 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
         scrollView.delegate = self
 
         // set default states of assets
-        imageView.image = event?.image
+        imageView.image = event?.eventImage
         imageView.hidden = true
         descriptionText.alpha = 0
         descriptionTitle.alpha = 0
