@@ -74,7 +74,7 @@
 		49E8E1091AC1BDEA00B8D534 /* RealCreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealCreateViewController.swift; sourceTree = "<group>"; };
 		49E8E10B1AC1C96E00B8D534 /* SelectDateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectDateViewController.swift; sourceTree = "<group>"; };
 		49E8E10D1AC1CA9F00B8D534 /* SelectLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectLocationViewController.swift; sourceTree = "<group>"; };
-		49EDC1711ACE344300B00AF1 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		49EDC1711ACE344300B00AF1 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		49EDC1731ACE3F0800B00AF1 /* VenueTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VenueTableViewCell.swift; sourceTree = "<group>"; };
 		A787C1AC8E604A6AE06B469E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B417A4CEB275A8A171AA011C /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -180,12 +180,6 @@
 				B8B0FD0D1AB008500097E996 /* LaunchScreen.xib */,
 				B81FDF6D1AC2EE8B005DB753 /* Images.xcassets */,
 				B8B0FD261AB01C400097E996 /* Main.storyboard */,
-				49EDC1731ACE3F0800B00AF1 /* VenueTableViewCell.swift */,
-				107164C21AC1EEB300EB67C3 /* SecondaryFeedViewController.swift */,
-				49E8E10D1AC1CA9F00B8D534 /* SelectLocationViewController.swift */,
-				49E8E10B1AC1C96E00B8D534 /* SelectDateViewController.swift */,
-				49E8E1091AC1BDEA00B8D534 /* RealCreateViewController.swift */,
-				49E8E1071AC1B59800B8D534 /* AddImageViewController.swift */,
 				10FCFE2F1ABF2BC2008CB295 /* Temp Delete Me!.playground */,
 				B8B0FD021AB008500097E996 /* Supporting Files */,
 			);
@@ -230,17 +224,23 @@
 		B8BEA7841AC068BA00FAF6BB /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				49E8E1071AC1B59800B8D534 /* AddImageViewController.swift */,
+				10791E261AB4DFE500A6DF27 /* CreateViewController.swift */,
+				10791E281AB54A6B00A6DF27 /* DetailsViewController.swift */,
+				10D0155A1AB4C8BC00CF3AB3 /* EventCell.swift */,
 				B8B0FD241AB01A4B0097E996 /* FeedViewController.swift */,
 				10D4A6A41AB687F6002E614D /* OnboardingViewController.swift */,
 				B8B0FD2B1AB01EFD0097E996 /* ProfileViewController.swift */,
-				10FCFE2D1ABEA123008CB295 /* TabViewController.swift */,
-				10D4A6A01AB655B5002E614D /* SignInViewController.swift */,
 				10791E381AB574DF00A6DF27 /* ProfileEditViewController.swift */,
+				49E8E1091AC1BDEA00B8D534 /* RealCreateViewController.swift */,
+				107164C21AC1EEB300EB67C3 /* SecondaryFeedViewController.swift */,
+				49E8E10B1AC1C96E00B8D534 /* SelectDateViewController.swift */,
+				49E8E10D1AC1CA9F00B8D534 /* SelectLocationViewController.swift */,
 				10791E361AB56BAB00A6DF27 /* SettingsViewController.swift */,
-				10791E281AB54A6B00A6DF27 /* DetailsViewController.swift */,
-				10791E261AB4DFE500A6DF27 /* CreateViewController.swift */,
+				10D4A6A01AB655B5002E614D /* SignInViewController.swift */,
 				B8BEA7851AC10CE800FAF6BB /* SuccessViewController.swift */,
-				10D0155A1AB4C8BC00CF3AB3 /* EventCell.swift */,
+				10FCFE2D1ABEA123008CB295 /* TabViewController.swift */,
+				49EDC1731ACE3F0800B00AF1 /* VenueTableViewCell.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
