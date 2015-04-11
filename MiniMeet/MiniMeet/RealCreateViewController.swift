@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEntryDelegate, VenueEntryDelegate {
 
@@ -60,15 +61,11 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
         descriptionTextView.layer.cornerRadius = 5
         
         
-         // Register for keyboard events
-        
+        // Register for keyboard events
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
         
         println(view.center.y)
-
-
-        // Do any additional setup after loading the view.
     }
     
     
@@ -99,22 +96,17 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
         println("content offeset: \(scrollView.contentOffset.y)")
     }
     
-    
     // Method: Receive Date data :)
-    
     func mMDidInputInfo(info:NSString){
         dateTextField.text = info
     }
     
     // Method: Receieve Location data :)
-    
     func UserDidInputInfoVenue(info:NSString){
         locationTextField.text = info
     }
     
-    
     // Calculate hex values for color:
-    
     func UIColorFromRGB(rgbValue: UInt) -> UIColor {
         return UIColor(
             red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
@@ -130,9 +122,7 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
             self.imageLibrary.center.y = 1500
             self.selectThumbButton.hidden = true
         })
-        
     }
-    
     
      // KEYBOARD METHODS
     
@@ -142,7 +132,6 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
 //        }
     
     // Show Keyboard
-    
     func keyboardWillShow(notification: NSNotification!) {
         var userInfo = notification.userInfo!
         
@@ -157,22 +146,16 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
         UIView.animateWithDuration(animationDuration, delay: 0.0, options: UIViewAnimationOptions(UInt(animationCurve << 16)), animations: {
             
             // Set view properties to match with the animation of the keyboard
-            
             self.eventImage.center.y = self.eventImage.center.y - 180
             self.scrollView.center.y = self.scrollView.center.y - 180
-            
-            
+
 //            self.infoContainer.center.y = kbSize.height - self.infoContainer.center.y / 3
-//            
 //            self.detailsSaveContainer.center.y = kbSize.height + self.detailsSaveContainer.center.y / 3
 
-            
             }, completion: nil)
-        
     }
     
     // Hide Keyboard
-    
     func keyboardWillHide(notification: NSNotification!) {
         var userInfo = notification.userInfo!
         
@@ -191,17 +174,10 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
             self.eventImage.center.y = self.eventImage.center.y + 180
             self.scrollView.center.y = self.scrollView.center.y + 180
 
-            
-            }, completion: nil)
-        
+        }, completion: nil)
     }
     
-
-    
-    
-    
     // Create Button
-    
     @IBAction func didPressCreateButton(sender: AnyObject) {
         
         if countElements(eventTitleTextField.text) == 0 {
@@ -220,19 +196,34 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
                 alertView.dismissWithClickedButtonIndex(0, animated: true)
                 
                 if countElements(self.eventTitleTextField.text) > 1 && countElements(self.descriptionTextView.text) > 1 {
-                    self.performSegueWithIdentifier("secondaryFeedSegue", sender: self)
+                    self.dismissViewControllerAnimated(true, completion: nil)
                 } else {
                     UIAlertView(title: "Please complete all fields.", message: "You did not enter enough characters.", delegate: self, cancelButtonTitle: "OK").show()
                 }
             })
         }
 
+        // write to parse
+        var newEvent = PFObject(className:"Events")
+        newEvent["event_name"] = eventTitleTextField.text
+        newEvent["event_desc"] = descriptionTextView.text
+        newEvent["event_location"] = locationTextField.text
+//        newEvent["event_date"] = dateTextField.text
+        newEvent["event_attd"] = ["michelle"]
+//        newEvent["event_image"] = 
         
+        newEvent.saveInBackgroundWithBlock {
+            (success: Bool, error: NSError!) -> Void in
+            if (success) {
+                // The object has been saved.
+                println("succesfully pushed to parse")
+            } else {
+                // There was a problem, check error.description
+            }
+        }
     }
     
-    
     // Method: Return Segues from Date and Location
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "selectDateSegue" {
             let vc2: SelectDateViewController = segue.destinationViewController as SelectDateViewController
@@ -246,21 +237,7 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
         
     }
     
-    
-    
     @IBAction func didTapOutsideTextField(sender: AnyObject) {
         view.endEditing(true)
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

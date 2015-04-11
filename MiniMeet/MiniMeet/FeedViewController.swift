@@ -118,7 +118,9 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     override func viewWillAppear(animated: Bool) {
-        // code
+        // fetch the new event here!!
+        self.eventTableView.reloadData()
+        println("-------------- about to load ------------")
     }
     
     override func didReceiveMemoryWarning() {

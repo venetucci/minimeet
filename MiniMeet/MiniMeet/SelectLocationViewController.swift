@@ -28,20 +28,15 @@ class SelectLocationViewController: UIViewController, UIViewControllerTransition
     // Pass Data Delegate
     var passVenueDataDelegate: VenueEntryDelegate? = nil
 
-    
-    
     // Load it up
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         // Datasource & Delegate
         tableView.delegate = self
         tableView.dataSource = self
         
-        
         // Foursquare API Request - Start
-        
         var clientId = "IGUHLSKLHZZ5JXA30TT0DNXVGPGQWRZQS1RBA5RBMS1K5GLA"
         var clientSecret = "ZGLNT1RJWNU5H1TLQ5HMS2QFQGRHBR5QTU451JILSOIYTIMY"
         var foursquareVersion = "20130815"
@@ -70,18 +65,10 @@ class SelectLocationViewController: UIViewController, UIViewControllerTransition
                     
                 }
             }
-        }
-
-        // Foursquare API Request - End
-        
-        }
-    
-    // viewDidLoad End
-    
-    
+        } // Foursquare API Request - End
+    } // viewDidLoad End
     
     // Custom Transition Methods - Start
-    
     func animationControllerForPresentedController(presented: UIViewController!, presentingController presenting: UIViewController!, sourceController source: UIViewController!) -> UIViewControllerAnimatedTransitioning! {
         isPresenting = true
         return self
@@ -125,7 +112,6 @@ class SelectLocationViewController: UIViewController, UIViewControllerTransition
 
     
     // Table View Methods
-    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
@@ -145,8 +131,7 @@ class SelectLocationViewController: UIViewController, UIViewControllerTransition
 
     }
     
-    // Table View - Select Row 
-    
+    // Table View - Select Row
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = self.tableView.cellForRowAtIndexPath(indexPath)
         let text = cell?.textLabel?.text
@@ -161,7 +146,6 @@ class SelectLocationViewController: UIViewController, UIViewControllerTransition
     
     
     // Custom Transition
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         var destinationVC = segue.destinationViewController as UIViewController
         destinationVC.modalPresentationStyle = UIModalPresentationStyle.Custom
@@ -170,7 +154,6 @@ class SelectLocationViewController: UIViewController, UIViewControllerTransition
     
     
     // Save Button
-    
     @IBAction func saveButtonDidPress(sender: AnyObject) {
         if (passVenueDataDelegate != nil) {
             let information: NSString = locationLabel.text!
