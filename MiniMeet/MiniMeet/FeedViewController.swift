@@ -18,7 +18,6 @@ struct Event {
     let dateString: String
     let timeString: String
     var attendeeArray: [String]     // an array of names
-//    var eventImageName: String
     var eventImage: UIImage
     
     var subtitle: String {
@@ -38,20 +37,7 @@ struct Event {
             return "\(location)"
         }
     }
-    
-//    var image: UIImage {
-//        get {
-//            let image = UIImage(named: eventImageName)
-//            
-//            if let image = image {
-//                return image
-//            } else {
-//                return UIImage()
-//            }
-//        }
-//    }
 }
-// End Event Custom Struct
 
 // Classes
 class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
@@ -76,7 +62,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         // set the label
         viewLabel.attributedText = NSMutableAttributedString(string: "BROWSE", attributes: [NSKernAttributeName: 4] )
 
-        // Event Listings
+        // query Parse for events
         var query = PFQuery(className: "Events")
         
         query.findObjectsInBackgroundWithBlock {
@@ -88,36 +74,40 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                 if let event = objects as? [PFObject] {
                     for event in objects {
                         
-                        
+                        // take the object and parse out all the data for even structure
                         var event_name = event["event_name"]! as NSString
+                        event_name = event_name.uppercaseString
                         var event_description = event["event_desc"]! as NSString
                         var event_location = event["event_location"]! as NSString
+                        var event_date = self.getDate(event["event_date"]! as NSDate)
+                        var event_time = self.getTime(event["event_date"]! as NSDate)
                         var event_attd = event["event_attd"]! as [String]
-                        
                         var event_image: UIImage!
                         
+                        // takes the PFFile and convert to UIImage. Then immediately create the event structure and add it to the event array
                         var event_imageFile = event["event_image"]! as PFFile
                         event_imageFile.getDataInBackgroundWithBlock {
                             (imageData: NSData!, error: NSError!) -> Void in
                             if error == nil {
                                 event_image = UIImage(data:imageData)! as UIImage
-                                //                                println(event_image)
                                 
+                                // create the event structure
                                 var eventStruct = Event(
                                     title: event_name,
                                     description: event_description,
                                     location: event_location,
-                                    dateString: "1",
-                                    timeString: "2",
+                                    dateString: event_date,
+                                    timeString: event_time,
                                     attendeeArray: event_attd,
                                     eventImage: event_image
                                 )
-                                
+                                // add the structure to the array of events
                                 self.events.append(eventStruct)
-                                println(self.events.count)
+                                
+                                // refresh the tableView
+                                self.eventTableView.reloadData()
                             }
                         }
-                        //                        println(event.objectId)
                     }
                 }
             } else {
@@ -125,30 +115,29 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                 println("Error: \(error) \(error.userInfo!)")
             }
         }
-        println("here \(self.events.count)")
-        
-//        let iosForDesigners = Event(
-//            title: "iOS FOR DESIGNERS",
-//            description: "Designers talk and learn about prototyping iOS apps with Swift and Xcode. There is a focus on views, navigation, transitions, and animations. We'll also look into the Apple Watch and talk about how we can start making useful apps for it. ",
-//            location: "thoughtbot",
-//            dateString: "3.28.15",
-//            timeString: "1:30 pm",
-//            attendeeArray: ["mich","danny","hanna"],
-//            eventImageName: "ios-for-designers"
-//        )
-
-//        // Events Array
-//        events = [nerdFun, photowalk, midnightRide, technofeminism, justMoved, cocoaPods, handLettering, hackersFounders, digitalMusic]
     }
     
     override func viewWillAppear(animated: Bool) {
         // code
     }
     
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    func getDate(date: NSDate) -> String {
+        var dateFormatter = NSDateFormatter()
+        dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
+        var eventDate = dateFormatter.stringFromDate(date)
+        return eventDate
+    }
+
+    func getTime(time: NSDate) -> String {
+        var dateFormatter = NSDateFormatter()
+        dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+        var eventTime = dateFormatter.stringFromDate(time)
+        return eventTime
     }
     
     // Table View Method #1
@@ -244,3 +233,13 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
 }
+
+//        let iosForDesigners = Event(
+//            title: "iOS FOR DESIGNERS",
+//            description: "Designers talk and learn about prototyping iOS apps with Swift and Xcode. There is a focus on views, navigation, transitions, and animations. We'll also look into the Apple Watch and talk about how we can start making useful apps for it. ",
+//            location: "thoughtbot",
+//            dateString: "3.28.15",
+//            timeString: "1:30 pm",
+//            attendeeArray: ["mich","danny","hanna"],
+//            eventImageName: "ios-for-designers"
+//        )
