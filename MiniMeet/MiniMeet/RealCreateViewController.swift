@@ -9,18 +9,24 @@
 import UIKit
 import Parse
 
+protocol CreateViewControllerDelegate: NSObjectProtocol {
+    func createViewController(viewcontroller: RealCreateViewController, didCreateEvent event: PFObject)
+}
+
 class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEntryDelegate, VenueEntryDelegate {
 
+    weak var delegate: CreateViewControllerDelegate?
+    
     // Scroll View
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
     
     // Images
-    @IBOutlet weak var eventImage: UIImageView!
-    @IBOutlet weak var imageLibrary: UIImageView!
+    @IBOutlet weak var newImage: UIImageView!
+    @IBOutlet weak var libraryImage: UIImageView!
     
     // Buttons
-    @IBOutlet weak var selectThumbButton: UIButton!
+    @IBOutlet weak var selectFromLibraryButton: UIButton!
     
     // Containers
     @IBOutlet weak var infoContainer: UIView!
@@ -60,6 +66,8 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
         descriptionTextView!.layer.borderColor = borderColor.CGColor
         descriptionTextView.layer.cornerRadius = 5
         
+        newImage.alpha = 0
+        selectFromLibraryButton.alpha = 0
         
         // Register for keyboard events
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
@@ -116,13 +124,7 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
         )
     }
     
-    // Animate the Library out of screen
-    @IBAction func didPressThumbnail(sender: AnyObject) {
-        UIView.animateWithDuration(0.5, animations: { () -> Void in
-            self.imageLibrary.center.y = 1500
-            self.selectThumbButton.hidden = true
-        })
-    }
+
     
      // KEYBOARD METHODS
     
@@ -146,8 +148,7 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
         UIView.animateWithDuration(animationDuration, delay: 0.0, options: UIViewAnimationOptions(UInt(animationCurve << 16)), animations: {
             
             // Set view properties to match with the animation of the keyboard
-            self.eventImage.center.y = self.eventImage.center.y - 180
-            self.scrollView.center.y = self.scrollView.center.y - 180
+            
 
 //            self.infoContainer.center.y = kbSize.height - self.infoContainer.center.y / 3
 //            self.detailsSaveContainer.center.y = kbSize.height + self.detailsSaveContainer.center.y / 3
@@ -171,7 +172,7 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
             
             // Set view properties to match with the animation of the keyboard
             
-            self.eventImage.center.y = self.eventImage.center.y + 180
+            
             self.scrollView.center.y = self.scrollView.center.y + 180
 
         }, completion: nil)
@@ -179,6 +180,40 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
     
     // Create Button
     @IBAction func didPressCreateButton(sender: AnyObject) {
+        
+        // write to parse
+        var newEvent = PFObject(className:"Events")
+        newEvent["event_name"] = eventTitleTextField.text
+        newEvent["event_desc"] = descriptionTextView.text
+        newEvent["event_location"] = locationTextField.text
+        
+        var dateString = "2015-04-13" // change to your date format
+        
+        var dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "YYYY-MM-DD"
+        
+        //     var date = dateFormatter.dateFromString(dateString)
+        //     println(date)
+        
+        newEvent["event_date"] = dateFormatter.dateFromString(dateString)
+        
+        // create an PFFile
+        var image = UIImage(named: "xcode")
+        let imageData = UIImagePNGRepresentation(image)
+        let imageFile = PFFile(name:"new_event.png", data:imageData)
+        
+        newEvent["event_image"] = imageFile
+        newEvent["event_attd"] = ["michelle"]
+        
+        newEvent.saveInBackgroundWithBlock {
+            (success: Bool, error: NSError!) -> Void in
+            if (success) {
+                // The object has been saved.
+                println("succesfully pushed to parse: \(newEvent.objectId)")
+            } else {
+                // There was a problem, check error.description
+            }
+        }
         
         if countElements(eventTitleTextField.text) == 0 {
             UIAlertView(title: "Meetup Name Required", message: "Please create a name for your meetup!", delegate: self, cancelButtonTitle: "OK").show()
@@ -192,35 +227,26 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
             var alertView = UIAlertView(title: "Thanks for creating an event!", message: nil, delegate: nil, cancelButtonTitle: nil)
             alertView.show()
             
-            delay(2, { () -> () in
+            // tell feed view controller we added event with ID: X
+            // Feed view controller will fetch event with ID: X
+            // Feed view controller will dismiss us
+            // Feed view controller will add new cell to index 0 showing event with ID: X
+            
+            //self.performSegueWithIdentifier("createFinishSegue", sender: self)
+            delegate?.createViewController(self, didCreateEvent: newEvent)
+            
+            delay(0.2, { () -> () in
                 alertView.dismissWithClickedButtonIndex(0, animated: true)
                 
                 if countElements(self.eventTitleTextField.text) > 1 && countElements(self.descriptionTextView.text) > 1 {
-                    self.dismissViewControllerAnimated(true, completion: nil)
+                    //self.dismissViewControllerAnimated(true, completion: nil)
+                    
                 } else {
                     UIAlertView(title: "Please complete all fields.", message: "You did not enter enough characters.", delegate: self, cancelButtonTitle: "OK").show()
                 }
             })
         }
 
-        // write to parse
-        var newEvent = PFObject(className:"Events")
-        newEvent["event_name"] = eventTitleTextField.text
-        newEvent["event_desc"] = descriptionTextView.text
-        newEvent["event_location"] = locationTextField.text
-//        newEvent["event_date"] = dateTextField.text
-        newEvent["event_attd"] = ["michelle"]
-//        newEvent["event_image"] = 
-        
-        newEvent.saveInBackgroundWithBlock {
-            (success: Bool, error: NSError!) -> Void in
-            if (success) {
-                // The object has been saved.
-                println("succesfully pushed to parse")
-            } else {
-                // There was a problem, check error.description
-            }
-        }
     }
     
     // Method: Return Segues from Date and Location
@@ -239,5 +265,35 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
     
     @IBAction func didTapOutsideTextField(sender: AnyObject) {
         view.endEditing(true)
+    }
+    
+    
+    @IBAction func addButtonDidPress(sender: AnyObject) {
+        
+        
+        var libraryPosition = self.libraryImage.center.y
+        
+        UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+            self.libraryImage.center.y = libraryPosition - 568
+            self.selectFromLibraryButton.alpha = 1
+            
+            }, completion: { (bool) -> Void in
+                //
+        })
+        
+    }
+    
+    
+    @IBAction func didPressImageButton(sender: AnyObject) {
+        
+        var libraryPosition = self.libraryImage.center.y
+        
+        UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+            self.libraryImage.center.y = libraryPosition + 568
+        }) { (bool) -> Void in
+            UIView.animateWithDuration(0.3, animations: { () -> Void in
+                self.newImage.alpha = 1
+            })
+        }
     }
 }
