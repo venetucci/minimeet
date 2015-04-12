@@ -7,19 +7,26 @@
 //
 
 import UIKit
+import Parse
+
+protocol CreateViewControllerDelegate: NSObjectProtocol {
+    func createViewController(viewcontroller: RealCreateViewController, didCreateEvent event: PFObject)
+}
 
 class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEntryDelegate, VenueEntryDelegate {
 
+    weak var delegate: CreateViewControllerDelegate?
+    
     // Scroll View
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
     
     // Images
-    @IBOutlet weak var eventImage: UIImageView!
-    @IBOutlet weak var imageLibrary: UIImageView!
+    @IBOutlet weak var newImage: UIImageView!
+    @IBOutlet weak var libraryImage: UIImageView!
     
     // Buttons
-    @IBOutlet weak var selectThumbButton: UIButton!
+    @IBOutlet weak var selectFromLibraryButton: UIButton!
     
     // Containers
     @IBOutlet weak var infoContainer: UIView!
@@ -59,16 +66,14 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
         descriptionTextView!.layer.borderColor = borderColor.CGColor
         descriptionTextView.layer.cornerRadius = 5
         
+        newImage.alpha = 0
+        selectFromLibraryButton.alpha = 0
         
-         // Register for keyboard events
-        
+        // Register for keyboard events
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
         
         println(view.center.y)
-
-
-        // Do any additional setup after loading the view.
     }
     
     
@@ -99,22 +104,17 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
         println("content offeset: \(scrollView.contentOffset.y)")
     }
     
-    
     // Method: Receive Date data :)
-    
     func mMDidInputInfo(info:NSString){
         dateTextField.text = info
     }
     
     // Method: Receieve Location data :)
-    
     func UserDidInputInfoVenue(info:NSString){
         locationTextField.text = info
     }
     
-    
     // Calculate hex values for color:
-    
     func UIColorFromRGB(rgbValue: UInt) -> UIColor {
         return UIColor(
             red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
@@ -124,15 +124,7 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
         )
     }
     
-    // Animate the Library out of screen
-    @IBAction func didPressThumbnail(sender: AnyObject) {
-        UIView.animateWithDuration(0.5, animations: { () -> Void in
-            self.imageLibrary.center.y = 1500
-            self.selectThumbButton.hidden = true
-        })
-        
-    }
-    
+
     
      // KEYBOARD METHODS
     
@@ -142,7 +134,6 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
 //        }
     
     // Show Keyboard
-    
     func keyboardWillShow(notification: NSNotification!) {
         var userInfo = notification.userInfo!
         
@@ -158,21 +149,14 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
             
             // Set view properties to match with the animation of the keyboard
             
-            self.eventImage.center.y = self.eventImage.center.y - 180
-            self.scrollView.center.y = self.scrollView.center.y - 180
-            
-            
+
 //            self.infoContainer.center.y = kbSize.height - self.infoContainer.center.y / 3
-//            
 //            self.detailsSaveContainer.center.y = kbSize.height + self.detailsSaveContainer.center.y / 3
 
-            
             }, completion: nil)
-        
     }
     
     // Hide Keyboard
-    
     func keyboardWillHide(notification: NSNotification!) {
         var userInfo = notification.userInfo!
         
@@ -188,21 +172,48 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
             
             // Set view properties to match with the animation of the keyboard
             
-            self.eventImage.center.y = self.eventImage.center.y + 180
+            
             self.scrollView.center.y = self.scrollView.center.y + 180
 
-            
-            }, completion: nil)
-        
+        }, completion: nil)
     }
     
-
-    
-    
-    
     // Create Button
-    
     @IBAction func didPressCreateButton(sender: AnyObject) {
+        
+        // write to parse
+        var newEvent = PFObject(className:"Events")
+        newEvent["event_name"] = eventTitleTextField.text
+        newEvent["event_desc"] = descriptionTextView.text
+        newEvent["event_location"] = locationTextField.text
+        
+        var dateString = "2015-04-13" // change to your date format
+        
+        var dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "YYYY-MM-DD"
+        
+        //     var date = dateFormatter.dateFromString(dateString)
+        //     println(date)
+        
+        newEvent["event_date"] = dateFormatter.dateFromString(dateString)
+        
+        // create an PFFile
+        var image = UIImage(named: "xcode")
+        let imageData = UIImagePNGRepresentation(image)
+        let imageFile = PFFile(name:"new_event.png", data:imageData)
+        
+        newEvent["event_image"] = imageFile
+        newEvent["event_attd"] = ["michelle"]
+        
+        newEvent.saveInBackgroundWithBlock {
+            (success: Bool, error: NSError!) -> Void in
+            if (success) {
+                // The object has been saved.
+                println("succesfully pushed to parse: \(newEvent.objectId)")
+            } else {
+                // There was a problem, check error.description
+            }
+        }
         
         if countElements(eventTitleTextField.text) == 0 {
             UIAlertView(title: "Meetup Name Required", message: "Please create a name for your meetup!", delegate: self, cancelButtonTitle: "OK").show()
@@ -216,23 +227,29 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
             var alertView = UIAlertView(title: "Thanks for creating an event!", message: nil, delegate: nil, cancelButtonTitle: nil)
             alertView.show()
             
-            delay(2, { () -> () in
+            // tell feed view controller we added event with ID: X
+            // Feed view controller will fetch event with ID: X
+            // Feed view controller will dismiss us
+            // Feed view controller will add new cell to index 0 showing event with ID: X
+            
+            //self.performSegueWithIdentifier("createFinishSegue", sender: self)
+            delegate?.createViewController(self, didCreateEvent: newEvent)
+            
+            delay(0.2, { () -> () in
                 alertView.dismissWithClickedButtonIndex(0, animated: true)
                 
                 if countElements(self.eventTitleTextField.text) > 1 && countElements(self.descriptionTextView.text) > 1 {
-                    self.performSegueWithIdentifier("secondaryFeedSegue", sender: self)
+                    //self.dismissViewControllerAnimated(true, completion: nil)
+                    
                 } else {
                     UIAlertView(title: "Please complete all fields.", message: "You did not enter enough characters.", delegate: self, cancelButtonTitle: "OK").show()
                 }
             })
         }
 
-        
     }
     
-    
     // Method: Return Segues from Date and Location
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "selectDateSegue" {
             let vc2: SelectDateViewController = segue.destinationViewController as SelectDateViewController
@@ -246,21 +263,37 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
         
     }
     
-    
-    
     @IBAction func didTapOutsideTextField(sender: AnyObject) {
         view.endEditing(true)
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    
+    @IBAction func addButtonDidPress(sender: AnyObject) {
+        
+        
+        var libraryPosition = self.libraryImage.center.y
+        
+        UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+            self.libraryImage.center.y = libraryPosition - 568
+            self.selectFromLibraryButton.alpha = 1
+            
+            }, completion: { (bool) -> Void in
+                //
+        })
+        
     }
-    */
-
+    
+    
+    @IBAction func didPressImageButton(sender: AnyObject) {
+        
+        var libraryPosition = self.libraryImage.center.y
+        
+        UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+            self.libraryImage.center.y = libraryPosition + 568
+        }) { (bool) -> Void in
+            UIView.animateWithDuration(0.3, animations: { () -> Void in
+                self.newImage.alpha = 1
+            })
+        }
+    }
 }

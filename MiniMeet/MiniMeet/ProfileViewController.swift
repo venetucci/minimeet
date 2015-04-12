@@ -48,7 +48,7 @@ class ProfileViewController: UIViewController {
         }
 
         viewLabel.attributedText = NSMutableAttributedString(string: "PROFILE", attributes: [NSKernAttributeName: 4] )
-        profileName.attributedText = NSMutableAttributedString(string: "JON SNOW", attributes: [NSKernAttributeName: 4] )
+        profileName.attributedText = NSMutableAttributedString(string: "Michelle Venetucci", attributes: [NSKernAttributeName: 4] )
         configureDescription()
     }
 

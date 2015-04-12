@@ -90,7 +90,7 @@ class SelectDateViewController: UIViewController, UIViewControllerTransitioningD
     
     @IBAction func didPickDateTime(sender: AnyObject) {
         var dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "MM.dd.yyyy | h:mm a"
+        dateFormatter.dateFormat = "yyyy-MM-dd h:mm a"
         var dateString = dateFormatter.stringFromDate(datePicker.date)
         self.dateTimeLabel.text = dateString
     }

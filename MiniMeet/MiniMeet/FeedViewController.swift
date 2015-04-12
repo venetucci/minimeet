@@ -10,15 +10,16 @@ import UIKit
 import Parse
 
 // Event Custom Struct
-struct Event {
+class Event {
     
-    let title: NSString
-    let description: String
-    let location: String
-    let dateString: String
-    let timeString: String
-    var attendeeArray: [String]     // an array of names
-    var eventImage: UIImage
+    let title: NSString = ""
+    let description: String = ""
+    let location: String = ""
+    let dateString: String = ""
+    let timeString: String = ""
+    var attendeeArray: [String] = []     // an array of names
+    var eventImage: UIImage?
+    var eventImageFile: PFFile
     
     var subtitle: String {
         get {
@@ -37,10 +38,35 @@ struct Event {
             return "\(location)"
         }
     }
+    
+    init(parseObject: PFObject) {
+        title = parseObject["event_name"]! as String
+        title = title.uppercaseString
+        description = parseObject["event_desc"]! as String
+        location = parseObject["event_location"]! as String
+        dateString = getDate(parseObject["event_date"]! as NSDate)
+        timeString = getTime(parseObject["event_date"]! as NSDate)
+        attendeeArray = parseObject["event_attd"]! as [String]
+        eventImageFile = parseObject["event_image"] as PFFile
+    }
+}
+
+func getDate(date: NSDate) -> String {
+    var dateFormatter = NSDateFormatter()
+    dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
+    var eventDate = dateFormatter.stringFromDate(date)
+    return eventDate
+}
+
+func getTime(time: NSDate) -> String {
+    var dateFormatter = NSDateFormatter()
+    dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+    var eventTime = dateFormatter.stringFromDate(time)
+    return eventTime
 }
 
 // Classes
-class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
+class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, CreateViewControllerDelegate {
         
     // Global Variables & Outlets
     @IBOutlet weak var eventTableView: UITableView!
@@ -64,6 +90,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         // query Parse for events
         var query = PFQuery(className: "Events")
+        query.orderByDescending("createdAt")
         
         query.findObjectsInBackgroundWithBlock {
             (objects: [AnyObject]!, error: NSError!) -> Void in
@@ -74,40 +101,13 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                 if let event = objects as? [PFObject] {
                     for event in objects {
                         
-                        // take the object and parse out all the data for even structure
-                        var event_name = event["event_name"]! as NSString
-                        event_name = event_name.uppercaseString
-                        var event_description = event["event_desc"]! as NSString
-                        var event_location = event["event_location"]! as NSString
-                        var event_date = self.getDate(event["event_date"]! as NSDate)
-                        var event_time = self.getTime(event["event_date"]! as NSDate)
-                        var event_attd = event["event_attd"]! as [String]
-                        var event_image: UIImage!
+                        let eventStruct = Event(parseObject: event as PFObject)
+                        // add the structure to the array of events
+                        self.events.append(eventStruct)
                         
-                        // takes the PFFile and convert to UIImage. Then immediately create the event structure and add it to the event array
-                        var event_imageFile = event["event_image"]! as PFFile
-                        event_imageFile.getDataInBackgroundWithBlock {
-                            (imageData: NSData!, error: NSError!) -> Void in
-                            if error == nil {
-                                event_image = UIImage(data:imageData)! as UIImage
-                                
-                                // create the event structure
-                                var eventStruct = Event(
-                                    title: event_name,
-                                    description: event_description,
-                                    location: event_location,
-                                    dateString: event_date,
-                                    timeString: event_time,
-                                    attendeeArray: event_attd,
-                                    eventImage: event_image
-                                )
-                                // add the structure to the array of events
-                                self.events.append(eventStruct)
-                                
-                                // refresh the tableView
-                                self.eventTableView.reloadData()
-                            }
-                        }
+                        // refresh the tableView
+                        self.eventTableView.reloadData()
+                        
                     }
                 }
             } else {
@@ -118,7 +118,9 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     override func viewWillAppear(animated: Bool) {
-        // code
+        // fetch the new event here!
+        self.eventTableView.reloadData()
+        println("-------------- about to load ------------")
     }
     
     override func didReceiveMemoryWarning() {
@@ -126,19 +128,6 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Dispose of any resources that can be recreated.
     }
 
-    func getDate(date: NSDate) -> String {
-        var dateFormatter = NSDateFormatter()
-        dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
-        var eventDate = dateFormatter.stringFromDate(date)
-        return eventDate
-    }
-
-    func getTime(time: NSDate) -> String {
-        var dateFormatter = NSDateFormatter()
-        dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
-        var eventTime = dateFormatter.stringFromDate(time)
-        return eventTime
-    }
     
     // Table View Method #1
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -154,10 +143,20 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         var cell = tableView.dequeueReusableCellWithIdentifier("eventCellId") as EventCell
-        let event = events[indexPath.row]
+        var event = events[indexPath.row]
         
         // apply kerning to the title
         var mutableString = NSMutableAttributedString(string: event.title, attributes: [NSKernAttributeName: 4] )
+        
+        if event.eventImage == nil {
+            cell.eventImage.image = UIImage(named: "eventPlaceholder")
+            event.eventImageFile.getDataInBackgroundWithBlock({ (data, error) -> Void in
+                event.eventImage = UIImage(data: data)
+                cell.eventImage.image = UIImage(data: data)
+            })
+        } else {
+            cell.eventImage.image = event.eventImage
+        }
 
         cell.eventTitle.numberOfLines = 2
         cell.eventTitle.lineBreakMode =  NSLineBreakMode.ByWordWrapping
@@ -165,7 +164,6 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.eventSubtitle.text = event.dateString
         cell.eventTime.text = event.timeString
         cell.eventLocation.text = event.location
-        cell.eventImage.image = event.eventImage
         cell.eventAttendees = event.attendeeArray
         cell.resetAttendees()
         cell.displayAttendees()
@@ -228,18 +226,19 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             destinationVC.transitioningDelegate = imageTransition
             
-        } else {
-            // it is not a tableCell so don't do anything (yet)
+        } else if segue.identifier == "createEventSegue" {
+            var viewController = segue.destinationViewController as RealCreateViewController
+            viewController.delegate = self
+        }
+    }
+    
+    func createViewController(viewcontroller: RealCreateViewController, didCreateEvent event: PFObject) {
+        eventTableView.contentOffset = CGPointZero
+        dismissViewControllerAnimated(true) { () -> Void in
+            self.events.insert(Event(parseObject: event), atIndex: 0)
+
+            let indexPaths = [NSIndexPath(forRow: 0, inSection: 0)]
+            self.eventTableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: UITableViewRowAnimation.Top)
         }
     }
 }
-
-//        let iosForDesigners = Event(
-//            title: "iOS FOR DESIGNERS",
-//            description: "Designers talk and learn about prototyping iOS apps with Swift and Xcode. There is a focus on views, navigation, transitions, and animations. We'll also look into the Apple Watch and talk about how we can start making useful apps for it. ",
-//            location: "thoughtbot",
-//            dateString: "3.28.15",
-//            timeString: "1:30 pm",
-//            attendeeArray: ["mich","danny","hanna"],
-//            eventImageName: "ios-for-designers"
-//        )
