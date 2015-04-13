@@ -245,7 +245,6 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
                 }
             })
         }
-
     }
     
     // Method: Return Segues from Date and Location
@@ -265,7 +264,6 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
     @IBAction func didTapOutsideTextField(sender: AnyObject) {
         view.endEditing(true)
     }
-    
     
     @IBAction func addButtonDidPress(sender: AnyObject) {
         var libraryPosition = self.libraryImage.center.y

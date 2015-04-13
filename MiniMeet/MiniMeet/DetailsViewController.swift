@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class DetailsViewController: UIViewController, UIScrollViewDelegate {
     
@@ -148,6 +149,22 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
     }
 
     @IBAction func submitButtonDidPress(sender: AnyObject) {
+        var user = PFUser.currentUser()
+        let array = event?.attendeeArray
+//        if let array = event?.attendeeArray as [String] {
+//            // do stuff with array
+//            println(array)
+//        }
+        
+        for array in array {
+            println("hello")
+        }
+        
+        println(user["username"])
+        
+        
+        
+        
         self.performSegueWithIdentifier("successSegue", sender: self)
     }
 
