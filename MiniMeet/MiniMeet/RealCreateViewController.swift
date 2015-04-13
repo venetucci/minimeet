@@ -187,13 +187,12 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
         newEvent["event_desc"] = descriptionTextView.text
         newEvent["event_location"] = locationTextField.text
         
-        var dateString = "2015-04-13" // change to your date format
         
+        // get date dynamically from the picker and pass to parse
+        var dateString = dateTextField.text
         var dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "YYYY-MM-DD"
-        
-        //     var date = dateFormatter.dateFromString(dateString)
-        //     println(date)
+        dateFormatter.dateFormat = "yyyy-MM-dd h:mm a"
+        dateFormatter.timeZone = NSTimeZone.localTimeZone()
         
         newEvent["event_date"] = dateFormatter.dateFromString(dateString)
         
