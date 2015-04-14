@@ -12,7 +12,7 @@ import Parse
 // Event Custom Struct
 class Event {
     
-    let objectId: NSString = ""
+    let objectId: NSString? = ""
     let title: NSString = ""
     let description: String = ""
     let location: String = ""
@@ -41,7 +41,7 @@ class Event {
     }
     
     init(parseObject: PFObject) {
-        objectId = parseObject.objectId! as String
+        objectId = parseObject.objectId
         title = parseObject["event_name"]! as String
         title = title.uppercaseString
         description = parseObject["event_desc"]! as String

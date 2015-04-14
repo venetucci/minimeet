@@ -152,6 +152,7 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
 
 //            self.infoContainer.center.y = kbSize.height - self.infoContainer.center.y / 3
 //            self.detailsSaveContainer.center.y = kbSize.height + self.detailsSaveContainer.center.y / 3
+            self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, kbSize.height, 0)
 
             }, completion: nil)
     }
@@ -173,7 +174,7 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
             // Set view properties to match with the animation of the keyboard
             
             
-            self.scrollView.center.y = self.scrollView.center.y + 180
+            self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
 
         }, completion: nil)
     }

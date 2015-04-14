@@ -40,7 +40,8 @@ class SelectLocationViewController: UIViewController, UIViewControllerTransition
         var clientId = "IGUHLSKLHZZ5JXA30TT0DNXVGPGQWRZQS1RBA5RBMS1K5GLA"
         var clientSecret = "ZGLNT1RJWNU5H1TLQ5HMS2QFQGRHBR5QTU451JILSOIYTIMY"
         var foursquareVersion = "20130815"
-        var latitudeLong = "37.770802,-122.403902" // Zynga HQ in CA
+        // var latitudeLong = "37.770802,-122.403902" // Zynga HQ in CA
+        var latitudeLong = "37.787613,-122.396638" // Galvanize HQ in CA
         var section = "coffee"
         
         var url = NSURL(string: "https://api.foursquare.com/v2/venues/explore?client_id=\(clientId)&client_secret=\(clientSecret)&v=\(foursquareVersion)&ll=\(latitudeLong)&section=\(section)")!
