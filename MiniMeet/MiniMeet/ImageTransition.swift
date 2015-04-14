@@ -90,10 +90,14 @@ class ImageTransition: BaseTransition {
     
     override func dismissTransition(containerView: UIView, fromViewController: UIViewController, toViewController: UIViewController) {
         var tabViewController = toViewController as TabViewController
+//        var feedVC = toViewController as FeedViewController
         let navigationController = tabViewController.selectedViewController as UINavigationController
         var feedViewController = navigationController.topViewController as FeedViewController
         var detailsViewController = fromViewController as DetailsViewController
 
+        feedViewController.eventTableView.reloadData()
+        
+        
         convertedEndFrame = detailsViewController.endFrame
         snapshot?.frame = convertedEndFrame
         containerView.addSubview(snapshot!)
