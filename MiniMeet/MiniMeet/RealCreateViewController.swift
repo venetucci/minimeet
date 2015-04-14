@@ -245,7 +245,6 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
                 }
             })
         }
-
     }
     
     // Method: Return Segues from Date and Location
@@ -266,10 +265,7 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
         view.endEditing(true)
     }
     
-    
     @IBAction func addButtonDidPress(sender: AnyObject) {
-        
-        
         var libraryPosition = self.libraryImage.center.y
         
         UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
@@ -279,9 +275,11 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
             }, completion: { (bool) -> Void in
                 //
         })
-        
     }
     
+    @IBAction func didPressBack(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
     
     @IBAction func didPressImageButton(sender: AnyObject) {
         

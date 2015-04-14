@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class DetailsViewController: UIViewController, UIScrollViewDelegate {
     
@@ -130,24 +131,51 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
     func scrollViewDidEndDragging(scrollView: UIScrollView!,
         willDecelerate decelerate: Bool) {
             
-            var offsetY = scrollView.contentOffset.y
+        var offsetY = scrollView.contentOffset.y
             
-            if scrollView.contentOffset.y < -60 {
-                dismissViewControllerAnimated(true, completion: nil)
-                imageView.alpha = 0
+        if scrollView.contentOffset.y < -60 {
+            dismissViewControllerAnimated(true, completion: nil)
+            imageView.alpha = 0
                 
-                // instead of entire scrollView break up the components and alpha out individually
-                scrollView.alpha = 0.5
-                
-                // set endFrame properties
-                endFrame = imageView.frame
-                
-                // shift the position by offset
-                endFrame.origin.y = -offsetY
-            }
+            // instead of entire scrollView break up the components and alpha out individually
+            scrollView.alpha = 0.5
+            
+            // set endFrame properties
+            endFrame = imageView.frame
+            
+            // shift the position by offset
+            endFrame.origin.y = -offsetY
+        }
     }
 
     @IBAction func submitButtonDidPress(sender: AnyObject) {
+        var user = PFUser.currentUser().username
+        var objectId = event?.objectId as String
+        
+        if var array = event?.attendeeArray as [String]! {
+            
+            // add current user to the array then push to parse
+            var query = PFQuery(className:"Events")
+            array.append(user)
+            
+            event?.attendeeArray = array
+            
+            query.getObjectInBackgroundWithId(objectId) {
+                (eventObject: PFObject!, error: NSError!) -> Void in
+                if error == nil && eventObject != nil {
+                    eventObject.addUniqueObject(user, forKey: "event_attd")
+                    eventObject.saveInBackgroundWithBlock({ (success: Bool, error: NSError!) -> Void in
+                        if success {
+                            println("added user to array")
+                        } else {
+                            // there's an issue
+                        }
+                    })
+                } else {
+                    println(error)
+                }
+            }
+        }
         self.performSegueWithIdentifier("successSegue", sender: self)
     }
 
