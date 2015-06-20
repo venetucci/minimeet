@@ -33,9 +33,9 @@ class TabViewController: UIViewController {
         UIApplication.sharedApplication().statusBarStyle = .LightContent
         var storyboard = UIStoryboard(name: "Main", bundle: nil)
 
-        feedViewController = storyboard.instantiateViewControllerWithIdentifier("feedNavigation") as UIViewController
-        createViewController = storyboard.instantiateViewControllerWithIdentifier("create") as CreateViewController
-        profileViewController = storyboard.instantiateViewControllerWithIdentifier("profileNavigation") as UIViewController
+        feedViewController = storyboard.instantiateViewControllerWithIdentifier("feedNavigation") as! UIViewController
+        createViewController = storyboard.instantiateViewControllerWithIdentifier("create") as! CreateViewController
+        profileViewController = storyboard.instantiateViewControllerWithIdentifier("profileNavigation") as! UIViewController
         
         
         viewControllersArray = [feedViewController, profileViewController]

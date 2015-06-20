@@ -40,26 +40,29 @@ class SignInViewController: UIViewController {
     }
     
     func keyboardWillShow(notification: NSNotification!) {
-        var userInfo = notification.userInfo!
-        
-        var kbSize = (userInfo[UIKeyboardFrameEndUserInfoKey] as NSValue).CGRectValue().size
-        var durationValue = userInfo[UIKeyboardAnimationDurationUserInfoKey] as NSNumber
-        var animationDuration = durationValue.doubleValue
-        var curveValue = userInfo[UIKeyboardAnimationCurveUserInfoKey] as NSNumber
-        var animationCurve = curveValue.integerValue
-        
-        UIView.animateWithDuration(animationDuration, delay: 0.0, options: UIViewAnimationOptions(UInt(animationCurve << 16)), animations: {
-            
-            self.loginContainer.center.y = kbSize.height - self.loginContainer.center.y/8
-            
-            self.buttonContainer.center.y = kbSize.height + self.buttonContainer.center.y/6
-            
-            self.logo.center.y = self.logo.center.y - 15
-            
-            }, completion: nil)
-        
+        if let userInfo = notification.userInfo,
+            keyboardFrame = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue,
+            durationValue = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber,
+            curveValue = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber {
+
+                let animationDuration = durationValue.doubleValue
+                let kbSize = keyboardFrame.CGRectValue().size
+                let animationCurve = curveValue.integerValue
+
+                UIView.animateWithDuration(animationDuration,
+                    delay: 0.0,
+                    options: UIViewAnimationOptions(UInt(animationCurve << 16)),
+                    animations: {
+                        self.loginContainer.center.y = kbSize.height - self.loginContainer.center.y/8
+                        self.buttonContainer.center.y = kbSize.height + self.buttonContainer.center.y/6
+                        self.logo.center.y = self.logo.center.y - 15
+                    },
+                    completion: nil)
+        } else {
+            print("Keyboard notification arrived but not as expected :(")
+        }
     }
-    
+
     func keyboardWillHide(notification: NSNotification!) {
         var userInfo = notification.userInfo!
         

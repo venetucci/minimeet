@@ -29,21 +29,24 @@ class ProfileViewController: UIViewController {
                 
         var query = PFQuery(className: "Profile")
         query.getObjectInBackgroundWithId("ffpDeTzNl1") {
-            (profileObject: PFObject!, error: NSError!) -> Void in
+            (profileObject, error) in
             if error == nil && profileObject != nil {
                 println(profileObject)
             } else {
                 println(error)
             }
-            
-            let userImageFile = profileObject["profile_image"] as PFFile
 
-            userImageFile.getDataInBackgroundWithBlock {
-                (imageData: NSData!, error: NSError!) -> Void in
-                if error == nil {
-                    let image = UIImage(data:imageData)! as UIImage
-                    self.profileImage.image = image
+            if let profileObject = profileObject,
+                userImageFile = profileObject["profile_image"] as? PFFile {
+                userImageFile.getDataInBackgroundWithBlock {
+                    (imageData, error) in
+                    if let imageData = imageData {
+                        let image = UIImage(data:imageData)
+                        self.profileImage.image = image
+                    }
                 }
+            } else {
+                print("Error getting profile image")
             }
         }
 
@@ -58,7 +61,7 @@ class ProfileViewController: UIViewController {
     }
 
     func configureDescription() {
-        var paragraphStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as NSMutableParagraphStyle
+        var paragraphStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
         paragraphStyle.lineSpacing = 4.0
         var attributes = [NSParagraphStyleAttributeName: paragraphStyle]
         var attributedString = NSAttributedString(string: descriptionText!.text!, attributes: attributes)

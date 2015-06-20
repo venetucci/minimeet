@@ -106,12 +106,12 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
     
     // Method: Receive Date data :)
     func mMDidInputInfo(info:NSString){
-        dateTextField.text = info
+        dateTextField.text = info as String
     }
     
     // Method: Receieve Location data :)
     func UserDidInputInfoVenue(info:NSString){
-        locationTextField.text = info
+        locationTextField.text = info as String
     }
     
     // Calculate hex values for color:
@@ -163,7 +163,7 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
         
         // Get the keyboard height and width from the notification
         // Size varies depending on OS, language, orientation
-        var kbSize = (userInfo[UIKeyboardFrameEndUserInfoKey] as NSValue).CGRectValue().size
+        var kbSize = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue().size
         var durationValue = userInfo[UIKeyboardAnimationDurationUserInfoKey] as NSNumber
         var animationDuration = durationValue.doubleValue
         var curveValue = userInfo[UIKeyboardAnimationCurveUserInfoKey] as NSNumber

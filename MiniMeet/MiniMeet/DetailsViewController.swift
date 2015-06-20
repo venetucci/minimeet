@@ -53,7 +53,7 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
 
         // setting the type
         var titleString = event?.title
-        var mutableString = NSMutableAttributedString(string: titleString!, attributes: [NSKernAttributeName: 4] )
+        var mutableString = NSMutableAttributedString(string: String(titleString!), attributes: [NSKernAttributeName: 4] )
         eventTitle.numberOfLines = 2
         eventTitle.lineBreakMode =  NSLineBreakMode.ByWordWrapping
         eventTitle.attributedText = mutableString
@@ -66,7 +66,7 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
         
         // custom view added to storyboard
         var storyboard = UIStoryboard(name: "Main", bundle: nil)
-        successVC = storyboard.instantiateViewControllerWithIdentifier("successSBID") as SuccessViewController
+        successVC = storyboard.instantiateViewControllerWithIdentifier("successSBID") as! SuccessViewController
         
         // set the background color and alpha of detailsViewController
         self.view.backgroundColor = UIColor(red: 56/255, green: 77/255, blue: 103/255, alpha: 0.9)
@@ -128,7 +128,7 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
         submitButton.alpha = offsetFade
     }
     
-    func scrollViewDidEndDragging(scrollView: UIScrollView!,
+    func scrollViewDidEndDragging(scrollView: UIScrollView,
         willDecelerate decelerate: Bool) {
             
         var offsetY = scrollView.contentOffset.y
@@ -149,22 +149,23 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
     }
 
     @IBAction func submitButtonDidPress(sender: AnyObject) {
-        var user = PFUser.currentUser().username
-        var objectId = event?.objectId as String
-        
+        if let user = PFUser.currentUser(),
+         username = user.username,
+         objectId = event?.objectId {
+
         if var array = event?.attendeeArray as [String]! {
-            
+
             // add current user to the array then push to parse
             var query = PFQuery(className:"Events")
-            array.append(user)
-            
+            array.append(username)
+
             event?.attendeeArray = array
-            
-            query.getObjectInBackgroundWithId(objectId) {
-                (eventObject: PFObject!, error: NSError!) -> Void in
-                if error == nil && eventObject != nil {
+
+            query.getObjectInBackgroundWithId(String(objectId)) {
+                (eventObject, error) -> Void in
+                if let eventObject = eventObject {
                     eventObject.addUniqueObject(user, forKey: "event_attd")
-                    eventObject.saveInBackgroundWithBlock({ (success: Bool, error: NSError!) -> Void in
+                    eventObject.saveInBackgroundWithBlock({ (success, error) -> Void in
                         if success {
                             println("added user to array")
                         } else {
@@ -172,11 +173,13 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
                         }
                     })
                 } else {
-                    println(error)
+                    print(error)
                 }
             }
         }
         self.performSegueWithIdentifier("successSegue", sender: self)
+
+        }
     }
 
     // animate event details description and map on page load
@@ -227,7 +230,7 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func configureView() {
-        var paragraphStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as NSMutableParagraphStyle
+        var paragraphStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
         paragraphStyle.lineSpacing = 4.0
         var attributes = [NSParagraphStyleAttributeName: paragraphStyle]
         var attributedString = NSAttributedString(string: descriptionText!.text!, attributes: attributes)
@@ -260,13 +263,13 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        var destinationViewController = segue.destinationViewController as UIViewController
-        
-        // instantiate the transition
-        successTransition = FadeTransition()
-        successTransition.duration = 0.0
-        
-        destinationViewController.modalPresentationStyle = UIModalPresentationStyle.Custom
-        destinationViewController.transitioningDelegate = successTransition
+        if let destinationViewController = segue.destinationViewController as? UIViewController {
+            // instantiate the transition
+            successTransition = FadeTransition()
+            successTransition.duration = 0.0
+
+            destinationViewController.modalPresentationStyle = UIModalPresentationStyle.Custom
+            destinationViewController.transitioningDelegate = successTransition
+        }
     }
 }
