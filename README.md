@@ -1,16 +1,8 @@
-#mmd
+#MiniMeet
 
-## mini meetups
+Create small, conversation-based meetups about any topic at any time. 
 
-**Michelle, Mike, Danny @ CodePath**
-
-![image](https://github.com/tamez/mmd/blob/master/wireframes/R1/01.jpg)
-![image](https://github.com/tamez/mmd/blob/master/wireframes/R1/02.jpg)
-![image](https://github.com/tamez/mmd/blob/master/wireframes/R1/03.jpg)
-![image](https://github.com/tamez/mmd/blob/master/wireframes/R1/04.jpg)
-![image](https://github.com/tamez/mmd/blob/master/wireframes/R1/05.jpg)
-![image](https://github.com/tamez/mmd/blob/master/wireframes/R1/06.jpg)
-![image](https://github.com/tamez/mmd/blob/master/wireframes/R1/07.jpg)
-![image](https://github.com/tamez/mmd/blob/master/wireframes/R1/08.jpg)
+![image](https://d13yacurqjgara.cloudfront.net/users/308287/screenshots/2057081/minimeet-feed.png)
+![image](https://d13yacurqjgara.cloudfront.net/users/308287/screenshots/2025490/log-in-mmd.gif)
 
 
