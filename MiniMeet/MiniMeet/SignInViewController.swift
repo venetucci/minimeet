@@ -66,10 +66,10 @@ class SignInViewController: UIViewController {
     func keyboardWillHide(notification: NSNotification!) {
         var userInfo = notification.userInfo!
         
-        var kbSize = (userInfo[UIKeyboardFrameEndUserInfoKey] as NSValue).CGRectValue().size
-        var durationValue = userInfo[UIKeyboardAnimationDurationUserInfoKey] as NSNumber
+        var kbSize = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue().size
+        var durationValue = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber
         var animationDuration = durationValue.doubleValue
-        var curveValue = userInfo[UIKeyboardAnimationCurveUserInfoKey] as NSNumber
+        var curveValue = userInfo[UIKeyboardAnimationCurveUserInfoKey] as! NSNumber
         var animationCurve = curveValue.integerValue
         
         UIView.animateWithDuration(animationDuration, delay: 0.0, options: UIViewAnimationOptions(UInt(animationCurve << 16)), animations: {
@@ -82,24 +82,28 @@ class SignInViewController: UIViewController {
 
     @IBAction func signIn(sender: AnyObject) {
         
-        PFUser.logInWithUsernameInBackground(emailTextField.text, password: passwordTextField.text) { (user: PFUser!, error: NSError!) -> Void in
-            // code
-            
-            if user != nil {
+        PFUser.logInWithUsernameInBackground(emailTextField.text, password: passwordTextField.text) {
+            (user: PFUser?, error: NSError?) -> Void in
+            if let user = user {
                 println("logged in!")
                             var images = UIImage.animatedImageNamed("loading_", duration: 3.0)
                             self.loadingImage.image = images
                             self.loadingImage.alpha = 1
                             self.loadingBackground.alpha = 0.7
-                
+            
                             delay(2, { () -> () in
                                 self.performSegueWithIdentifier("welcomeSegue", sender: self)
                             })
             } else {
-                var alertView = UIAlertView(title: "oops", message: error.description, delegate: nil, cancelButtonTitle: "OK")
-                alertView.show()
+                if let error = error {
+                    var alertView = UIAlertView(title: "oops", message: error.description, delegate: nil, cancelButtonTitle: "OK")
+                    alertView.show()
+                }
+                
             }
+
         }
+        
         
 //  non parse login
 //        if countElements(emailTextField.text) == 0 {

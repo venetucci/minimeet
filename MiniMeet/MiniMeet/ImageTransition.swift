@@ -20,10 +20,10 @@ class ImageTransition: BaseTransition {
     var convertedEndFrame = CGRectZero
     
     override func presentTransition(containerView: UIView, fromViewController: UIViewController, toViewController: UIViewController) {
-        var tabViewController = fromViewController as TabViewController
-        let navigationController = tabViewController.selectedViewController as UINavigationController
-        var feedViewController = navigationController.topViewController as FeedViewController
-        var detailsViewController = toViewController as DetailsViewController
+        var tabViewController = fromViewController as! TabViewController
+        let navigationController = tabViewController.selectedViewController as! UINavigationController
+        var feedViewController = navigationController.topViewController as! FeedViewController
+        var detailsViewController = toViewController as! DetailsViewController
         
         convertedStartFrame = containerView.convertRect(snapshotStartFrame, fromView: feedViewController.eventTableView)
         convertedEndFrame = containerView.convertRect(detailsViewController.containerView.frame, fromView: detailsViewController.view)
@@ -89,11 +89,11 @@ class ImageTransition: BaseTransition {
     }
     
     override func dismissTransition(containerView: UIView, fromViewController: UIViewController, toViewController: UIViewController) {
-        var tabViewController = toViewController as TabViewController
+        var tabViewController = toViewController as! TabViewController
 //        var feedVC = toViewController as FeedViewController
-        let navigationController = tabViewController.selectedViewController as UINavigationController
-        var feedViewController = navigationController.topViewController as FeedViewController
-        var detailsViewController = fromViewController as DetailsViewController
+        let navigationController = tabViewController.selectedViewController as! UINavigationController
+        var feedViewController = navigationController.topViewController as! FeedViewController
+        var detailsViewController = fromViewController as! DetailsViewController
 
         feedViewController.eventTableView.reloadData()
         

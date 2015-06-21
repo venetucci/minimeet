@@ -139,10 +139,10 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
         
         // Get the keyboard height and width from the notification
         // Size varies depending on OS, language, orientation
-        var kbSize = (userInfo[UIKeyboardFrameEndUserInfoKey] as NSValue).CGRectValue().size
-        var durationValue = userInfo[UIKeyboardAnimationDurationUserInfoKey] as NSNumber
+        var kbSize = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue().size
+        var durationValue = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber
         var animationDuration = durationValue.doubleValue
-        var curveValue = userInfo[UIKeyboardAnimationCurveUserInfoKey] as NSNumber
+        var curveValue = userInfo[UIKeyboardAnimationCurveUserInfoKey] as! NSNumber
         var animationCurve = curveValue.integerValue
         
         UIView.animateWithDuration(animationDuration, delay: 0.0, options: UIViewAnimationOptions(UInt(animationCurve << 16)), animations: {
@@ -164,9 +164,9 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
         // Get the keyboard height and width from the notification
         // Size varies depending on OS, language, orientation
         var kbSize = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue().size
-        var durationValue = userInfo[UIKeyboardAnimationDurationUserInfoKey] as NSNumber
+        var durationValue = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber
         var animationDuration = durationValue.doubleValue
-        var curveValue = userInfo[UIKeyboardAnimationCurveUserInfoKey] as NSNumber
+        var curveValue = userInfo[UIKeyboardAnimationCurveUserInfoKey] as! NSNumber
         var animationCurve = curveValue.integerValue
         
         UIView.animateWithDuration(animationDuration, delay: 0.0, options: UIViewAnimationOptions(UInt(animationCurve << 16)), animations: {
@@ -206,7 +206,7 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
         newEvent["event_attd"] = ["michelle"]
         
         newEvent.saveInBackgroundWithBlock {
-            (success: Bool, error: NSError!) -> Void in
+            (success: Bool, error: NSError?) -> Void in
             if (success) {
                 // The object has been saved.
                 println("succesfully pushed to parse: \(newEvent.objectId)")
@@ -215,13 +215,13 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
             }
         }
         
-        if countElements(eventTitleTextField.text) == 0 {
+        if count(eventTitleTextField.text) == 0 {
             UIAlertView(title: "Meetup Name Required", message: "Please create a name for your meetup!", delegate: self, cancelButtonTitle: "OK").show()
-        } else if countElements(dateTextField.text) == 0 {
+        } else if count(dateTextField.text) == 0 {
             UIAlertView(title: "Date Required", message: "Please select a day for your meetup", delegate: self, cancelButtonTitle: "OK").show()
-        } else if countElements(locationTextField.text) == 0 {
+        } else if count(locationTextField.text) == 0 {
             UIAlertView(title: "Location Required", message: "Please select a location for your meetup", delegate: self, cancelButtonTitle: "OK").show()
-        } else if countElements(descriptionTextView.text) == 0 {
+        } else if count(descriptionTextView.text) == 0 {
             UIAlertView(title: "Description Required", message: "Please describe your meetup", delegate: self, cancelButtonTitle: "OK").show()
         } else {
             var alertView = UIAlertView(title: "Thanks for creating an event!", message: nil, delegate: nil, cancelButtonTitle: nil)
@@ -238,7 +238,7 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
             delay(0.2, { () -> () in
                 alertView.dismissWithClickedButtonIndex(0, animated: true)
                 
-                if countElements(self.eventTitleTextField.text) > 1 && countElements(self.descriptionTextView.text) > 1 {
+                if count(self.eventTitleTextField.text) > 1 && count(self.descriptionTextView.text) > 1 {
                     //self.dismissViewControllerAnimated(true, completion: nil)
                     
                 } else {
@@ -251,12 +251,12 @@ class RealCreateViewController: UIViewController, UIScrollViewDelegate, MmDataEn
     // Method: Return Segues from Date and Location
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "selectDateSegue" {
-            let vc2: SelectDateViewController = segue.destinationViewController as SelectDateViewController
+            let vc2: SelectDateViewController = segue.destinationViewController as! SelectDateViewController
             vc2.passDataDelegate = self
         }
         
         if segue.identifier == "selectLocationSegue" {
-            let vcLocation: SelectLocationViewController = segue.destinationViewController as SelectLocationViewController
+            let vcLocation: SelectLocationViewController = segue.destinationViewController as! SelectLocationViewController
             vcLocation.passVenueDataDelegate = self
         }
         

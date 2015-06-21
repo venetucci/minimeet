@@ -49,17 +49,17 @@ class SelectLocationViewController: UIViewController, UIViewControllerTransition
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
             
             // Dictionaries are like ogres. Unwrap the layers.
-            var dictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as NSDictionary
-            var response = dictionary["response"] as NSDictionary
-            var groups = response["groups"] as NSArray
+            var dictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as! NSDictionary
+            var response = dictionary["response"] as! NSDictionary
+            var groups = response["groups"] as! NSArray
             if groups.count > 0 {
-                var group = groups[0] as NSDictionary // This should grab the "recommended" group
-                var items = group["items"] as NSArray
-                self.items = group["items"] as [NSDictionary]
+                var group = groups[0] as! NSDictionary // This should grab the "recommended" group
+                var items = group["items"] as! NSArray
+                self.items = group["items"] as! [NSDictionary]
                 
                 for item in self.items {
-                    var venue = item["venue"] as NSDictionary
-                    var name = venue["name"] as String
+                    var venue = item["venue"] as! NSDictionary
+                    var name = venue["name"] as! String
                     self.tableView.reloadData()
                     
                     println(url)
@@ -70,12 +70,12 @@ class SelectLocationViewController: UIViewController, UIViewControllerTransition
     } // viewDidLoad End
     
     // Custom Transition Methods - Start
-    func animationControllerForPresentedController(presented: UIViewController!, presentingController presenting: UIViewController!, sourceController source: UIViewController!) -> UIViewControllerAnimatedTransitioning! {
+    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         isPresenting = true
         return self
     }
-    
-    func animationControllerForDismissedController(dismissed: UIViewController!) -> UIViewControllerAnimatedTransitioning! {
+
+    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         isPresenting = false
         return self
     }
@@ -118,13 +118,13 @@ class SelectLocationViewController: UIViewController, UIViewControllerTransition
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("VenueTableViewCell") as VenueTableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("VenueTableViewCell") as! VenueTableViewCell
         
         // Customize the cell with the Foursquare data
         println(indexPath.row)
         var item = self.items[indexPath.row]
-        var venue = item["venue"] as NSDictionary
-        var name = venue["name"] as String
+        var venue = item["venue"] as! NSDictionary
+        var name = venue["name"] as! String
         cell.textLabel?.text = name
         
         println(name)
@@ -148,7 +148,7 @@ class SelectLocationViewController: UIViewController, UIViewControllerTransition
     
     // Custom Transition
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        var destinationVC = segue.destinationViewController as UIViewController
+        var destinationVC = segue.destinationViewController as! UIViewController
         destinationVC.modalPresentationStyle = UIModalPresentationStyle.Custom
         destinationVC.transitioningDelegate = self
     }

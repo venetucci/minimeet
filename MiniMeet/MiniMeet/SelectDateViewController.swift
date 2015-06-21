@@ -43,12 +43,12 @@ class SelectDateViewController: UIViewController, UIViewControllerTransitioningD
     
     // Custom Transition - Start Methods
     
-    func animationControllerForPresentedController(presented: UIViewController!, presentingController presenting: UIViewController!, sourceController source: UIViewController!) -> UIViewControllerAnimatedTransitioning! {
+    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         isPresenting = true
         return self
     }
     
-    func animationControllerForDismissedController(dismissed: UIViewController!) -> UIViewControllerAnimatedTransitioning! {
+    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         isPresenting = false
         return self
     }
@@ -97,7 +97,7 @@ class SelectDateViewController: UIViewController, UIViewControllerTransitioningD
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        var destinationVC = segue.destinationViewController as UIViewController
+        var destinationVC = segue.destinationViewController as! UIViewController
         destinationVC.modalPresentationStyle = UIModalPresentationStyle.Custom
         destinationVC.transitioningDelegate = self
         

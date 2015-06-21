@@ -59,7 +59,7 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
         eventTitle.attributedText = mutableString
         descriptionTitle.attributedText = NSMutableAttributedString(string: "ABOUT", attributes: [NSKernAttributeName: 6] )
         
-        eventSubtitle.text = event?.subtitle
+        eventSubtitle.text = event?.subtitle as? String
         eventTime.text = event?.timeString
         eventLocation.text = event?.location
         descriptionText.text = event?.description
@@ -121,7 +121,7 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
-    func scrollViewDidScroll(scrollView: UIScrollView!) {
+    func scrollViewDidScroll(scrollView: UIScrollView) {
         
         var newImagePoint = imageView.frame.origin
         var offsetFade = 1 - (scrollView.contentOffset.y / -60)

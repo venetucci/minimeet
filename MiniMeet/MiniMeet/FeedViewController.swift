@@ -9,24 +9,17 @@
 import UIKit
 import Parse
 
-// Event Custom Struct
 class Event {
-    
-    let objectId: NSString? = ""
-    let title: NSString = ""
-    let description: String = ""
-    let location: String = ""
-    let dateString: String = ""
-    let timeString: String = ""
+    let objectId: NSString
+    let title: NSString
+    let subtitle: NSString
+    let description: String
+    let location: String
+    let dateString: String
+    let timeString: String
     var attendeeArray: [String] = []     // an array of names
     var eventImage: UIImage?
-    var eventImageFile: PFFile
-    
-    var subtitle: String {
-        get {
-            return "\(dateString)"
-        }
-    }
+    var eventImageFile: PFFile?
     
     var eventTime: String {
         get {
@@ -41,15 +34,34 @@ class Event {
     }
     
     init(parseObject: PFObject) {
-        objectId = parseObject.objectId
-        title = parseObject["event_name"]! as String
-        title = title.uppercaseString
-        description = parseObject["event_desc"]! as String
-        location = parseObject["event_location"]! as String
-        dateString = getDate(parseObject["event_date"]! as NSDate)
-        timeString = getTime(parseObject["event_date"]! as NSDate)
-        attendeeArray = parseObject["event_attd"]! as [String]
-        eventImageFile = parseObject["event_image"] as PFFile
+        if let objectId = parseObject.objectId,
+            title = parseObject["event_name"] as? String,
+            subtitle = parseObject["event_date"] as? NSDate,
+            description = parseObject["event_desc"] as? String,
+            location = parseObject["event_location"] as? String,
+            date = parseObject["event_date"] as? NSDate,
+            time = parseObject["event_date"] as? NSDate,
+            attendeeArray = parseObject["event_attd"] as? [String],
+            eventImageFile = parseObject["event_image"] as? PFFile {
+                self.objectId = objectId
+                self.title = title
+                self.subtitle = getDate(date)
+                self.description = description
+                self.location = location
+                self.dateString = getDate(date)
+                self.timeString = getTime(time)
+                self.attendeeArray = attendeeArray
+                self.eventImageFile = eventImageFile
+        } else {
+            self.objectId = ""
+            self.title = ""
+            self.subtitle = ""
+            self.description = ""
+            self.location = ""
+            self.dateString = ""
+            self.timeString = ""
+            print("Event initialized with invalid data.")
+        }
     }
 }
 
@@ -95,15 +107,15 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         query.orderByDescending("createdAt")
         
         query.findObjectsInBackgroundWithBlock {
-            (objects: [AnyObject]!, error: NSError!) -> Void in
-            if error == nil {
+            (objects: [AnyObject]?, error: NSError?) -> Void in
+            if let objects = objects {
                 // The find succeeded.
                 println("Successfully retrieved \(objects.count) scores.")
                 // Do something with the found objects
                 if let event = objects as? [PFObject] {
                     for event in objects {
                         
-                        let eventStruct = Event(parseObject: event as PFObject)
+                        let eventStruct = Event(parseObject: event as! PFObject)
                         // add the structure to the array of events
                         self.events.append(eventStruct)
                         
@@ -114,7 +126,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
             } else {
                 // Log details of the failure
-                println("Error: \(error) \(error.userInfo!)")
+                println("Error: \(error!) \(error!.userInfo!)")
             }
         }
     }
@@ -144,18 +156,22 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     // Table View Method #3
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCellWithIdentifier("eventCellId") as EventCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("eventCellId") as! EventCell
         var event = events[indexPath.row]
         
         // apply kerning to the title
-        var mutableString = NSMutableAttributedString(string: event.title, attributes: [NSKernAttributeName: 4] )
+        var mutableString = NSMutableAttributedString(string: event.title as String, attributes: [NSKernAttributeName: 4] )
         
         if event.eventImage == nil {
-            cell.eventImage.image = UIImage(named: "eventPlaceholder")
-            event.eventImageFile.getDataInBackgroundWithBlock({ (data, error) -> Void in
-                event.eventImage = UIImage(data: data)
-                cell.eventImage.image = UIImage(data: data)
-            })
+            if let eventImageFile = event.eventImageFile {
+                cell.eventImage.image = UIImage(named: "eventPlaceholder")
+                eventImageFile.getDataInBackgroundWithBlock({ (data, error) -> Void in
+                    event.eventImage = UIImage(data: data!)
+                    cell.eventImage.image = UIImage(data: data!)
+                })
+            } else {
+                print("Event image file not found. :(")
+            }
         } else {
             cell.eventImage.image = event.eventImage
         }
@@ -202,10 +218,10 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         
         if sender.isMemberOfClass(EventCell) {
-            let cell = sender as EventCell
+            let cell = sender as! EventCell
             let indexPath = eventTableView.indexPathForCell(cell)
             
-            var destinationVC = segue.destinationViewController as DetailsViewController
+            var destinationVC = segue.destinationViewController as! DetailsViewController
             destinationVC.event = events[indexPath!.row]
             
             // pass the frames of each dot into the dotFrameArray
@@ -229,7 +245,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             destinationVC.transitioningDelegate = imageTransition
             
         } else if segue.identifier == "createEventSegue" {
-            var viewController = segue.destinationViewController as RealCreateViewController
+            var viewController = segue.destinationViewController as! RealCreateViewController
             viewController.delegate = self
         }
     }
